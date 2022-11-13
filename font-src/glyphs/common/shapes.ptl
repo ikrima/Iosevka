@@ -1,9 +1,9 @@
 $$include '../../meta/macros.ptl'
 
-import [Transform] from '../../support/geometry/transform'
+import [Transform] from"../../support/geometry/transform.mjs"
 
-import [mix linreg clamp fallback] from '../../support/utils'
-import [Radical] from '../../support/gr'
+import [mix linreg clamp fallback] from"../../support/utils.mjs"
+import [Radical] from"../../support/gr.mjs"
 
 glyph-module
 
@@ -132,9 +132,13 @@ glyph-block CommonShapes : begin
 			include : spiro-outline
 				begin [lambda : set this.gizmo currentGlyph.gizmo]
 				g4 mx d
+				archv 32 2.0
 				g4 l my
+				arcvh 32 2.0
 				g4 mx u
+				archv 32 2.0
 				g4 r my
+				arcvh 32 2.0
 				close
 			if transformShiftOnly : begin
 				local {.x mx1 .y my1} : giz.apply {.x mx .y my}
@@ -143,6 +147,8 @@ glyph-block CommonShapes : begin
 	define [CircleRingAt x y r] : CircleRing (y + r) (y - r) (x - r) (x + r)
 	glyph-block-export CircleDotAt
 	define [CircleDotAt x y r] : CircleRing (y + r) (y - r) (x - r) (x + r) true
+	glyph-block-export RoundStrokeTerminalAt
+	define [RoundStrokeTerminalAt x y r] : CircleRing (y + r) (y - r) (x - HVContrast * r) (x + HVContrast * r) true
 
 	glyph-block-export OShapeT
 	define [OShapeT sink u d l r _width _ada _adb] : glyph-proc
@@ -650,14 +656,22 @@ glyph-block CommonShapes : begin
 		.noAdjTerminalY noAdjTerminalY
 	}
 
+	glyph-block-export Ungizmo
+	define [Ungizmo] : glyph-proc
+		include [this.gizmo.inverse]
+
+	glyph-block-export Regizmo
+	define [Regizmo] : glyph-proc
+		include this.gizmo
+
 	# Composite transformations
 	glyph-block-export FlipAround
 	define [FlipAround x y sx sy] : glyph-proc
-		include : Upright
+		include : Ungizmo
 		include : Translate (-x) (-y)
 		include : Scale [fallback sx (-1)] [fallback sy sx (-1)]
 		include : Translate x y
-		include : Italify
+		include : Regizmo
 
 	glyph-block-export ScaleAround
 	define ScaleAround FlipAround
@@ -710,6 +724,12 @@ glyph-block CommonShapes : begin
 	glyph-block-export ExtLineLhs
 	define [ExtLineLhs k sw x1 y1 x2 y2] : dispiro
 		widths.lhs sw
+		corner [mix x1 x2 (-k)]  [mix y1 y2 (-k)]
+		corner [mix x1 x2 (1+k)] [mix y1 y2 (1+k)]
+
+	glyph-block-export ExtLineRhs
+	define [ExtLineRhs k sw x1 y1 x2 y2] : dispiro
+		widths.rhs sw
 		corner [mix x1 x2 (-k)]  [mix y1 y2 (-k)]
 		corner [mix x1 x2 (1+k)] [mix y1 y2 (1+k)]
 

@@ -1,7 +1,8 @@
-# Iosevka ![Version](https://img.shields.io/github/release/be5invis/Iosevka.svg)
-**Iosevka** is an *open-source*, *sans-serif* + *slab-serif*, *monospace* + *quasi‑proportional* typeface family, designed for *writing code*, using in *terminals*, and preparing *technical documents*.
+<h1 align="center"><img src="images/grand-title.light.svg#gh-light-mode-only" title="Iosevka Grand Title"><img src="images/grand-title.dark.svg#gh-dark-mode-only" title="Iosevka Grand Title"></h1>
 
-![](images/preview-all.light.png#gh-light-mode-only)![](images/preview-all.dark.png#gh-dark-mode-only)
+<p align="center"> <a href="https://github.com/be5invis/Iosevka/releases#gh-light-mode-only"> <img src="images/button-release.light.svg#gh-light-mode-only" title="Release"> </a> <a href="https://github.com/be5invis/Iosevka/releases#gh-dark-mode-only"> <img src="images/button-release.dark.svg#gh-dark-mode-only" title="Release"> </a> <a href="https://be5invis.github.io/Iosevka/customizer#gh-light-mode-only"> <img src="images/button-customize.light.svg#gh-light-mode-only" title="Customizer"> </a> <a href="https://be5invis.github.io/Iosevka/customizer#gh-dark-mode-only"> <img src="images/button-customize.dark.svg#gh-dark-mode-only" title="Customizer"> </a> <a href="https://be5invis.github.io/Iosevka/specimen#gh-light-mode-only"> <img src="images/button-specimen.light.svg#gh-light-mode-only" title="Specimen"> </a> <a href="https://be5invis.github.io/Iosevka/specimen#gh-dark-mode-only"> <img src="images/button-specimen.dark.svg#gh-dark-mode-only" title="Specimen"> </a> </p>
+
+**Iosevka** is an *open-source*, *sans-serif* + *slab-serif*, *monospace* + *quasi‑proportional* typeface family, designed for *writing code*, using in *terminals*, and preparing *technical documents*.
 
 ## Installation
 
@@ -37,18 +38,18 @@
 
 In the official package, Iosevka provides 6 monospace subfamilies (sans-serif and slab-serif, each in the 3 spacings Default, Term and Fixed) and 2 quasi-proportional subfamilies (Aile (sans-serif) and Etoile (slab-serif)). In all the monospace subfamilies, 9 weights (Thin to Heavy), 2 widths (Normal and Extended), and 3 slopes (Upright, Italic and Oblique) are included. In the quasi-proportional subfamilies, the quantity of widths is reduced to 1.
 
-![Weights sample](images/weights.light.png#gh-light-mode-only)![Weights sample](images/weights.dark.png#gh-dark-mode-only)
+![Weights sample](images/weights.light.svg#gh-light-mode-only)![Weights sample](images/weights.dark.svg#gh-dark-mode-only)
 
 All versions include the same ranges of characters: Latin letters, Greek letters (including Polytonic), some Cyrillic letters, IPA symbols and common punctuations and some symbols. You can check out the full list [here](http://be5invis.github.io/Iosevka/specimen).
 
-![Languages Sample](images/languages.light.png#gh-light-mode-only)![Languages Sample](images/languages.dark.png#gh-dark-mode-only)
+![Languages Sample](images/languages.light.svg#gh-light-mode-only)![Languages Sample](images/languages.dark.svg#gh-dark-mode-only)
 
 <!-- BEGIN Section-Language-List -->
 <!-- THIS SECTION IS AUTOMATICALLY GENERATED. DO NOT EDIT. -->
 
-161 Supported Languages: 
+165 Supported Languages: 
 
-Afrikaans, Aghem, Akan, Albanian, Asturian, Asu, Azerbaijani, Bafia, Bambara, Basaa, Basque, Belarusian, Bemba, Bena, Bosnian, Breton, Bulgarian, Catalan, Cebuano, Central Atlas Tamazight, Chechen, Chiga, Colognian, Cornish, Croatian, Czech, Danish, Duala, Dutch, Embu, English, Esperanto, Estonian, Ewe, Ewondo, Faroese, Filipino, Finnish, French, Friulian, Fulah, Galician, Ganda, German, Greek, Gusii, Hausa, Hawaiian, Hungarian, Icelandic, Igbo, Inari Sami, Indonesian, Interlingua, Irish, Italian, Javanese, Jola-Fonyi, Kabuverdianu, Kabyle, Kako, Kalaallisut, Kalenjin, Kamba, Kazakh, Kikuyu, Kinyarwanda, Koyra Chiini, Koyraboro Senni, Kurdish, Kwasio, Kyrgyz, Lakota, Langi, Latvian, Lingala, Lithuanian, Low German, Lower Sorbian, Luba-Katanga, Luo, Luxembourgish, Luyia, Macedonian, Machame, Makhuwa-Meetto, Makonde, Malagasy, Malay, Maltese, Manx, Maori, Masai, Meru, Metaʼ, Mongolian, Morisyen, Mundang, Nama, Ngiemboon, Nigerian Pidgin, North Ndebele, Northern Sami, Norwegian, Norwegian Bokmål, Norwegian Nynorsk, Nuer, Nyankole, Oromo, Ossetic, Polish, Portuguese, Quechua, Romanian, Romansh, Rombo, Rundi, Russian, Rwa, Sakha, Samburu, Sango, Sangu, Scottish Gaelic, Sena, Serbian, Shambala, Shona, Slovak, Slovenian, Soga, Somali, Spanish, Sundanese, Swahili, Swedish, Swiss German, Tachelhit (shi_latn), Taita, Tajik, Tasawaq, Tatar, Teso, Tongan, Turkish, Turkmen, Ukrainian, Upper Sorbian, Uzbek, Vai (vai_latn), Vietnamese, Vunjo, Walser, Welsh, Western Frisian, Wolof, Xhosa, Yangben, Yoruba, Zarma, Zulu
+Afrikaans, Aghem, Akan, Albanian, Asturian, Asu, Azerbaijani, Bafia, Bambara, Basaa, Basque, Belarusian, Bemba, Bena, Bosnian, Breton, Bulgarian, Catalan, Cebuano, Central Atlas Tamazight, Chechen, Chiga, Colognian, Cornish, Croatian, Czech, Danish, Duala, Dutch, Embu, English, Esperanto, Estonian, Ewe, Ewondo, Faroese, Filipino, Finnish, French, Friulian, Fulah, Galician, Ganda, German, Greek, Gusii, Hausa, Hawaiian, Hindi (hi_latn), Hungarian, Icelandic, Igbo, Inari Sami, Indonesian, Interlingua, Irish, Italian, Javanese, Jola-Fonyi, Kabuverdianu, Kabyle, Kaingang, Kako, Kalaallisut, Kalenjin, Kamba, Kazakh, Kikuyu, Kinyarwanda, Koyra Chiini, Koyraboro Senni, Kurdish, Kwasio, Kyrgyz, Lakota, Langi, Latvian, Lingala, Lithuanian, Low German, Lower Sorbian, Luba-Katanga, Luo, Luxembourgish, Luyia, Macedonian, Machame, Makhuwa-Meetto, Makonde, Malagasy, Malay, Maltese, Manx, Masai, Meru, Metaʼ, Mongolian, Morisyen, Mundang, Māori, Nama, Ngiemboon, Nheengatu, Nigerian Pidgin, North Ndebele, Northern Sami, Norwegian, Norwegian Bokmål, Norwegian Nynorsk, Nuer, Nyankole, Oromo, Ossetic, Polish, Portuguese, Quechua, Romanian, Romansh, Rombo, Rundi, Russian, Rwa, Sakha, Samburu, Sango, Sangu, Sardinian, Scottish Gaelic, Sena, Serbian, Shambala, Shona, Slovak, Slovenian, Soga, Somali, Spanish, Sundanese, Swahili, Swedish, Swiss German, Tachelhit (shi_latn), Taita, Tajik, Tasawaq, Tatar, Teso, Tongan, Turkish, Turkmen, Ukrainian, Upper Sorbian, Uzbek, Vai (vai_latn), Vietnamese, Vunjo, Walser, Welsh, Western Frisian, Wolof, Xhosa, Yangben, Yoruba, Zarma, Zulu
 
 <!-- END Section-Language-List -->
 
@@ -80,14 +81,21 @@ Monospace subfamilies support ligations. Iosevka’s default ligation set is ass
 <td>Ligation Off</td>
 </tr>
 <tr>
-<td colspan="2"><img src="images/ligset-calt-0.light.png#gh-light-mode-only"/><img src="images/ligset-calt-0.dark.png#gh-dark-mode-only"/></td>
+<td colspan="2"><img src="images/ligset-calt-0.light.svg#gh-light-mode-only"/><img src="images/ligset-calt-0.dark.svg#gh-dark-mode-only"/></td>
 </tr>
 <tr>
 <td><code>calt</code></td>
 <td>Default setting in text editors</td>
 </tr>
 <tr>
-<td colspan="2"><img src="images/ligset-calt-1.light.png#gh-light-mode-only"/><img src="images/ligset-calt-1.dark.png#gh-dark-mode-only"/></td>
+<td colspan="2"><img src="images/ligset-calt-1.light.svg#gh-light-mode-only"/><img src="images/ligset-calt-1.dark.svg#gh-dark-mode-only"/></td>
+</tr>
+<tr>
+<td><code>dlig</code></td>
+<td>Discretionary ligatures</td>
+</tr>
+<tr>
+<td colspan="2"><img src="images/ligset-dlig-1.light.svg#gh-light-mode-only"/><img src="images/ligset-dlig-1.dark.svg#gh-dark-mode-only"/></td>
 </tr>
 </table>
 
@@ -113,4 +121,4 @@ Please note that, due to the complex interactions when forming ligations, cherry
 - NJU (CN): https://mirrors.nju.edu.cn/github-release/be5invis/Iosevka
 ---
 
-![Family Matrix](images/matrix.light.png#gh-light-mode-only)![Family Matrix](images/matrix.dark.png#gh-dark-mode-only)
+![Family Matrix](images/matrix.light.svg#gh-light-mode-only)![Family Matrix](images/matrix.dark.svg#gh-dark-mode-only)

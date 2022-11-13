@@ -501,6 +501,7 @@ selector.halfH = "serifless"
 selector."H/sansSerif" = "serifless"
 selector.Hwair = "serifless"
 selector."cyrl/Nje/leftHalf" = "serifless"
+selector."cyrl/Nje/leftHalf/reduced" = "serifless"
 
 [prime.capital-h.variants.top-left-serifed]
 rank = 2
@@ -510,6 +511,7 @@ selector.halfH = "topLeftSerifed"
 selector."H/sansSerif" = "serifless"
 selector.Hwair = "topLeftSerifed"
 selector."cyrl/Nje/leftHalf" = "topLeftSerifed"
+selector."cyrl/Nje/leftHalf/reduced" = "topLeftSerifed"
 
 [prime.capital-h.variants.top-left-bottom-right-serifed]
 rank = 3
@@ -519,6 +521,7 @@ selector.halfH = "topLeftSerifed"
 selector."H/sansSerif" = "serifless"
 selector.Hwair = "topLeftSerifed"
 selector."cyrl/Nje/leftHalf" = "topLeftSerifed"
+selector."cyrl/Nje/leftHalf/reduced" = "topLeftSerifed"
 
 [prime.capital-h.variants.serifed]
 rank = 4
@@ -528,6 +531,7 @@ selector.halfH = "serifed"
 selector."H/sansSerif" = "serifless"
 selector.Hwair = "serifedExceptBottomRight"
 selector."cyrl/Nje/leftHalf" = "serifed"
+selector."cyrl/Nje/leftHalf/reduced" = "serifedExceptBottomRight"
 
 
 
@@ -683,7 +687,7 @@ selector.KDescender = "curlySerifless"
 
 [prime.capital-k.variants.symmetric-touching-serifless]
 rank = 3
-description = "`K` with symmetric legs disconnected to the vertical bar, without serifs"
+description = "`K` with symmetric legs touching the vertical bar, without serifs"
 selector.K = "symmetricTouchingSerifless"
 selector."K/sansSerif" = "symmetricTouchingSerifless"
 selector."grek/KaiSymbol" = "symmetricTouchingSerifless"
@@ -719,7 +723,7 @@ selector.KDescender = "curlyTopLeftSerifed"
 
 [prime.capital-k.variants.symmetric-touching-top-left-serifed]
 rank = 7
-description = "`K` with symmetric legs disconnected to the vertical bar, and serifs at top left"
+description = "`K` with symmetric legs touching the vertical bar, and serifs at top left"
 selector.K = "symmetricTouchingTopLeftSerifed"
 selector."K/sansSerif" = "symmetricTouchingSerifless"
 selector."grek/KaiSymbol" = "symmetricTouchingTopLeftSerifed"
@@ -755,7 +759,7 @@ selector.KDescender = "curlyBottomRightSerifed"
 
 [prime.capital-k.variants.symmetric-touching-bottom-right-serifed]
 rank = 11
-description = "`K` with symmetric legs disconnected to the vertical bar, and serifs at bottom right"
+description = "`K` with symmetric legs touching the vertical bar, and serifs at bottom right"
 selector.K = "symmetricTouchingBottomRightSerifed"
 selector."K/sansSerif" = "symmetricTouchingSerifless"
 selector."grek/KaiSymbol" = "symmetricTouchingBottomRightSerifed2"
@@ -791,7 +795,7 @@ selector.KDescender = "curlySerifed"
 
 [prime.capital-k.variants.symmetric-touching-serifed]
 rank = 15
-description = "`K` with symmetric legs disconnected to the vertical bar, and serifs"
+description = "`K` with symmetric legs touching the vertical bar, and serifs"
 selector.K = "symmetricTouchingSerifed"
 selector."K/sansSerif" = "symmetricTouchingSerifless"
 selector."grek/KaiSymbol" = "symmetricTouchingSerifed2"
@@ -827,7 +831,7 @@ selector.KDescender = "curlyTopLeftSerifed"
 
 [prime.capital-k.variants.symmetric-touching-top-left-and-bottom-right-serifed]
 rank = 19
-description = "`K` with symmetric legs disconnected to the vertical bar, and serifs at top left and bottom right"
+description = "`K` with symmetric legs touching the vertical bar, and serifs at top left and bottom right"
 selector.K = "symmetricTouchingTopLeftAndBottomRightSerifed"
 selector."K/sansSerif" = "symmetricTouchingSerifless"
 selector."grek/KaiSymbol" = "symmetricTouchingTopLeftAndBottomRightSerifed2"
@@ -2710,7 +2714,7 @@ selector.kDescender = "cursiveSerifless"
 [prime.k.variants.symmetric-touching-serifless]
 rank = 5
 rankGroup = 1
-description = "`k` with symmetric legs disconnected to the vertical bar, and without serifs"
+description = "`k` with symmetric legs touching the vertical bar, and without serifs"
 selector.k = "symmetricTouchingSerifless"
 selector."k/sansSerif" = "symmetricTouchingSerifless"
 selector.kHookTop = "symmetricTouchingSerifless"
@@ -2764,7 +2768,7 @@ selector.kDescender = "cursiveTopLeftSerifed"
 [prime.k.variants.symmetric-touching-top-left-serifed]
 rank = 11
 rankGroup = 2
-description = "`k` with symmetric legs disconnected to the vertical bar and serifs at top left"
+description = "`k` with symmetric legs touching the vertical bar and serifs at top left"
 selector.k = "symmetricTouchingTopLeftSerifed"
 selector."k/sansSerif" = "symmetricTouchingSerifless"
 selector.kHookTop = "symmetricTouchingSerifless"
@@ -2809,7 +2813,7 @@ selector.kDescender = "cursiveBottomRightSerifed"
 [prime.k.variants.symmetric-touching-bottom-right-serifed]
 rank = 16
 rankGroup = 3
-description = "`k` with symmetric legs disconnected to the vertical bar and serifs at bottom right"
+description = "`k` with symmetric legs touching the vertical bar and serifs at bottom right"
 selector.k = "symmetricTouchingBottomRightSerifed"
 selector."k/sansSerif" = "symmetricTouchingSerifless"
 selector.kHookTop = "symmetricTouchingBottomRightSerifed"
@@ -2854,7 +2858,7 @@ selector.kDescender = "cursiveTopLeftAndBottomRightSerifed"
 [prime.k.variants.symmetric-touching-top-left-and-bottom-right-serifed]
 rank = 21
 rankGroup = 4
-description = "`k` with symmetric legs disconnected to the vertical bar and serifs at top left and bottom right"
+description = "`k` with symmetric legs touching the vertical bar and serifs at top left and bottom right"
 selector.k = "symmetricTouchingTopLeftAndBottomRightSerifed"
 selector."k/sansSerif" = "symmetricTouchingSerifless"
 selector.kHookTop = "symmetricTouchingBottomRightSerifed"
@@ -2899,7 +2903,7 @@ selector.kDescender = "cursiveSerifed"
 [prime.k.variants.symmetric-touching-serifed]
 rank = 26
 rankGroup = 4
-description = "`k` with symmetric legs disconnected to the vertical bar and serifs"
+description = "`k` with symmetric legs touching the vertical bar and serifs"
 selector.k = "symmetricTouchingSerifed"
 selector."k/sansSerif" = "symmetricTouchingSerifless"
 selector.kHookTop = "symmetricTouchingSerifed"
@@ -3365,7 +3369,6 @@ description = "`p` with top-left ear"
 selector.p = "eared"
 selector."p/sansSerif" = "eared"
 selector."p/hookTopBase" = "eared"
-selector."cyrl/er" = "eared"
 
 [prime.p.variants.earless-corner]
 rank = 2
@@ -3373,7 +3376,6 @@ description = "`p` without top-left ear (corner)"
 selector.p = "earlessCorner"
 selector."p/sansSerif" = "earlessCorner"
 selector."p/hookTopBase" = "earlessCorner"
-selector."cyrl/er" = "eared"
 
 [prime.p.variants.earless-rounded]
 rank = 3
@@ -3381,7 +3383,6 @@ description = "`p` without top-left ear (rounded)"
 selector.p = "earlessRounded"
 selector."p/sansSerif" = "earlessRounded"
 selector."p/hookTopBase" = "earlessRounded"
-selector."cyrl/er" = "eared"
 
 [prime.p.variants.motion-serifed]
 rank = 4
@@ -3389,7 +3390,6 @@ description = "`p` with motion serifs"
 selector.p = "motionSerifed"
 selector."p/sansSerif" = "eared"
 selector."p/hookTopBase" = "eared"
-selector."cyrl/er" = "motionSerifed"
 
 
 [prime.q]
@@ -3687,7 +3687,6 @@ rank = 1
 description = "Serifless `s`"
 selector.s = "serifless"
 selector."s/sansSerif" = "serifless"
-selector."cyrl/ge.italic" = "serifless"
 selector."tsLig/lowerHalf" = "serifless"
 selector.sSwash = "serifless"
 selector."s/phoneticRight" = "serifless"
@@ -3697,7 +3696,6 @@ rank = 2
 description = "`s` with single serif at top"
 selector.s = "unilateralSerifed"
 selector."s/sansSerif" = "serifless"
-selector."cyrl/ge.italic" = "serifless"
 selector."tsLig/lowerHalf" = "serifless"
 selector.sSwash = "unilateralSerifed"
 selector."s/phoneticRight" = "unilateralSerifed"
@@ -3707,7 +3705,6 @@ rank = 3
 description = "`s` with serifs at both end"
 selector.s = "bilateralSerifed"
 selector."s/sansSerif" = "serifless"
-selector."cyrl/ge.italic" = "bilateralSerifed"
 selector."tsLig/lowerHalf" = "bilateralSerifed"
 selector.sSwash = "unilateralSerifed"
 selector."s/phoneticRight" = "unilateralSerifed"
@@ -3717,7 +3714,6 @@ rank = 4
 description = "`s` with single inward serif at top"
 selector.s = "unilateralInwardSerifed"
 selector."s/sansSerif" = "serifless"
-selector."cyrl/ge.italic" = "serifless"
 selector."tsLig/lowerHalf" = "serifless"
 selector.sSwash = "unilateralInwardSerifed"
 selector."s/phoneticRight" = "unilateralInwardSerifed"
@@ -3727,7 +3723,6 @@ rank = 5
 description = "`s` with inward serifs at both end"
 selector.s = "bilateralInwardSerifed"
 selector."s/sansSerif" = "serifless"
-selector."cyrl/ge.italic" = "bilateralInwardSerifed"
 selector."tsLig/lowerHalf" = "bilateralInwardSerifed"
 selector.sSwash = "unilateralInwardSerifed"
 selector."s/phoneticRight" = "unilateralInwardSerifed"
@@ -3742,33 +3737,36 @@ tag = "cv44"
 rank = 1
 description = "Standard `t` shape"
 selector.t = "standard"
-selector."t/phoneticLeft1" = "phoneticLeftShortNeck"
-selector."t/phoneticLeft2" = "phoneticLeftShortNeck"
+selector."t/phoneticLeft1" = "flatHook"
+selector."t/phoneticLeft2" = "flatHook"
 selector.tHookTop = "standard"
-selector.tRTail = "retroflexHookBase"
+selector.tRTail = "flatHook"
 selector.tLTail = "standard"
+selector.tCurlyTail = "standard"
 selector."tsLig/upperHalf" = "standard"
 
 [prime.t.variants.flat-hook]
 rank = 2
 description = "`t` with flat hook"
 selector.t = "flatHook"
-selector."t/phoneticLeft1" = "phoneticLeftShortNeck"
-selector."t/phoneticLeft2" = "phoneticLeftShortNeck"
+selector."t/phoneticLeft1" = "flatHook"
+selector."t/phoneticLeft2" = "flatHook"
 selector.tHookTop = "flatHook"
-selector.tRTail = "retroflexHookBase"
-selector.tLTail = "standard"
+selector.tRTail = "flatHook"
+selector.tLTail = "flatHook"
+selector.tCurlyTail = "flatHook"
 selector."tsLig/upperHalf" = "standard"
 
 [prime.t.variants.diagonal-tailed]
 rank = 3
 description = "`t` with diagonal tail"
 selector.t = "diagonalTailed"
-selector."t/phoneticLeft1" = "phoneticLeftShortNeck"
-selector."t/phoneticLeft2" = "phoneticLeftShortNeck"
+selector."t/phoneticLeft1" = "flatHook"
+selector."t/phoneticLeft2" = "flatHook"
 selector.tHookTop = "diagonalTailed"
-selector.tRTail = "retroflexHookBase"
-selector.tLTail = "standard"
+selector.tRTail = "flatHook"
+selector.tLTail = "diagonalTailed"
+selector.tCurlyTail = "standard"
 selector."tsLig/upperHalf" = "standard"
 
 [prime.t.variants.cross]
@@ -3776,10 +3774,11 @@ rank = 4
 description = "Futura-like `t` shape"
 selector.t = "cross"
 selector."t/phoneticLeft1" = "cross"
-selector."t/phoneticLeft2" = "crossPL"
+selector."t/phoneticLeft2" = "cross"
 selector.tHookTop = "cross"
-selector.tRTail = "retroflexHookBase"
-selector.tLTail = "standard"
+selector.tRTail = "cross"
+selector.tLTail = "cross"
+selector.tCurlyTail = "cross"
 selector."tsLig/upperHalf" = "standard"
 
 [prime.t.variants.hookless-asymmetric]
@@ -3787,43 +3786,47 @@ rank = 5
 description = "`t` without hook and with ony half the cross bar"
 selector.t = "hooklessAsymmetric"
 selector."t/phoneticLeft1" = "hooklessAsymmetric"
-selector."t/phoneticLeft2" = "hooklessAsymmetricPL"
+selector."t/phoneticLeft2" = "hooklessAsymmetric"
 selector.tHookTop = "hooklessAsymmetric"
-selector.tRTail = "retroflexHookBase"
-selector.tLTail = "standard"
+selector.tRTail = "hooklessAsymmetric"
+selector.tLTail = "hooklessAsymmetric"
+selector.tCurlyTail = "hooklessAsymmetric"
 selector."tsLig/upperHalf" = "standard"
 
 [prime.t.variants.standard-short-neck]
 rank = 6
 description = "Standard `t` shape with a shorter neck"
 selector.t = "standardShortNeck"
-selector."t/phoneticLeft1" = "phoneticLeftShortNeck"
-selector."t/phoneticLeft2" = "phoneticLeftShortNeck"
+selector."t/phoneticLeft1" = "flatHookShortNeck"
+selector."t/phoneticLeft2" = "flatHookShortNeck"
 selector.tHookTop = "standard"
-selector.tRTail = "retroflexHookBaseShortNeck"
+selector.tRTail = "flatHookShortNeck"
 selector.tLTail = "standardShortNeck"
+selector.tCurlyTail = "standardShortNeck"
 selector."tsLig/upperHalf" = "standardShortNeck"
 
 [prime.t.variants.flat-hook-short-neck]
 rank = 7
 description = "`t` with flat hook and a slightly shorter neck"
 selector.t = "flatHookShortNeck"
-selector."t/phoneticLeft1" = "phoneticLeftShortNeck"
-selector."t/phoneticLeft2" = "phoneticLeftShortNeck"
+selector."t/phoneticLeft1" = "flatHookShortNeck"
+selector."t/phoneticLeft2" = "flatHookShortNeck"
 selector.tHookTop = "flatHook"
-selector.tRTail = "retroflexHookBaseShortNeck"
-selector.tLTail = "standardShortNeck"
+selector.tRTail = "flatHookShortNeck"
+selector.tLTail = "flatHookShortNeck"
+selector.tCurlyTail = "flatHookShortNeck"
 selector."tsLig/upperHalf" = "standardShortNeck"
 
 [prime.t.variants.diagonal-tailed-short-neck]
 rank = 8
 description = "`t` with diagonal tail and a shorter neck"
 selector.t = "diagonalTailedShortNeck"
-selector."t/phoneticLeft1" = "phoneticLeftShortNeck"
-selector."t/phoneticLeft2" = "phoneticLeftShortNeck"
+selector."t/phoneticLeft1" = "flatHookShortNeck"
+selector."t/phoneticLeft2" = "flatHookShortNeck"
 selector.tHookTop = "diagonalTailed"
-selector.tRTail = "retroflexHookBaseShortNeck"
-selector.tLTail = "standardShortNeck"
+selector.tRTail = "flatHookShortNeck"
+selector.tLTail = "diagonalTailedShortNeck"
+selector.tCurlyTail = "standardShortNeck"
 selector."tsLig/upperHalf" = "standardShortNeck"
 
 [prime.t.variants.cross-short-neck]
@@ -3831,10 +3834,11 @@ rank = 9
 description = "Futura-like `t` shape with a shorter neck"
 selector.t = "crossShortNeck"
 selector."t/phoneticLeft1" = "crossShortNeck"
-selector."t/phoneticLeft2" = "crossPLShortNeck"
+selector."t/phoneticLeft2" = "crossShortNeck"
 selector.tHookTop = "cross"
-selector.tRTail = "retroflexHookBaseShortNeck"
-selector.tLTail = "standardShortNeck"
+selector.tRTail = "crossShortNeck"
+selector.tLTail = "crossShortNeck"
+selector.tCurlyTail = "crossShortNeck"
 selector."tsLig/upperHalf" = "standardShortNeck"
 
 [prime.t.variants.hookless-asymmetric-short-neck]
@@ -3842,43 +3846,47 @@ rank = 10
 description = "`t` without hook, with ony half the cross bar and a shorter neck"
 selector.t = "hooklessAsymmetricShortNeck"
 selector."t/phoneticLeft1" = "hooklessAsymmetricShortNeck"
-selector."t/phoneticLeft2" = "hooklessAsymmetricPLShortNeck"
+selector."t/phoneticLeft2" = "hooklessAsymmetricShortNeck"
 selector.tHookTop = "hooklessAsymmetric"
-selector.tRTail = "retroflexHookBaseShortNeck"
-selector.tLTail = "standardShortNeck"
+selector.tRTail = "hooklessAsymmetricShortNeck"
+selector.tLTail = "hooklessAsymmetricShortNeck"
+selector.tCurlyTail = "hooklessAsymmetricShortNeck"
 selector."tsLig/upperHalf" = "standardShortNeck"
 
 [prime.t.variants.standard-short-neck2]
 rank = 11
 description = "Standard `t` shape with a more shorter neck"
 selector.t = "standardShortNeck2"
-selector."t/phoneticLeft1" = "phoneticLeftShortNeck2"
-selector."t/phoneticLeft2" = "phoneticLeftShortNeck2"
+selector."t/phoneticLeft1" = "flatHookShortNeck2"
+selector."t/phoneticLeft2" = "flatHookShortNeck2"
 selector.tHookTop = "standard"
-selector.tRTail = "retroflexHookBaseShortNeck2"
+selector.tRTail = "flatHookShortNeck2"
 selector.tLTail = "standardShortNeck2"
+selector.tCurlyTail = "standardShortNeck2"
 selector."tsLig/upperHalf" = "standardShortNeck2"
 
 [prime.t.variants.flat-hook-short-neck2]
 rank = 12
 description = "`t` with flat hook and a more shorter neck"
 selector.t = "flatHookShortNeck2"
-selector."t/phoneticLeft1" = "phoneticLeftShortNeck2"
-selector."t/phoneticLeft2" = "phoneticLeftShortNeck2"
+selector."t/phoneticLeft1" = "flatHookShortNeck2"
+selector."t/phoneticLeft2" = "flatHookShortNeck2"
 selector.tHookTop = "flatHook"
-selector.tRTail = "retroflexHookBaseShortNeck2"
-selector.tLTail = "standardShortNeck2"
+selector.tRTail = "flatHookShortNeck2"
+selector.tLTail = "flatHookShortNeck2"
+selector.tCurlyTail = "flatHookShortNeck2"
 selector."tsLig/upperHalf" = "standardShortNeck2"
 
 [prime.t.variants.diagonal-tailed-short-neck2]
 rank = 13
 description = "`t` with diagonal tail and a more shorter neck"
 selector.t = "diagonalTailedShortNeck2"
-selector."t/phoneticLeft1" = "phoneticLeftShortNeck2"
-selector."t/phoneticLeft2" = "phoneticLeftShortNeck2"
+selector."t/phoneticLeft1" = "flatHookShortNeck2"
+selector."t/phoneticLeft2" = "flatHookShortNeck2"
 selector.tHookTop = "diagonalTailed"
-selector.tRTail = "retroflexHookBaseShortNeck2"
-selector.tLTail = "standardShortNeck2"
+selector.tRTail = "flatHookShortNeck2"
+selector.tLTail = "diagonalTailedShortNeck2"
+selector.tCurlyTail = "standardShortNeck2"
 selector."tsLig/upperHalf" = "standardShortNeck2"
 
 [prime.t.variants.cross-short-neck2]
@@ -3886,10 +3894,11 @@ rank = 14
 description = "Futura-like `t` shape with a more shorter neck"
 selector.t = "crossShortNeck2"
 selector."t/phoneticLeft1" = "crossShortNeck2"
-selector."t/phoneticLeft2" = "crossPLShortNeck2"
+selector."t/phoneticLeft2" = "crossShortNeck2"
 selector.tHookTop = "cross"
-selector.tRTail = "retroflexHookBaseShortNeck2"
-selector.tLTail = "standardShortNeck2"
+selector.tRTail = "crossShortNeck2"
+selector.tLTail = "crossShortNeck2"
+selector.tCurlyTail = "crossShortNeck2"
 selector."tsLig/upperHalf" = "standardShortNeck2"
 
 [prime.t.variants.hookless-asymmetric-short-neck2]
@@ -3897,10 +3906,11 @@ rank = 15
 description = "`t` without hook, with ony half the cross bar and a more shorter neck"
 selector.t = "hooklessAsymmetricShortNeck2"
 selector."t/phoneticLeft1" = "hooklessAsymmetricShortNeck2"
-selector."t/phoneticLeft2" = "hooklessAsymmetricPLShortNeck2"
+selector."t/phoneticLeft2" = "hooklessAsymmetricShortNeck2"
 selector.tHookTop = "hooklessAsymmetric"
-selector.tRTail = "retroflexHookBaseShortNeck2"
-selector.tLTail = "standardShortNeck2"
+selector.tRTail = "hooklessAsymmetricShortNeck2"
+selector.tLTail = "hooklessAsymmetricShortNeck2"
+selector.tCurlyTail = "hooklessAsymmetricShortNeck2"
 selector."tsLig/upperHalf" = "standardShortNeck2"
 
 
@@ -4198,7 +4208,6 @@ rank = 1
 description = "Serifless, straight `x`"
 selector.x = "straightSerifless"
 selector."x/sansSerif" = "straightSerifless"
-selector.xCyrlHaDescenderBase = "straightSerifless"
 selector."cyrl/ha" = "straightSerifless"
 selector."grek/chi" = "straightSerifless"
 
@@ -4207,7 +4216,6 @@ rank = 2
 description = "Serifless, slightly curly `x`, like Iosevka 2.x"
 selector.x = "curlySerifless"
 selector."x/sansSerif" = "curlySerifless"
-selector.xCyrlHaDescenderBase = "curlySerifless"
 selector."cyrl/ha" = "curlySerifless"
 selector."grek/chi" = "curlySerifless"
 
@@ -4216,7 +4224,6 @@ rank = 3
 description = "Straight `x` with motion serifs"
 selector.x = "straightMotionSerifed"
 selector."x/sansSerif" = "straightSerifless"
-selector.xCyrlHaDescenderBase = "straightMotionSerifed"
 selector."cyrl/ha" = "straightMotionSerifed"
 selector."grek/chi" = "straightMotionSerifed"
 
@@ -4225,7 +4232,6 @@ rank = 4
 description = "Slightly curly `x`, like Iosevka 2.x, with motion serifs"
 selector.x = "curlyMotionSerifed"
 selector."x/sansSerif" = "curlySerifless"
-selector.xCyrlHaDescenderBase = "curlyMotionSerifed"
 selector."cyrl/ha" = "curlyMotionSerifed"
 selector."grek/chi" = "curlyMotionSerifed"
 
@@ -4234,7 +4240,6 @@ rank = 5
 description = "Straight `x` with full serifs"
 selector.x = "straightSerifed"
 selector."x/sansSerif" = "straightSerifless"
-selector.xCyrlHaDescenderBase = "straightSerifed"
 selector."cyrl/ha" = "straightSerifed"
 selector."grek/chi" = "straightBilateralMotionSerifed"
 
@@ -4243,7 +4248,6 @@ rank = 6
 description = "Slightly curly `x`, like Iosevka 2.x, with full serifs"
 selector.x = "curlySerifed"
 selector."x/sansSerif" = "curlySerifless"
-selector.xCyrlHaDescenderBase = "curlySerifed"
 selector."cyrl/ha" = "curlySerifed"
 selector."grek/chi" = "curlyBilateralMotionSerifed"
 
@@ -4252,7 +4256,6 @@ rank = 7
 description = "Cursive `x`"
 selector.x = "cursive"
 selector."x/sansSerif" = "cursive"
-selector.xCyrlHaDescenderBase = "cursiveCyrlHaDescenderBase"
 selector."cyrl/ha" = "cursive"
 selector."grek/chi" = "curlySerifless"
 
@@ -4742,6 +4745,7 @@ selector."cyrl/Ghe" = "serifless"
 selector."cyrl/Ge" = "serifless"
 selector."cyrl/ghe.upright" = "serifless"
 selector."cyrl/ge.upright" = "serifless"
+selector."cyrl/ge.italic" = "serifless"
 
 [prime.capital-gamma.variants.top-right-serifed]
 rank = 2
@@ -4752,6 +4756,7 @@ selector."cyrl/Ghe" = "topRightSerifed"
 selector."cyrl/Ge" = "serifless"
 selector."cyrl/ghe.upright" = "topRightSerifed"
 selector."cyrl/ge.upright" = "serifless"
+selector."cyrl/ge.italic" = "serifless"
 
 [prime.capital-gamma.variants.serifed]
 rank = 3
@@ -4762,6 +4767,7 @@ selector."cyrl/Ghe" = "serifed"
 selector."cyrl/Ge" = "serifed"
 selector."cyrl/ghe.upright" = "serifed"
 selector."cyrl/ge.upright" = "serifed"
+selector."cyrl/ge.italic" = "topLeftSerifed"
 
 
 
@@ -4860,6 +4866,60 @@ selector."grek/xi" = "rounded"
 rank = 2
 description = "Greek lower Xi (`ξ`) with flat top"
 selector."grek/xi" = "flatTop"
+
+
+
+[prime.cyrl-capital-zhe]
+sampler = "Ж"
+samplerExplain = "Cyrillic Capital Zhe"
+tag = "VXAD"
+
+[prime.cyrl-capital-zhe.variants.straight]
+rank = 1
+description = "Cyrillic Capital Lower Zhe (`Ж`) with straight legs"
+selector."cyrl/Zhe" = "straight"
+
+[prime.cyrl-capital-zhe.variants.curly]
+rank = 2
+description = "Cyrillic Capital Lower Zhe (`Ж`) with curly legs"
+selector."cyrl/Zhe" = "curly"
+
+[prime.cyrl-capital-zhe.variants.symmetric-touching]
+rank = 3
+description = "Cyrillic Capital Lower Zhe (`Ж`) with symmetric legs touching the vertical bar"
+selector."cyrl/Zhe" = "symmetricTouching"
+
+[prime.cyrl-capital-zhe.variants.symmetric-connected]
+rank = 4
+description = "Cyrillic Capital Lower Zhe (`Ж`) with symmetric legs connected to the vertical bar"
+selector."cyrl/Zhe" = "symmetricConnected"
+
+
+
+[prime.cyrl-zhe]
+sampler = "ж"
+samplerExplain = "Cyrillic Zhe"
+tag = "VXAE"
+
+[prime.cyrl-zhe.variants.straight]
+rank = 1
+description = "Cyrillic Lower Zhe (`ж`) with straight legs"
+selector."cyrl/zhe" = "straight"
+
+[prime.cyrl-zhe.variants.curly]
+rank = 2
+description = "Cyrillic Lower Zhe (`ж`) with curly legs"
+selector."cyrl/zhe" = "curly"
+
+[prime.cyrl-zhe.variants.symmetric-touching]
+rank = 3
+description = "Cyrillic Lower Zhe (`ж`) with symmetric legs touching the vertical bar"
+selector."cyrl/zhe" = "symmetricTouching"
+
+[prime.cyrl-zhe.variants.symmetric-connected]
+rank = 4
+description = "Cyrillic Lower Zhe (`ж`) with symmetric legs connected to the vertical bar"
+selector."cyrl/zhe" = "symmetricConnected"
 
 
 
@@ -4970,7 +5030,7 @@ selector."cyrl/KaHook" = "symmetricConnectedSeriflessKH"
 
 [prime.cyrl-capital-ka.variants.symmetric-touching-serifless]
 rank = 3
-description = "Cyrillic Capital Ka (`К`) with symmetric legs disconnected to the vertical bar"
+description = "Cyrillic Capital Ka (`К`) with symmetric legs touching the vertical bar"
 selector."cyrl/Ka" = "symmetricTouchingSerifless"
 selector."cyrl/KaDescender" = "symmetricTouchingSerifless"
 selector."cyrl/KaVBar" = "symmetricConnectedSeriflessVB"
@@ -5002,7 +5062,7 @@ selector."cyrl/KaHook" = "symmetricConnectedTopLeftSerifedKH"
 
 [prime.cyrl-capital-ka.variants.symmetric-touching-top-left-serifed]
 rank = 7
-description = "Cyrillic Capital Ka (`К`) with symmetric legs disconnected to the vertical bar, and serifs at top left"
+description = "Cyrillic Capital Ka (`К`) with symmetric legs touching the vertical bar, and serifs at top left"
 selector."cyrl/Ka" = "symmetricTouchingTopLeftSerifed"
 selector."cyrl/KaDescender" = "symmetricTouchingTopLeftSerifed"
 selector."cyrl/KaVBar" = "symmetricConnectedTopLeftSerifedVB"
@@ -5034,7 +5094,7 @@ selector."cyrl/KaHook" = "symmetricConnectedSeriflessKH"
 
 [prime.cyrl-capital-ka.variants.symmetric-touching-bottom-right-serifed]
 rank = 11
-description = "Cyrillic Capital Ka (`К`) with symmetric legs disconnected to the vertical bar, and serifs at bottom right"
+description = "Cyrillic Capital Ka (`К`) with symmetric legs touching the vertical bar, and serifs at bottom right"
 selector."cyrl/Ka" = "symmetricTouchingBottomRightSerifed"
 selector."cyrl/KaDescender" = "symmetricTouchingBottomRightSerifed"
 selector."cyrl/KaVBar" = "symmetricConnectedBottomRightSerifedVB"
@@ -5066,7 +5126,7 @@ selector."cyrl/KaHook" = "symmetricConnectedSerifedKH"
 
 [prime.cyrl-capital-ka.variants.symmetric-touching-serifed]
 rank = 15
-description = "Cyrillic Capital Ka (`К`) with symmetric legs disconnected to the vertical bar, and serifs"
+description = "Cyrillic Capital Ka (`К`) with symmetric legs touching the vertical bar, and serifs"
 selector."cyrl/Ka" = "symmetricTouchingSerifed"
 selector."cyrl/KaDescender" = "symmetricTouchingSerifed"
 selector."cyrl/KaVBar" = "symmetricConnectedSerifedVB"
@@ -5098,7 +5158,7 @@ selector."cyrl/KaHook" = "symmetricConnectedTopLeftSerifedKH"
 
 [prime.cyrl-capital-ka.variants.symmetric-touching-top-left-and-bottom-right-serifed]
 rank = 19
-description = "Cyrillic Capital Ka (`К`) with symmetric legs disconnected to the vertical bar, and serifs at top left and bottom right"
+description = "Cyrillic Capital Ka (`К`) with symmetric legs touching the vertical bar, and serifs at top left and bottom right"
 selector."cyrl/Ka" = "symmetricTouchingTopLeftAndBottomRightSerifed"
 selector."cyrl/KaDescender" = "symmetricTouchingTopLeftSerifed"
 selector."cyrl/KaVBar" = "symmetricConnectedTopLeftAndBottomRightSerifedVB"
@@ -5137,7 +5197,7 @@ selector."cyrl/kaHook" = "symmetricConnectedSeriflessKH"
 
 [prime.cyrl-ka.variants.symmetric-touching-serifless]
 rank = 3
-description = "Cyrillic Lower Ka (`к`) with symmetric legs disconnected to the vertical bar, and without serifs"
+description = "Cyrillic Lower Ka (`к`) with symmetric legs touching the vertical bar, and without serifs"
 selector."cyrl/ka" = "symmetricTouchingSerifless"
 selector."cyrl/kaDescender" = "symmetricTouchingSerifless"
 selector."cyrl/kaVBar" = "symmetricConnectedSeriflessVB"
@@ -5169,7 +5229,7 @@ selector."cyrl/kaHook" = "symmetricConnectedTopLeftSerifedKH"
 
 [prime.cyrl-ka.variants.symmetric-touching-top-left-serifed]
 rank = 7
-description = "Cyrillic Lower Ka (`к`) with symmetric legs disconnected to the vertical bar, and serifs at top left"
+description = "Cyrillic Lower Ka (`к`) with symmetric legs touching the vertical bar, and serifs at top left"
 selector."cyrl/ka" = "symmetricTouchingTopLeftSerifed"
 selector."cyrl/kaDescender" = "symmetricTouchingTopLeftSerifed"
 selector."cyrl/kaVBar" = "symmetricConnectedTopLeftSerifedVB"
@@ -5201,7 +5261,7 @@ selector."cyrl/kaHook" = "symmetricConnectedSeriflessKH"
 
 [prime.cyrl-ka.variants.symmetric-touching-bottom-right-serifed]
 rank = 11
-description = "Cyrillic Lower Ka (`к`) with symmetric legs disconnected to the vertical bar, and serifs at bottom right"
+description = "Cyrillic Lower Ka (`к`) with symmetric legs touching the vertical bar, and serifs at bottom right"
 selector."cyrl/ka" = "symmetricTouchingBottomRightSerifed"
 selector."cyrl/kaDescender" = "symmetricTouchingBottomRightSerifed"
 selector."cyrl/kaVBar" = "symmetricConnectedBottomRightSerifedVB"
@@ -5233,7 +5293,7 @@ selector."cyrl/kaHook" = "symmetricConnectedSerifedKH"
 
 [prime.cyrl-ka.variants.symmetric-touching-serifed]
 rank = 15
-description = "Cyrillic Lower Ka (`к`) with symmetric legs disconnected to the vertical bar, and serifs"
+description = "Cyrillic Lower Ka (`к`) with symmetric legs touching the vertical bar, and serifs"
 selector."cyrl/ka" = "symmetricTouchingSerifed"
 selector."cyrl/kaDescender" = "symmetricTouchingSerifed"
 selector."cyrl/kaVBar" = "symmetricConnectedSerifedVB"
@@ -5265,7 +5325,7 @@ selector."cyrl/kaHook" = "symmetricConnectedTopLeftSerifedKH"
 
 [prime.cyrl-ka.variants.symmetric-touching-top-left-and-bottom-right-serifed]
 rank = 19
-description = "Cyrillic Lower Ka (`к`) with symmetric legs disconnected to the vertical bar, and serifs at top left and bottom right"
+description = "Cyrillic Lower Ka (`к`) with symmetric legs touching the vertical bar, and serifs at top left and bottom right"
 selector."cyrl/ka" = "symmetricTouchingTopLeftAndBottomRightSerifed"
 selector."cyrl/kaDescender" = "symmetricTouchingTopLeftSerifed"
 selector."cyrl/kaVBar" = "symmetricConnectedTopLeftAndBottomRightSerifedVB"
@@ -5310,6 +5370,7 @@ selector."cyrl/en" = "serifless"
 selector."cyrl/en.BGR" = "serifless"
 selector."cyrl/en/descenderBase" = "serifless"
 selector."cyrl/nje/leftHalf" = "serifless"
+selector."cyrl/nje/leftHalf/reduced" = "serifless"
 
 [prime.cyrl-en.variants.tailed-serifless]
 rank = 2
@@ -5318,6 +5379,7 @@ selector."cyrl/en" = "tailed"
 selector."cyrl/en.BGR" = "tailed"
 selector."cyrl/en/descenderBase" = "serifless"
 selector."cyrl/nje/leftHalf" = "serifless"
+selector."cyrl/nje/leftHalf/reduced" = "serifless"
 
 [prime.cyrl-en.variants.top-left-serifed]
 rank = 3
@@ -5326,6 +5388,7 @@ selector."cyrl/en" = "topLeftSerifed"
 selector."cyrl/en.BGR" = "topLeftSerifed"
 selector."cyrl/en/descenderBase" = "topLeftSerifed"
 selector."cyrl/nje/leftHalf" = "topLeftSerifed"
+selector."cyrl/nje/leftHalf/reduced" = "topLeftSerifed"
 
 [prime.cyrl-en.variants.tailed-top-left-serifed]
 rank = 4
@@ -5334,6 +5397,7 @@ selector."cyrl/en" = "tailedTopLeftSerifed"
 selector."cyrl/en.BGR" = "tailedTopLeftSerifed"
 selector."cyrl/en/descenderBase" = "topLeftSerifed"
 selector."cyrl/nje/leftHalf" = "topLeftSerifed"
+selector."cyrl/nje/leftHalf/reduced" = "topLeftSerifed"
 
 [prime.cyrl-en.variants.top-left-bottom-right-serifed]
 rank = 5
@@ -5342,6 +5406,7 @@ selector."cyrl/en" = "topLeftBottomRightSerifed"
 selector."cyrl/en.BGR" = "topLeftBottomRightSerifed"
 selector."cyrl/en/descenderBase" = "topLeftSerifed"
 selector."cyrl/nje/leftHalf" = "topLeftSerifed"
+selector."cyrl/nje/leftHalf/reduced" = "topLeftSerifed"
 
 [prime.cyrl-en.variants.serifed]
 rank = 6
@@ -5350,6 +5415,7 @@ selector."cyrl/en" = "serifed"
 selector."cyrl/en.BGR" = "serifedBGR"
 selector."cyrl/en/descenderBase" = "serifed"
 selector."cyrl/nje/leftHalf" = "serifed"
+selector."cyrl/nje/leftHalf/reduced" = "serifedExceptBottomRight"
 
 [prime.cyrl-en.variants.tailed-serifed]
 rank = 7
@@ -5358,6 +5424,7 @@ selector."cyrl/en" = "tailedSerifed"
 selector."cyrl/en.BGR" = "tailedSerifedBGR"
 selector."cyrl/en/descenderBase" = "serifed"
 selector."cyrl/nje/leftHalf" = "serifed"
+selector."cyrl/nje/leftHalf/reduced" = "serifedExceptBottomRight"
 
 
 
@@ -5811,6 +5878,16 @@ selector.one = "noBaseFlatTopSerif"
 rank = 7
 description = "`1` with bottom serif and a flat top serif"
 selector.one = "baseFlatTopSerif"
+
+[prime.one.variants.no-base-top-cut]
+rank = 8
+description = "`1` without bottom serif and with a diagonal cut at top"
+selector.one = "noBaseTopCut"
+
+[prime.one.variants.base-top-cut]
+rank = 9
+description = "`1` with bottom serif and a diagonal cut at top"
+selector.one = "baseTopCut"
 
 
 
@@ -6459,6 +6536,7 @@ selector."bar.slanted" = "forceUpright"
 
 [prime.lig-ltgteq]
 sampler = "<= >="
+samplerExplain = "Less-equal and Greater-equal ligations"
 tag = "cv95"
 
 [prime.lig-ltgteq.variants.flat]
@@ -6569,6 +6647,68 @@ selector.diacriticDot = "square"
 
 
 
+[prime.lig-neq]
+sampler = "!= "
+samplerExplain = "Not-equal ligations"
+tag = "VXAF"
+
+[prime.lig-neq.variants.vertical]
+rank = 1
+description = "The bar in inequality (`!=`, etc.) ligation is vertical"
+selector."neq.allow-dot" = "vertical"
+selector."neq.bar-only"  = "vertical"
+
+[prime.lig-neq.variants.slightly-slanted]
+rank = 2
+description = "The bar in inequality (`!=`, etc.) ligation is slightly slanted"
+selector."neq.allow-dot" = "slightlySlanted"
+selector."neq.bar-only"  = "slightlySlanted"
+
+[prime.lig-neq.variants.more-slanted]
+rank = 3
+description = "The bar in inequality (`!=`, etc.) ligation is more slanted"
+selector."neq.allow-dot" = "moreSlanted"
+selector."neq.bar-only"  = "moreSlanted"
+
+[prime.lig-neq.variants.vertical-dotted]
+rank = 4
+description = "The bar in inequality (`!=`, etc.) ligation is vertical, and with a dot at bottom for ligations built from exclamation sign (`!`)"
+selector."neq.allow-dot" = "verticalDotted"
+selector."neq.bar-only"  = "vertical"
+
+[prime.lig-neq.variants.slightly-slanted-dotted]
+rank = 5
+description = "The bar in inequality (`!=`, etc.) ligation is slightly slanted, and with a dot at bottom for ligations built from exclamation sign (`!`)"
+selector."neq.allow-dot" = "slightlySlantedDotted"
+selector."neq.bar-only"  = "slightlySlanted"
+
+[prime.lig-neq.variants.more-slanted-dotted]
+rank = 6
+description = "The bar in inequality (`!=`, etc.) ligation is more slanted, and with a dot at bottom for ligations built from exclamation sign (`!`)"
+selector."neq.allow-dot" = "moreSlantedDotted"
+selector."neq.bar-only"  = "moreSlanted"
+
+
+
+[prime.lig-equal-chain]
+sampler = "== "
+samplerExplain = "Equality ligations"
+tag = "VXAG"
+
+[prime.lig-equal-chain.variants.with-notch]
+rank = 1
+description = "The bars in equality (`==`, etc.) ligation have notches in the middle"
+selector."lig-equal" = "withNotch"
+selector."lig-ident"  = "withNotch"
+
+[prime.lig-equal-chain.variants.without-notch]
+rank = 2
+description = "The bars in equality (`==`, etc.) ligation do not have notches in the middle"
+selector."lig-equal" = "withoutNotch"
+selector."lig-ident"  = "withoutNotch"
+
+
+
 # This is a special variant selector that controls digit form
 [prime.digit-form]
 isSpecial = true
@@ -6578,12 +6718,12 @@ description = "Default digit form"
 [prime.digit-form.variants.lining]
 selector.__defaultDigitForm = "lining"
 description = "Lining (default)"
-snapshotFeatureApplication = "'lnum' on"
+snapshotFeatureApplication = { 'lnum' = 1 }
 
 [prime.digit-form.variants.old-style]
 selector.__defaultDigitForm = "oldStyle"
 description = "Old-style"
-snapshotFeatureApplication = "'onum' on"
+snapshotFeatureApplication = { 'onum' = 1 }
 
 # This is a special variant selector that controls APL form
 [prime.apl-form]
@@ -6594,12 +6734,12 @@ description = "APL form"
 [prime.apl-form.variants.none]
 selector.__enableAplForm = "none"
 description = "Disable APL-specific forms (default)"
-snapshotFeatureApplication = "'APLF' off"
+snapshotFeatureApplication = { "APLF" = 1 }
 
 [prime.apl-form.variants.enable]
 selector.__enableAplForm = "enable"
 description = "Enable harmonized alternate forms APL operators"
-snapshotFeatureApplication = "'APLF' on"
+snapshotFeatureApplication = { "APLF" = 1 }
 
 ###################################################################################################
 
@@ -6654,6 +6794,8 @@ lower-mu = "tailed"
 lower-iota = "serifed-flat-tailed"
 lower-lambda = "straight"
 lower-xi = "flat-top"
+cyrl-capital-zhe = "symmetric-connected"
+cyrl-zhe = "symmetric-connected"
 cyrl-capital-ze = "serifless"
 cyrl-ze = "serifless"
 cyrl-capital-ka = "symmetric-connected-serifless"
@@ -6700,6 +6842,8 @@ ascii-grave = "straight"
 question = "smooth"
 punctuation-dot = "round"
 diacritic-dot = "round"
+lig-neq = "slightly-slanted"
+lig-equal-chain = "with-notch"
 
 # m, n, h has tailed variant, but not very ideal
 # Do not make them default
@@ -7085,6 +7229,7 @@ at = "short"
 cent = "open"
 percent = "rings-continuous-slash"
 lig-ltgteq = "slanted"
+lig-equal-chain = "without-notch"
 
 [composite.ss05.slab-override.design]
 capital-d = "more-rounded-bilateral-serifed"
@@ -7216,7 +7361,7 @@ f = "serifless"
 g = "double-storey"
 i = "serifed"
 k = "curly-serifless"
-l = "serifed"
+l = "zshaped"
 u = "toothed"
 v = "curly"
 w = "curly"
@@ -7242,6 +7387,7 @@ at = "threefold"
 dollar = "open"
 cent = "open"
 percent = "dots"
+lig-equal-chain = "without-notch"
 
 [composite.ss08.italic]
 g = "single-storey-serifless"
@@ -7285,7 +7431,9 @@ i = "hooky"
 j = "serifed"
 k = "straight-serifless"
 l = "tailed-serifed"
+r = "hookless"
 u = "toothed"
+w = "straight-flat-top"
 y = "straight-turn"
 eszet = "longs-s-lig"
 long-s = "flat-hook"
@@ -7305,6 +7453,7 @@ asterisk = "penta-low"
 pilcrow = "low"
 number-sign = "slanted"
 dollar = "open"
+lig-neq = "more-slanted"
 
 [composite.ss09.italic]
 a = "single-storey-serifless"
@@ -7403,6 +7552,7 @@ l = "tailed-serifed"
 m = "earless-corner-double-arch-short-leg"
 n = "earless-corner-straight"
 p = "earless-corner"
+q = "earless-corner"
 r = "earless-corner"
 u = "toothless-corner"
 y = "straight-turn"
@@ -7537,6 +7687,8 @@ ampersand = "upper-open"
 percent = "rings-continuous-slash"
 lig-ltgteq = "slanted"
 question = "corner-flat-hooked"
+lig-neq = "more-slanted"
+lig-equal-chain = "without-notch"
 
 [composite.ss14.italic]
 a = "single-storey-serifless"

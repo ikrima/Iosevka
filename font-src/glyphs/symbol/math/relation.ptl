@@ -1,8 +1,8 @@
 $$include '../../../meta/macros.ptl'
 
-import [mix linreg clamp fallback] from '../../../support/utils'
-import [Box] from '../../../support/geometry/box'
-import [Joining] from '../../../support/gr'
+import [mix linreg clamp fallback] from"../../../support/utils.mjs"
+import [Box] from"../../../support/geometry/box.mjs"
+import [Joining] from"../../../support/gr.mjs"
 
 glyph-module
 
@@ -684,9 +684,10 @@ glyph-block Symbol-Math-Relation-Subset : begin
 
 	turned 'turnSmallElementBarAtEnd' 0x22FC 'smallElementBarAtEnd' Middle SymbolMid
 
-	create-glyph 0x22F5 : composite-proc [refer-glyph 'element']
-		ApparentTranslate 0 (-lessEqDist)
-		DotAt Middle (SymbolMid + (dHElem + lessEqDist)) DotRadius
+	WithDotVariants 'elementOfWithDotAbove' 0x22F5 : function [DrawAt kDotRadius overshoot]
+		composite-proc [refer-glyph 'element']
+			ApparentTranslate 0 (-lessEqDist)
+			DrawAt Middle (SymbolMid + (dHElem + lessEqDist)) (kDotRadius + DotRadius - overshoot)
 
 	create-glyph 0x22F6 : composite-proc [refer-glyph 'element']
 		ApparentTranslate 0 (-lessEqDist)

@@ -1,7 +1,7 @@
 $$include '../../../meta/macros.ptl'
 
-import [mix barmixL linreg clamp fallback] from '../../../support/utils'
-import [DesignParameters] from '../../../meta/aesthetics'
+import [mix linreg clamp fallback] from"../../../support/utils.mjs"
+import [DesignParameters] from"../../../meta/aesthetics.mjs"
 
 glyph-module
 
@@ -46,7 +46,7 @@ glyph-block Letter-Greek-Psi : begin
 		local df : DivFrame para.diversityM 3
 		set-width df.width
 		include : df.markSet.if
-		include : PsiBaseShape df Descender 0 XH CAP false false SLAB false
+		include : PsiBaseShape df Descender 0 XH Ascender false false SLAB false
 
 	create-glyph 'cyrl/psi' 0x471 : glyph-proc
 		local df : DivFrame para.diversityM 3
