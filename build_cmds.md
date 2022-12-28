@@ -1,7 +1,14 @@
 # Build Commands
 
-```bash
-npm install
+```powershell
+# Clean Upgrade/Reinstall
+nukedir .\node_modules
+npm     install
+
+# Clean Build
+nukedir .\.build\
+nukedir .\dist\
+
 # Super TTC Composite (recommended)
 npm run build -- super-ttc::iosevka-ikrima      --jCmd=28
 npm run build -- super-ttc::iosevka-pragmatapro --jCmd=28
