@@ -10,6 +10,7 @@ glyph-block Letter-Latin-Upper-P : begin
 	glyph-block-import Common-Derivatives
 	glyph-block-import Letter-Shared : SetGrekUpperTonos
 	glyph-block-import Letter-Shared-Metrics : BowlXDepth
+	glyph-block-import Letter-Shared-Shapes : LetterBarOverlay
 	glyph-block-import Letter-Blackboard : BBS BBD
 	glyph-block-export PShape PShapeOutline RevPShape PBarPosY PRotundaShape BBPShape
 
@@ -184,6 +185,12 @@ glyph-block Letter-Latin-Upper-P : begin
 			flat [mix SB RightSB 0.5]   (yBowl + XH * 0.25)
 			curl [mix SB RightSB 0.875] (yBowl - XH * 0.25)
 
+	create-glyph 'PBar/overlay' : LetterBarOverlay.l.in
+		x     -- (SB * PShape.defaultMul)
+		bot   -- ([PBarPosY CAP Stroke PShape.BarPos] + Stroke)
+		top   -- (CAP - Stroke)
+		space -- { 0 (RightSB - Stroke * HVContrast) }
+	derive-composites 'PBar' 0x2C63 'P' 'PBar/overlay'
 
 	define [BBPShape] : params [[mul PShape.defaultMul] [overshoot PShape.defaultOvershoot]] : glyph-proc
 		define sb : SB * mul
