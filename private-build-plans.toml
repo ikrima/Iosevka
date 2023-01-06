@@ -5,8 +5,8 @@
 # | Iosevka Term       | Monospace, Sans-Serif               | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
 # | Iosevka Fixed      | Monospace, Sans-Serif, Ligation Off | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
 # | Iosevka Slab       | Monospace, Slab-Serif               | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
-# | Iosevka Term Slab  | Monospace, Slab-Serif               | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
-# | Iosevka Fixed Slab | Monospace, Slab-Serif, Ligation Off | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
+# | Iosevka Slab Term  | Monospace, Slab-Serif               | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
+# | Iosevka Slab Fixed | Monospace, Slab-Serif, Ligation Off | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
 # | Iosevka Aile       | Quasi-Proportional, for Documents   | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | -                |
 # | Iosevka Etoile     | Quasi-Proportional, for Writing     | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | -                |
 #========================================================================================================================
@@ -50,7 +50,7 @@ no-ligation        = true
 
 #========================================================================================================================
 # Building plans: ikrima style, monospace, slab-serif
-[buildPlans.iosevka-ikrima-norm-slab]
+[buildPlans.iosevka-ikrima-slab-norm]
 family             = "Iosevka Ikrima Slab"
 desc               = "Ikrima Style, Slab-Serif"
 spacing            = "normal"
@@ -58,27 +58,27 @@ serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
-  [buildPlans.iosevka-ikrima-norm-slab.variants]
+  [buildPlans.iosevka-ikrima-slab-norm.variants]
   inherits = "buildPlans.iosevka-ikrima-norm"
 
-[buildPlans.iosevka-ikrima-term-slab]
-family             = "Iosevka Ikrima Term Slab"
+[buildPlans.iosevka-ikrima-slab-term]
+family             = "Iosevka Ikrima Slab Term"
 spacing            = "term"
 serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
-  [buildPlans.iosevka-ikrima-term-slab.variants]
+  [buildPlans.iosevka-ikrima-slab-term.variants]
   inherits = "buildPlans.iosevka-ikrima-norm"
 
-[buildPlans.iosevka-ikrima-fixed-slab]
-family             = "Iosevka Ikrima Fixed Slab"
+[buildPlans.iosevka-ikrima-slab-fixed]
+family             = "Iosevka Ikrima Slab Fixed"
 spacing            = "fixed"
 serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
-  [buildPlans.iosevka-ikrima-fixed-slab.variants]
+  [buildPlans.iosevka-ikrima-slab-fixed.variants]
   inherits = "buildPlans.iosevka-ikrima-norm"
 
 #========================================================================================================================
@@ -174,40 +174,40 @@ no-cv-ss           = true
 
 #========================================================================================================================
 # Building plans: pragmatapro, monospace, slab-serif
-[buildPlans.iosevka-pragmatapro-norm-slab]
+[buildPlans.iosevka-pragmatapro-slab-norm]
 family             = "Iosevka PragmataPro Slab"
 spacing            = "normal"
 serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
-  [buildPlans.iosevka-pragmatapro-norm-slab.ligations]
+  [buildPlans.iosevka-pragmatapro-slab-norm.ligations]
   inherits = "default-calt"
   disables = [ 'ltgt-diamond' ]
-  [buildPlans.iosevka-pragmatapro-norm-slab.variants]
+  [buildPlans.iosevka-pragmatapro-slab-norm.variants]
   inherits = "buildPlans.iosevka-pragmatapro-norm"
 
-[buildPlans.iosevka-pragmatapro-term-slab]
-family             = "Iosevka PragmataPro Term Slab"
+[buildPlans.iosevka-pragmatapro-slab-term]
+family             = "Iosevka PragmataPro Slab Term"
 spacing            = "term"
 serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
-  [buildPlans.iosevka-pragmatapro-term-slab.ligations]
+  [buildPlans.iosevka-pragmatapro-slab-term.ligations]
   inherits = "default-calt"
   disables = [ 'ltgt-diamond' ]
-  [buildPlans.iosevka-pragmatapro-term-slab.variants]
+  [buildPlans.iosevka-pragmatapro-slab-term.variants]
   inherits = "buildPlans.iosevka-pragmatapro-norm"
 
-[buildPlans.iosevka-pragmatapro-fixed-slab]
-family             = "Iosevka PragmataPro Fixed Slab"
+[buildPlans.iosevka-pragmatapro-slab-fixed]
+family             = "Iosevka PragmataPro Slab Fixed"
 spacing            = "fixed"
 serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
-  [buildPlans.iosevka-pragmatapro-fixed-slab.ligations]
+  [buildPlans.iosevka-pragmatapro-slab-fixed.ligations]
   inherits = "default-calt"
   disables = [ 'ltgt-diamond' ]
-  [buildPlans.iosevka-pragmatapro-fixed-slab.variants]
+  [buildPlans.iosevka-pragmatapro-slab-fixed.variants]
   inherits = "buildPlans.iosevka-pragmatapro-norm"
 
 #========================================================================================================================
@@ -222,9 +222,9 @@ from    = [
 [collectPlans.iosevka-ikrima-slab]
 release = true
 from    = [
-  "iosevka-ikrima-norm-slab",
-  "iosevka-ikrima-term-slab",
-  "iosevka-ikrima-fixed-slab",
+  "iosevka-ikrima-slab-norm",
+  "iosevka-ikrima-slab-term",
+  "iosevka-ikrima-slab-fixed",
 ]
 [collectPlans.iosevka-pragmatapro]
 release = true
@@ -236,7 +236,7 @@ from    = [
 [collectPlans.iosevka-pragmatapro-slab]
 release = true
 from    = [
-  "iosevka-pragmatapro-norm-slab",
-  "iosevka-pragmatapro-term-slab",
-  "iosevka-pragmatapro-fixed-slab",
+  "iosevka-pragmatapro-slab-norm",
+  "iosevka-pragmatapro-slab-term",
+  "iosevka-pragmatapro-slab-fixed",
 ]
