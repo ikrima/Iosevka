@@ -5,50 +5,41 @@ family             = "Iosevka Ikrima"
 desc               = "Ikrima Style"
 spacing            = "normal"
 serifs             = "sans"
-snapshotFamily     = 'Iosevka'
-snapshotFeature    = {"NWID" = 0}
+# snapshotFamily   = 'Iosevka'
+# snapshotFeature  = {"NWID" = 0}
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
-[buildPlans.iosevka-ikrima.variants.design]
-asterisk           = 'penta-low'
-underscore         = 'high'
-at                 = 'threefold'
-zero               = 'slashed'
-brace              = "straight"
+  [buildPlans.iosevka-ikrima.variants.design]
+  asterisk   = 'penta-low'
+  underscore = 'high'
+  at         = 'threefold'
+  zero       = 'slashed'
+  brace      = "straight"
 
 [buildPlans.iosevka-ikrima-term]
 family             = "Iosevka Ikrima Term"
 spacing            = "term"
 serifs             = "sans"
-snapshotFamily     = 'Iosevka'
-snapshotFeature    = {"NWID" = 1}
+# snapshotFamily   = 'Iosevka'
+# snapshotFeature  = {"NWID" = 1}
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
-[buildPlans.iosevka-ikrima-term.variants.design]
-asterisk           = 'penta-low'
-underscore         = 'high'
-at                 = 'threefold'
-zero               = 'slashed'
-brace              = "straight"
+  [buildPlans.iosevka-ikrima-term.variants]
+  inherits = "buildPlans.iosevka-ikrima"
 
 [buildPlans.iosevka-ikrima-fixed]
 family             = "Iosevka Ikrima Fixed"
 spacing            = "fixed"
 serifs             = "sans"
-snapshotFamily     = 'Iosevka'
-snapshotFeature    = {"NWID" = 1}
+# snapshotFamily   = 'Iosevka'
+# snapshotFeature  = {"NWID" = 1}
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
-[buildPlans.iosevka-ikrima-fixed.variants.design]
-asterisk           = 'penta-low'
-underscore         = 'high'
-at                 = 'threefold'
-zero               = 'slashed'
-brace              = "straight"
-
+  [buildPlans.iosevka-ikrima-fixed.variants]
+  inherits = "buildPlans.iosevka-ikrima"
 
 #========================================================================================================================
 # Building plans: iosevka-pragmatapro
@@ -57,66 +48,91 @@ family             = "Iosevka PragmataPro"
 desc               = "PragmataPro Style"
 spacing            = "normal"
 serifs             = "sans"
-snapshotFamily     = 'Iosevka'
-snapshotFeature    = {"ss08" = 1}
+# snapshotFamily   = 'Iosevka'
+# snapshotFeature  = {"ss08" = 1}
 export-glyph-names = true
 no-cv-ss           = true
-[buildPlans.iosevka-pragmatapro.variants]
-inherits           = "ss08"
-[buildPlans.iosevka-pragmatapro.variants.design]
-capital-a          = "curly-serifless"
-capital-d          = "more-rounded-serifless"
-capital-g          = "toothless-rounded-serifless-hooked"
-capital-i          = "short-serifed"
-capital-j          = "serifless"
-capital-k          = "curly-serifless"
-capital-n          = "asymmetric"
-capital-q          = "straight"
-capital-r          = "curly"
-capital-v          = "curly"
-capital-w          = "curly"
-capital-x          = "curly-serifless"
-capital-y          = "curly-serifless"
-a                  = "double-storey-serifless"
-d                  = "toothed-serifless"
-e                  = "flat-crossbar"
-f                  = "serifless"
-g                  = "double-storey"
-i                  = "serifed"
-k                  = "curly-serifless"
-l                  = "serifed"
-u                  = "toothed"
-v                  = "curly"
-w                  = "curly"
-x                  = "curly-serifless"
-y                  = "curly"
-eszet              = "longs-s-lig"
-lower-lambda       = "curly"
-cyrl-capital-ka    = "curly-serifless"
-cyrl-ka            = "curly-serifless"
-cyrl-capital-ya    = "curly"
-cyrl-ya            = "curly"
-zero               = "dotted-oval"
-four               = "closed"
-six                = "closed-contour"
-seven              = "bend-serifless"
-nine               = "closed-contour"
-asterisk           = "penta-low"
-underscore         = "low"
-brace              = "straight"
-number-sign        = "slanted"
-ampersand          = "upper-open"
-at                 = "threefold"
-dollar             = "open"
-cent               = "open"
-percent            = "dots"
-[buildPlans.iosevka-pragmatapro.variants.italic]
-g                  = "single-storey-serifless"
-[buildPlans.iosevka-pragmatapro.metric-override]
-leading            = 1180 # Default line height times 1000
-cap                = 720  # Cap height (as well as ascender)]
-# width            = 520 (wrong; this is the outdated setting) # Character width. Increase this if you think that Iosevka is too narrow
+  [buildPlans.iosevka-pragmatapro.ligations]
+  inherits = "default-calt"
+  disables = [ 'ltgt-diamond' ]
+  [buildPlans.iosevka-pragmatapro.variants]
+  inherits = "ss08"
+    [buildPlans.iosevka-pragmatapro.variants.design]
+    capital-a       = "curly-serifless"
+    capital-d       = "more-rounded-serifless"
+    capital-g       = "toothless-rounded-serifless-hooked"
+    capital-i       = "short-serifed"
+    capital-j       = "serifless"
+    capital-k       = "curly-serifless"
+    capital-n       = "asymmetric"
+    capital-q       = "straight"
+    capital-r       = "curly"
+    capital-v       = "curly"
+    capital-w       = "curly"
+    capital-x       = "curly-serifless"
+    capital-y       = "curly-serifless"
+    a               = "double-storey-serifless"
+    d               = "toothed-serifless"
+    e               = "flat-crossbar"
+    f               = "serifless"
+    g               = "double-storey"
+    i               = "serifed"
+    k               = "curly-serifless"
+    l               = "serifed"
+    u               = "toothed"
+    v               = "curly"
+    w               = "curly"
+    x               = "curly-serifless"
+    y               = "curly"
+    eszet           = "longs-s-lig"
+    lower-lambda    = "curly"
+    cyrl-capital-ka = "curly-serifless"
+    cyrl-ka         = "curly-serifless"
+    cyrl-capital-ya = "curly"
+    cyrl-ya         = "curly"
+    zero            = "dotted-oval"
+    four            = "closed"
+    six             = "closed-contour"
+    seven           = "bend-serifless"
+    nine            = "closed-contour"
+    asterisk        = "penta-low"
+    underscore      = "low"
+    brace           = "straight"
+    number-sign     = "slanted"
+    ampersand       = "upper-open"
+    at              = "threefold"
+    dollar          = "open"
+    cent            = "open"
+    percent         = "dots"
+    [buildPlans.iosevka-pragmatapro.variants.italic]
+    g               = "single-storey-serifless"
+  [buildPlans.iosevka-pragmatapro.metric-override]
+  leading  = 1180 # Default line height times 1000
+  cap      = 720  # Cap height (as well as ascender)]
 
+[buildPlans.iosevka-pragmatapro-term]
+family             = "Iosevka PragmataPro Term"
+spacing            = "term"
+serifs             = "sans"
+export-glyph-names = true
+no-cv-ss           = true
+  [buildPlans.iosevka-pragmatapro-term.ligations]
+  inherits = "default-calt"
+  disables = [ 'ltgt-diamond' ]
+  [buildPlans.iosevka-pragmatapro-term.variants]
+  inherits = "buildPlans.iosevka-pragmatapro"
+
+[buildPlans.iosevka-pragmatapro-fixed]
+family             = "Iosevka PragmataPro Fixed"
+spacing            = "fixed"
+serifs             = "sans"
+export-glyph-names = true
+no-cv-ss           = true
+  [buildPlans.iosevka-pragmatapro-fixed.ligations]
+  inherits = "default-calt"
+  disables = [ 'ltgt-diamond' ]
+  [buildPlans.iosevka-pragmatapro-fixed.variants]
+  inherits = "buildPlans.iosevka-pragmatapro"
 #========================================================================================================================
 # Collect plans
 [collectPlans.iosevka-ikrima]
@@ -129,5 +145,7 @@ from    = [
 [collectPlans.iosevka-pragmatapro]
 release = true
 from    = [
-  "iosevka-pragmatapro"
+  "iosevka-pragmatapro",
+  "iosevka-pragmatapro-term",
+  "iosevka-pragmatapro-fixed",
 ]
