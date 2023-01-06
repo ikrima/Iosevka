@@ -49,6 +49,39 @@ no-ligation        = true
   inherits = "buildPlans.iosevka-ikrima"
 
 #========================================================================================================================
+# Building plans: iosevka-ikrima-slab
+[buildPlans.iosevka-ikrima-slab]
+family             = "Iosevka Ikrima Slab"
+desc               = "Ikrima Style, Slab-serif"
+spacing            = "normal"
+serifs             = "slab"
+export-glyph-names = true
+no-cv-ss           = true
+no-ligation        = true
+  [buildPlans.iosevka-ikrima-slab.variants]
+  inherits = "buildPlans.iosevka-ikrima"
+
+[buildPlans.iosevka-ikrima-term-slab]
+family             = "Iosevka Ikrima Term Slab"
+spacing            = "term"
+serifs             = "slab"
+export-glyph-names = true
+no-cv-ss           = true
+no-ligation        = true
+  [buildPlans.iosevka-ikrima-term-slab.variants]
+  inherits = "buildPlans.iosevka-ikrima"
+
+[buildPlans.iosevka-ikrima-fixed-slab]
+family             = "Iosevka Ikrima Fixed Slab"
+spacing            = "fixed"
+serifs             = "slab"
+export-glyph-names = true
+no-cv-ss           = true
+no-ligation        = true
+  [buildPlans.iosevka-ikrima-fixed-slab.variants]
+  inherits = "buildPlans.iosevka-ikrima"
+
+#========================================================================================================================
 # Building plans: iosevka-pragmatapro
 [buildPlans.iosevka-pragmatapro]
 family             = "Iosevka PragmataPro"
@@ -145,7 +178,14 @@ release = true
 from    = [
   "iosevka-ikrima",
   "iosevka-ikrima-term",
-  "iosevka-ikrima-fixed"
+  "iosevka-ikrima-fixed",
+]
+[collectPlans.iosevka-ikrima-slab]
+release = true
+from    = [
+  "iosevka-ikrima-slab",
+  "iosevka-ikrima-term-slab",
+  "iosevka-ikrima-fixed-slab",
 ]
 [collectPlans.iosevka-pragmatapro]
 release = true
