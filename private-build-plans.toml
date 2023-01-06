@@ -19,6 +19,9 @@ serifs             = "sans"
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
+  [buildPlans.iosevka-ikrima-norm.ligations]
+  inherits = "default-calt"
+  disables = [ 'ltgt-diamond' ]
   [buildPlans.iosevka-ikrima-norm.variants]
   # inherits = "" # use defaults
     [buildPlans.iosevka-ikrima-norm.variants.design]
@@ -35,6 +38,9 @@ serifs             = "sans"
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
+  [buildPlans.iosevka-ikrima-term.ligations]
+  inherits = "default-calt"
+  disables = [ 'ltgt-diamond' ]
   [buildPlans.iosevka-ikrima-term.variants]
   inherits = "buildPlans.iosevka-ikrima-norm"
 
@@ -45,6 +51,9 @@ serifs             = "sans"
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
+  [buildPlans.iosevka-ikrima-fixed.ligations]
+  inherits = "default-calt"
+  disables = [ 'ltgt-diamond' ]
   [buildPlans.iosevka-ikrima-fixed.variants]
   inherits = "buildPlans.iosevka-ikrima-norm"
 
@@ -58,6 +67,9 @@ serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
+  [buildPlans.iosevka-ikrima-slab-norm.ligations]
+  inherits = "default-calt"
+  disables = [ 'ltgt-diamond' ]
   [buildPlans.iosevka-ikrima-slab-norm.variants]
   inherits = "buildPlans.iosevka-ikrima-norm"
 
@@ -68,6 +80,9 @@ serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
+  [buildPlans.iosevka-ikrima-slab-term.ligations]
+  inherits = "default-calt"
+  disables = [ 'ltgt-diamond' ]
   [buildPlans.iosevka-ikrima-slab-term.variants]
   inherits = "buildPlans.iosevka-ikrima-norm"
 
@@ -78,6 +93,9 @@ serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
+  [buildPlans.iosevka-ikrima-slab-fixed.ligations]
+  inherits = "default-calt"
+  disables = [ 'ltgt-diamond' ]
   [buildPlans.iosevka-ikrima-slab-fixed.variants]
   inherits = "buildPlans.iosevka-ikrima-norm"
 
