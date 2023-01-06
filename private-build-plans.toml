@@ -1,28 +1,37 @@
 #========================================================================================================================
+# | Cheatsheat         | Desc                                | Weights                                                                    | Slopes                   | Widths           |
+# | ------------------ | ----------------------------------- | -------------------------------------------------------------------------- | ------------------------ | ---------------- |
+# | Iosevka            | Monospace, Sans-Serif               | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
+# | Iosevka Term       | Monospace, Sans-Serif               | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
+# | Iosevka Fixed      | Monospace, Sans-Serif, Ligation Off | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
+# | Iosevka Slab       | Monospace, Slab-Serif               | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
+# | Iosevka Term Slab  | Monospace, Slab-Serif               | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
+# | Iosevka Fixed Slab | Monospace, Slab-Serif, Ligation Off | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
+# | Iosevka Aile       | Quasi-Proportional, for Documents   | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | -                |
+# | Iosevka Etoile     | Quasi-Proportional, for Writing     | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | -                |
+#========================================================================================================================
 # Building plans: iosevka-ikrima
 [buildPlans.iosevka-ikrima]
 family             = "Iosevka Ikrima"
 desc               = "Ikrima Style"
 spacing            = "normal"
 serifs             = "sans"
-# snapshotFamily   = 'Iosevka'
-# snapshotFeature  = {"NWID" = 0}
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
-  [buildPlans.iosevka-ikrima.variants.design]
-  asterisk   = 'penta-low'
-  underscore = 'high'
-  at         = 'threefold'
-  zero       = 'slashed'
-  brace      = "straight"
+  [buildPlans.iosevka-ikrima.variants]
+  # inherits = "" # use defaults
+    [buildPlans.iosevka-ikrima.variants.design]
+    asterisk   = 'penta-low'
+    underscore = 'high'
+    at         = 'threefold'
+    zero       = 'slashed'
+    brace      = "straight"
 
 [buildPlans.iosevka-ikrima-term]
 family             = "Iosevka Ikrima Term"
 spacing            = "term"
 serifs             = "sans"
-# snapshotFamily   = 'Iosevka'
-# snapshotFeature  = {"NWID" = 1}
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
@@ -33,8 +42,6 @@ no-ligation        = true
 family             = "Iosevka Ikrima Fixed"
 spacing            = "fixed"
 serifs             = "sans"
-# snapshotFamily   = 'Iosevka'
-# snapshotFeature  = {"NWID" = 1}
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
@@ -48,8 +55,6 @@ family             = "Iosevka PragmataPro"
 desc               = "PragmataPro Style"
 spacing            = "normal"
 serifs             = "sans"
-# snapshotFamily   = 'Iosevka'
-# snapshotFeature  = {"ss08" = 1}
 export-glyph-names = true
 no-cv-ss           = true
   [buildPlans.iosevka-pragmatapro.ligations]
@@ -106,9 +111,9 @@ no-cv-ss           = true
     percent         = "dots"
     [buildPlans.iosevka-pragmatapro.variants.italic]
     g               = "single-storey-serifless"
-  [buildPlans.iosevka-pragmatapro.metric-override]
-  leading  = 1180 # Default line height times 1000
-  cap      = 720  # Cap height (as well as ascender)]
+  # [buildPlans.iosevka-pragmatapro.metric-override]
+  # leading  = 1180 # Default line height times 1000
+  # cap      = 720  # Cap height (as well as ascender)]
 
 [buildPlans.iosevka-pragmatapro-term]
 family             = "Iosevka PragmataPro Term"
