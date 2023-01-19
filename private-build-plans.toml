@@ -1,119 +1,116 @@
 #========================================================================================================================
-# | Cheatsheat         | Desc                                | Weights                                                                    | Slopes                   | Widths           |
-# | ------------------ | ----------------------------------- | -------------------------------------------------------------------------- | ------------------------ | ---------------- |
-# | Iosevka            | Monospace, Sans-Serif               | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
-# | Iosevka Term       | Monospace, Sans-Serif               | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
-# | Iosevka Fixed      | Monospace, Sans-Serif, Ligation Off | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
-# | Iosevka Slab       | Monospace, Slab-Serif               | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
-# | Iosevka Slab Term  | Monospace, Slab-Serif               | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
-# | Iosevka Slab Fixed | Monospace, Slab-Serif, Ligation Off | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
-# | Iosevka Aile       | Quasi-Proportional, for Documents   | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | -                |
-# | Iosevka Etoile     | Quasi-Proportional, for Writing     | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | -                |
+# | Cheatsheat         | Desc                                                | Weights                                                                    | Slopes                   | Widths           |
+# | ------------------ | --------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------ | ---------------- |
+# | Iosevka            | Monospace, Sans-Serif                               | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
+# | Iosevka Term       | Monospace, Sans-Serif, Narrow Symbols               | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
+# | Iosevka Fixed      | Monospace, Sans-Serif, Narrow Symbols, Ligation Off | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
+# | Iosevka Slab       | Monospace, Slab-Serif                               | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
+# | Iosevka Term Slab  | Monospace, Slab-Serif, Narrow Symbols               | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
+# | Iosevka Fixed Slab | Monospace, Slab-Serif, Narrow Symbols, Ligation Off | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
+# | Iosevka Aile       | Quasi-Proportional, for Documents                   | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | -                |
+# | Iosevka Etoile     | Quasi-Proportional, for Writing                     | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | -                |
+
 #========================================================================================================================
-# Building plans: ikrima style, monospace, sans-serif
-[buildPlans.iosevka-ikrima-norm]
-family             = "Iosevka Ikrima"
-desc               = "Ikrima Style"
+# BuildPlan: edev, monospace, sans-serif
+[buildPlans.iosevka-edev]
+family             = "Iosevka Edev"
+desc               = "Edev Sans-Serif"
 spacing            = "normal"
 serifs             = "sans"
-export-glyph-names = true
 no-cv-ss           = true
+export-glyph-names = true
 no-ligation        = true
-  [buildPlans.iosevka-ikrima-norm.ligations]
-  inherits = "default-calt"
-  disables = [ 'ltgt-diamond' ]
-  [buildPlans.iosevka-ikrima-norm.variants]
-  # inherits = "" # use defaults
-    [buildPlans.iosevka-ikrima-norm.variants.design]
-    asterisk   = 'penta-low'
-    underscore = 'high'
-    at         = 'threefold'
-    zero       = 'slashed'
-    brace      = "straight"
+  [buildPlans.iosevka-edev.variants.design]
+  zero       = "slashed"
+  asterisk   = "penta-low"
+  underscore = "high"
+  brace      = "straight"
+  at         = "threefold"
 
-[buildPlans.iosevka-ikrima-term]
-family             = "Iosevka Ikrima Term"
+[buildPlans.iosevka-edev-term]
+family             = "Iosevka Edev Term"
 spacing            = "term"
 serifs             = "sans"
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
-  [buildPlans.iosevka-ikrima-term.ligations]
-  inherits = "default-calt"
-  disables = [ 'ltgt-diamond' ]
-  [buildPlans.iosevka-ikrima-term.variants]
-  inherits = "buildPlans.iosevka-ikrima-norm"
+  [buildPlans.iosevka-edev-term.variants.design]
+  zero       = "slashed"
+  asterisk   = "penta-low"
+  underscore = "high"
+  brace      = "straight"
+  at         = "threefold"
 
-[buildPlans.iosevka-ikrima-fixed]
-family             = "Iosevka Ikrima Fixed"
+[buildPlans.iosevka-edev-fixed]
+family             = "Iosevka Edev Fixed"
 spacing            = "fixed"
 serifs             = "sans"
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
-  [buildPlans.iosevka-ikrima-fixed.ligations]
-  inherits = "default-calt"
-  disables = [ 'ltgt-diamond' ]
-  [buildPlans.iosevka-ikrima-fixed.variants]
-  inherits = "buildPlans.iosevka-ikrima-norm"
+  [buildPlans.iosevka-edev-fixed.variants.design]
+  zero       = "slashed"
+  asterisk   = "penta-low"
+  underscore = "high"
+  brace      = "straight"
+  at         = "threefold"
 
 #========================================================================================================================
-# Building plans: ikrima style, monospace, slab-serif
-[buildPlans.iosevka-ikrima-slab-norm]
-family             = "Iosevka Ikrima Slab"
-desc               = "Ikrima Style, Slab-Serif"
+# BuildPlan: edev, monospace, slab-serif
+[buildPlans.iosevka-edev-slab]
+family             = "Iosevka Edev Slab"
+desc               = "Edev Slab-Serif"
 spacing            = "normal"
 serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
-no-ligation        = true
-  [buildPlans.iosevka-ikrima-slab-norm.ligations]
-  inherits = "default-calt"
-  disables = [ 'ltgt-diamond' ]
-  [buildPlans.iosevka-ikrima-slab-norm.variants]
-  inherits = "buildPlans.iosevka-ikrima-norm"
+  [buildPlans.iosevka-edev-slab.variants.design]
+  zero       = "slashed"
+  asterisk   = "penta-low"
+  underscore = "high"
+  brace      = "straight"
+  at         = "threefold"
 
-[buildPlans.iosevka-ikrima-slab-term]
-family             = "Iosevka Ikrima Slab Term"
+[buildPlans.iosevka-edev-term-slab]
+family             = "Iosevka Edev Term Slab"
 spacing            = "term"
 serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
-no-ligation        = true
-  [buildPlans.iosevka-ikrima-slab-term.ligations]
-  inherits = "default-calt"
-  disables = [ 'ltgt-diamond' ]
-  [buildPlans.iosevka-ikrima-slab-term.variants]
-  inherits = "buildPlans.iosevka-ikrima-norm"
+  [buildPlans.iosevka-edev-term-slab.variants.design]
+  zero       = "slashed"
+  asterisk   = "penta-low"
+  underscore = "high"
+  brace      = "straight"
+  at         = "threefold"
 
-[buildPlans.iosevka-ikrima-slab-fixed]
-family             = "Iosevka Ikrima Slab Fixed"
+[buildPlans.iosevka-edev-fixed-slab]
+family             = "Iosevka Edev Fixed Slab"
 spacing            = "fixed"
 serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
-no-ligation        = true
-  [buildPlans.iosevka-ikrima-slab-fixed.ligations]
-  inherits = "default-calt"
-  disables = [ 'ltgt-diamond' ]
-  [buildPlans.iosevka-ikrima-slab-fixed.variants]
-  inherits = "buildPlans.iosevka-ikrima-norm"
+  [buildPlans.iosevka-edev-fixed-slab.variants.design]
+  zero       = "slashed"
+  asterisk   = "penta-low"
+  underscore = "high"
+  brace      = "straight"
+  at         = "threefold"
 
 #========================================================================================================================
-# Building plans: pragmatapro, monospace, sans-serif
-[buildPlans.iosevka-pragmatapro-norm]
-family             = "Iosevka PragmataPro"
-desc               = "PragmataPro Style"
+# BuildPlan: pragpro, monospace, sans-serif
+[buildPlans.iosevka-pragpro]
+family             = "Iosevka Pragpro"
+desc               = "PragmataPro Sans-Serif"
 spacing            = "normal"
 serifs             = "sans"
 export-glyph-names = true
 no-cv-ss           = true
-  [buildPlans.iosevka-pragmatapro-norm.ligations]
-  inherits = "default-calt"
-  disables = [ 'ltgt-diamond' ]
-  [buildPlans.iosevka-pragmatapro-norm.variants]
+
+  [buildPlans.iosevka-pragpro.variants]
   inherits = "ss08"
-    [buildPlans.iosevka-pragmatapro-norm.variants.design]
+
+    [buildPlans.iosevka-pragpro.variants.design]
     capital-a       = "curly-serifless"
     capital-d       = "more-rounded-serifless"
     capital-g       = "toothless-rounded-serifless-hooked"
@@ -160,101 +157,86 @@ no-cv-ss           = true
     dollar          = "open"
     cent            = "open"
     percent         = "dots"
-    [buildPlans.iosevka-pragmatapro-norm.variants.italic]
-    g               = "single-storey-serifless"
-  # [buildPlans.iosevka-pragmatapro-norm.metric-override]
-  # leading  = 1180 # Default line height times 1000
-  # cap      = 720  # Cap height (as well as ascender)]
 
-[buildPlans.iosevka-pragmatapro-term]
-family             = "Iosevka PragmataPro Term"
+    [buildPlans.iosevka-pragpro.variants.italic]
+    g               = "single-storey-serifless"
+
+[buildPlans.iosevka-pragpro-term]
+family             = "Iosevka Pragpro Term"
 spacing            = "term"
 serifs             = "sans"
 export-glyph-names = true
 no-cv-ss           = true
-  [buildPlans.iosevka-pragmatapro-term.ligations]
-  inherits = "default-calt"
-  disables = [ 'ltgt-diamond' ]
-  [buildPlans.iosevka-pragmatapro-term.variants]
-  inherits = "buildPlans.iosevka-pragmatapro-norm"
 
-[buildPlans.iosevka-pragmatapro-fixed]
-family             = "Iosevka PragmataPro Fixed"
+  [buildPlans.iosevka-pragpro-term.variants]
+  inherits = "buildPlans.iosevka-pragpro"
+
+[buildPlans.iosevka-pragpro-fixed]
+family             = "Iosevka Pragpro Fixed"
 spacing            = "fixed"
 serifs             = "sans"
 export-glyph-names = true
 no-cv-ss           = true
-  [buildPlans.iosevka-pragmatapro-fixed.ligations]
-  inherits = "default-calt"
-  disables = [ 'ltgt-diamond' ]
-  [buildPlans.iosevka-pragmatapro-fixed.variants]
-  inherits = "buildPlans.iosevka-pragmatapro-norm"
+
+  [buildPlans.iosevka-pragpro-fixed.variants]
+  inherits = "buildPlans.iosevka-pragpro"
 
 #========================================================================================================================
-# Building plans: pragmatapro, monospace, slab-serif
-[buildPlans.iosevka-pragmatapro-slab-norm]
-family             = "Iosevka PragmataPro Slab"
+# BuildPlan: pragpro, monospace, slab-serif
+[buildPlans.iosevka-pragpro-slab]
+family             = "Iosevka Pragpro Slab"
+desc               = "PragmataPro Slab-Serif"
 spacing            = "normal"
 serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
-  [buildPlans.iosevka-pragmatapro-slab-norm.ligations]
-  inherits = "default-calt"
-  disables = [ 'ltgt-diamond' ]
-  [buildPlans.iosevka-pragmatapro-slab-norm.variants]
-  inherits = "buildPlans.iosevka-pragmatapro-norm"
 
-[buildPlans.iosevka-pragmatapro-slab-term]
-family             = "Iosevka PragmataPro Slab Term"
+  [buildPlans.iosevka-pragpro-slab.variants]
+  inherits = "buildPlans.iosevka-pragpro"
+
+[buildPlans.iosevka-pragpro-term-slab]
+family             = "Iosevka Pragpro Term Slab"
 spacing            = "term"
 serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
-  [buildPlans.iosevka-pragmatapro-slab-term.ligations]
-  inherits = "default-calt"
-  disables = [ 'ltgt-diamond' ]
-  [buildPlans.iosevka-pragmatapro-slab-term.variants]
-  inherits = "buildPlans.iosevka-pragmatapro-norm"
 
-[buildPlans.iosevka-pragmatapro-slab-fixed]
-family             = "Iosevka PragmataPro Slab Fixed"
+  [buildPlans.iosevka-pragpro-term-slab.variants]
+  inherits = "buildPlans.iosevka-pragpro"
+
+[buildPlans.iosevka-pragpro-fixed-slab]
+family             = "Iosevka Pragpro Fixed Slab"
 spacing            = "fixed"
 serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
-  [buildPlans.iosevka-pragmatapro-slab-fixed.ligations]
-  inherits = "default-calt"
-  disables = [ 'ltgt-diamond' ]
-  [buildPlans.iosevka-pragmatapro-slab-fixed.variants]
-  inherits = "buildPlans.iosevka-pragmatapro-norm"
+
+  [buildPlans.iosevka-pragpro-fixed-slab.variants]
+  inherits = "buildPlans.iosevka-pragpro"
 
 #========================================================================================================================
 # Collect plans
-[collectPlans.iosevka-ikrima]
-release = true
-from    = [
-  "iosevka-ikrima-norm",
-  "iosevka-ikrima-term",
-  "iosevka-ikrima-fixed",
+[collectPlans.iosevka-edev]
+from = [
+  "iosevka-edev",
+  "iosevka-edev-term",
+  "iosevka-edev-fixed"
 ]
-[collectPlans.iosevka-ikrima-slab]
-release = true
-from    = [
-  "iosevka-ikrima-slab-norm",
-  "iosevka-ikrima-slab-term",
-  "iosevka-ikrima-slab-fixed",
+[collectPlans.iosevka-edev-slab]
+from = [
+  "iosevka-edev-slab",
+  "iosevka-edev-term-slab",
+  "iosevka-edev-fixed-slab"
 ]
-[collectPlans.iosevka-pragmatapro]
-release = true
-from    = [
-  "iosevka-pragmatapro-norm",
-  "iosevka-pragmatapro-term",
-  "iosevka-pragmatapro-fixed",
+[collectPlans.iosevka-pragpro]
+from = [
+  "iosevka-pragpro",
+  "iosevka-pragpro-term",
+  "iosevka-pragpro-fixed"
 ]
-[collectPlans.iosevka-pragmatapro-slab]
-release = true
-from    = [
-  "iosevka-pragmatapro-slab-norm",
-  "iosevka-pragmatapro-slab-term",
-  "iosevka-pragmatapro-slab-fixed",
+[collectPlans.iosevka-pragpro-slab]
+from = [
+  "iosevka-pragpro-slab",
+  "iosevka-pragpro-term-slab",
+  "iosevka-pragpro-fixed-slab"
 ]
