@@ -1,6 +1,6 @@
 $$include '../../../meta/macros.ptl'
 
-import [mix linreg clamp fallback] from"../../../support/utils.mjs"
+import [mix linreg fallback SuffixCfg] from"../../../support/utils.mjs"
 import [LowerYDotAtBelow Dotless CvDecompose MathSansSerif OgonekTrY] from"../../../support/gr.mjs"
 
 glyph-module
@@ -12,14 +12,13 @@ glyph-block Letter-Latin-Lower-Y : begin
 	glyph-block-import Mark-Above : aboveMarkTop aboveMarkBot aboveMarkMid aboveMarkStack
 	glyph-block-import Mark-Below : belowMarkStack
 	glyph-block-import Letter-Shared : CreateAccentedComposition
-	glyph-block-import Letter-Shared-Shapes : nShoulder FlatHookDepth SerifFrame BeltOverlay
-	glyph-block-import Letter-Shared-Shapes : VerticalHook
+	glyph-block-import Letter-Shared-Shapes : nShoulder FlatHookDepth SerifFrame BeltOverlay TopHook
 
 	define SLAB-NONE           { false false false }
 	define SLAB-AUTO           { SLAB  SLAB  false }
 	define SLAB-ALL            { true  true  false }
 	define SLAB-MOTION         { false false true  }
-	define SLAB-MOTION-AUTO    { SLAB  SLAB  true  }
+	define SLAB-CURSIVE-MOTION { true  true  true  }
 
 	define BS-STRAIGHT 0
 	define BS-TURN     1
@@ -44,7 +43,7 @@ glyph-block Letter-Latin-Lower-Y : begin
 		local dpy1 : (1 - [linreg (1 - px2) (1 - py2) px1 py1 1]) / (1 - py1)
 		local dpy2 : (1 - [linreg (1 - px1) (1 - py1) px2 py2 1]) / (1 - py2)
 		local yrstrokel0 : Middle - Width * 0.1
-		local yrstrokel : Middle - Width * 0.1 + (Stroke * HVContrast * [if bottomIsNotVertical (2 / 3) (1 / 3)] * [if slabCurly [StrokeWidthBlend 0.95 0.97] 1])
+		local yrstrokel : Middle - Width * 0.1 + ([HSwToV Stroke] * [if bottomIsNotVertical (2 / 3) (1 / 3)] * [if slabCurly [StrokeWidthBlend 0.95 0.97] 1])
 		local yrstroker : Width - SB * [if straightBar DesignParameters.straightSmallYShapeSbShrink 1]
 		local yshrink : [StrokeWidthBlend 1 0.85] * [if straightBar ([AdviceStroke 3.25] / Stroke) 1]
 		local yBottomJut : Jut * 1.25
@@ -105,7 +104,7 @@ glyph-block Letter-Latin-Lower-Y : begin
 						local joinHeight1 : yJoinHeight ds ds2 top bottom false
 						local k : 1 / [Math.sin : Math.atan2 (joinX - Middle) (joinY - joinHeight1)] - 0.25
 						local joinHeight3 : [Math.abs k] * Stroke + joinHeight1
-						local deltaX : Math.max yBottomJut (1.2 * HVContrast * Stroke)
+						local deltaX : Math.max yBottomJut ([HSwToV : 1.2 * Stroke])
 						local fine : AdviceStroke 3
 						local xLoopLeft : Math.max (SB * -0.25) [mix joinX (yrstrokel - deltaX) 2]
 						local xCenter : mix xLoopLeft joinX 0.5
@@ -135,9 +134,9 @@ glyph-block Letter-Latin-Lower-Y : begin
 			if bottomShape : return nothing
 			if (useStraightBottom) : begin
 				local xBaseKnot : mix yrstroker joinX ((top - bottom) / (top - joinY))
-				include : HSerif.lb (xBaseKnot - HalfStroke * HVContrast) bottom yBottomJut
+				include : HSerif.lb (xBaseKnot - [HSwToV HalfStroke]) bottom yBottomJut
 			: else : begin
-				include : HSerif.lb (yrstrokel - HalfStroke * HVContrast) bottom yBottomJut
+				include : HSerif.lb (yrstrokel - [HSwToV HalfStroke]) bottom yBottomJut
 
 		define [yJoinProportion hooktop x] : linreg
 			1 - px2
@@ -198,7 +197,7 @@ glyph-block Letter-Latin-Lower-Y : begin
 				SmallYStrokeSplitMask top bottom false (-1)
 				Rect (bottom + HalfStroke) (bottom - top) 0 Width
 
-			if doSlabTop    : include : let [sf : SerifFrame top bottom SB RightSB]
+			if doSlabTop    : include : let [sf : SerifFrame.fromDf [DivFrame 1] top bottom]
 				composite-proc sf.lt.full sf.rt.full
 			if doSlabBottom : include : yBaseSerif top bottom
 			if doSlabMotion : include : HSerif.lt SB top SideJut
@@ -212,13 +211,13 @@ glyph-block Letter-Latin-Lower-Y : begin
 				SmallYStrokeSplitMask top bottom true 1
 				dispiro
 					widths.rhs
-					straight.left.start ([mix yrstrokel yrstroker px1] - HalfStroke + HookX) (XH - Stroke)
+					straight.left.start ([mix yrstrokel yrstroker px1] - HalfStroke + TailX) (XH - Stroke - O)
 					yBaseKnots top bottom 1 true
 
 			include : difference
 				dispiro
 					widths.rhs
-					straight.left.start ([mix yrstrokel yrstroker px1] - HalfStroke + HookX) (XH - Stroke)
+					straight.left.start ([mix yrstrokel yrstroker px1] - HalfStroke + TailX) (XH - Stroke - O)
 					yBaseKnots top bottom yshrink true
 				SmallYStrokeSplitMask top bottom true 1 1
 
@@ -228,8 +227,9 @@ glyph-block Letter-Latin-Lower-Y : begin
 					yTopKnots (Width - yrstroker) top bottom ds (-1)
 					yJoinKnots ds ds2 top bottom true
 				SmallYStrokeSplitMask top bottom true (-1)
+				Rect (bottom + HalfStroke) (bottom - top) 0 Width
 
-			if doSlabTop : include : let [sf : SerifFrame top bottom SB RightSB] sf.lt.full
+			if doSlabTop : include : let [sf : SerifFrame.fromDf [DivFrame 1] top bottom] sf.lt.full
 			if doSlabBottom : include : yBaseSerif top bottom
 			if doSlabMotion : include : HSerif.lt SB top SideJut
 
@@ -241,41 +241,24 @@ glyph-block Letter-Latin-Lower-Y : begin
 			include : Scale 1 (-1)
 			include : Translate 0 (+[mix bottom top 0.5])
 
-	define NonCursiveConfig : object
-		# suffix                    straightBar bottomShape   slabKind
-		straight                  { true        BS-STRAIGHT   SLAB-AUTO   }
-		straightTurn              { true        BS-TURN       SLAB-AUTO   }
-		straightLoop              { true        BS-LOOP       SLAB-AUTO   }
-		curly                     { false       BS-STRAIGHT   SLAB-AUTO   }
-		curlyTurn                 { false       BS-TURN       SLAB-AUTO   }
-		curlyLoop                 { false       BS-LOOP       SLAB-AUTO   }
-
-		straightSerifless         { true        BS-STRAIGHT   SLAB-NONE   }
-		straightTurnSerifless     { true        BS-TURN       SLAB-NONE   }
-		straightLoopSerifless     { true        BS-LOOP       SLAB-NONE   }
-		curlySerifless            { false       BS-STRAIGHT   SLAB-NONE   }
-		curlyTurnSerifless        { false       BS-TURN       SLAB-NONE   }
-		curlyLoopSerifless        { false       BS-LOOP       SLAB-NONE   }
-
-		straightSerifed           { true        BS-STRAIGHT   SLAB-ALL    }
-		straightTurnSerifed       { true        BS-TURN       SLAB-ALL    }
-		straightLoopSerifed       { true        BS-LOOP       SLAB-ALL    }
-		curlySerifed              { false       BS-STRAIGHT   SLAB-ALL    }
-		curlyTurnSerifed          { false       BS-TURN       SLAB-ALL    }
-		curlyLoopSerifed          { false       BS-LOOP       SLAB-ALL    }
-
-		straightMotionSerifed     { true        BS-STRAIGHT   SLAB-MOTION }
-		straightTurnMotionSerifed { true        BS-TURN       SLAB-MOTION }
-		straightLoopMotionSerifed { true        BS-LOOP       SLAB-MOTION }
-		curlyMotionSerifed        { false       BS-STRAIGHT   SLAB-MOTION }
-		curlyTurnMotionSerifed    { false       BS-TURN       SLAB-MOTION }
-		curlyLoopMotionSerifed    { false       BS-LOOP       SLAB-MOTION }
+	define NonCursiveConfig : SuffixCfg.weave
+		object # body
+			straight      true
+			curly         false
+		object # hook
+			""            BS-STRAIGHT
+			turn          BS-TURN
+			loop          BS-LOOP
+		object # serifs
+			serifless     SLAB-NONE
+			serifed       SLAB-ALL
+			motionSerifed SLAB-MOTION
 
 	foreach { suffix { straightBar bottomShape slabKind } } [Object.entries NonCursiveConfig] : do
 		define Shapes : GenNonCursiveShape straightBar bottomShape slabKind
 		create-glyph "y.\(suffix)" : glyph-proc
 			include : MarkSet.p
-			set-base-anchor 'overlay' Middle (XH / 2)
+			set-base-anchor 'strike' Middle (XH / 2)
 			set-base-anchor 'yBelowDot' (RightSB - 0.5 * DotRadius) (Descender + AccentStackOffset + DotRadius)
 			include : Shapes.SmallYShape XH Descender
 
@@ -291,13 +274,13 @@ glyph-block Letter-Latin-Lower-Y : begin
 
 		create-glyph "yHookTop.\(suffix)" : glyph-proc
 			include : MarkSet.p
-			set-base-anchor 'overlay' Middle (XH / 2)
+			set-base-anchor 'strike' Middle (XH / 2)
 			set-base-anchor 'yBelowDot' (RightSB - 0.5 * DotRadius) (Descender + AccentStackOffset + DotRadius)
 			include : Shapes.SmallYHookTopShape XH Descender
 
 		create-glyph "yCap.\(suffix)" : glyph-proc
 			include : MarkSet.capital
-			set-base-anchor 'overlay' Middle (XH / 2 - Descender)
+			set-base-anchor 'strike' Middle (XH / 2 - Descender)
 			include : Shapes.SmallYShape CAP 0
 
 	define Cursive : namespace
@@ -305,7 +288,7 @@ glyph-block Letter-Latin-Lower-Y : begin
 			include : nShoulder
 				top -- top
 				bottom -- bottom
-				left -- (SB + Stroke * HVContrast)
+				left -- (SB + [HSwToV Stroke])
 				right -- RightSB
 				fine -- ShoulderFine
 			include : FlipAround Middle [mix bottom top 0.5]
@@ -326,22 +309,23 @@ glyph-block Letter-Latin-Lower-Y : begin
 				curl RightSB (bottom + hd.y)
 				arcvh
 				flat (RightSB - hd.x) bottom
-				curl xTerminal bottom [heading Leftward]
+				curl xTerminal bottom
 
 		export : define [Serifs top slabType] : begin
 			local { doSlabTop doSlabBottom doSlabMotion } slabKind
-			local sf : SerifFrame top 0 SB RightSB
+			local sf : SerifFrame.fromDf [DivFrame 1] top 0
 			return : if [not doSlabTop] [no-shape] : composite-proc
 				if doSlabMotion sf.lt.outer sf.lt.full
 				if doSlabMotion [no-shape] sf.rt.full
 
-	define CursiveConfig : object
-		cursive                      { Cursive.Hook     SLAB-MOTION-AUTO    }
-		cursiveFlatHook              { Cursive.FlatHook SLAB-MOTION-AUTO    }
-		cursiveCyrlU                 { Cursive.Hook     SLAB-AUTO           }
-		cursiveFlatHookCyrlU         { Cursive.FlatHook SLAB-AUTO           }
-		cursiveMotionSerifed         { Cursive.Hook     SLAB-MOTION         }
-		cursiveFlatHookMotionSerifed { Cursive.FlatHook SLAB-MOTION         }
+	define CursiveConfig : SuffixCfg.weave
+		object # body
+			cursive          Cursive.Hook
+			cursiveFlatHook  Cursive.FlatHook
+		object # serifs
+			serifless        SLAB-NONE
+			serifed          SLAB-ALL
+			motionSerifed    SLAB-CURSIVE-MOTION
 
 	foreach { suffix { hookShape slabKind } } [Object.entries CursiveConfig] : do
 		create-glyph "y.\(suffix)" : glyph-proc
@@ -355,9 +339,10 @@ glyph-block Letter-Latin-Lower-Y : begin
 		create-glyph "yHookTop.\(suffix)" : glyph-proc
 			include : MarkSet.p
 			include : Cursive.Arc XH 0
-			include : hookShape (XH - Hook - HalfStroke) Descender
-			include : VerticalHook.r RightSB (XH - Hook - HalfStroke) HookX (-Hook)
+			include : hookShape (XH - TailY - HalfStroke) Descender
+			include : TopHook.rBarInner RightSB 0 XH
 			include : Cursive.Serifs XH slabKind
+			eject-contour 'serifRT'
 
 		create-glyph "yCap.\(suffix)" : glyph-proc
 			include : MarkSet.capital

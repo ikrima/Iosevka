@@ -43,7 +43,7 @@ glyph-block Letter-Greek-Upper-Phi : begin
 	create-glyph 'grek/varphi' 0x3D5 : glyph-proc
 		local df : DivFrame para.diversityM 3
 		set-width df.width
-		include : df.markSet.if
+		include : df.markSet.bp
 
 		include : VarPhiRing 0 df 0 XH
 		include : VBar.m df.middle Descender HalfStroke
@@ -52,7 +52,7 @@ glyph-block Letter-Greek-Upper-Phi : begin
 	create-glyph 'cyrl/ef.serifless' : glyph-proc
 		local df : DivFrame para.diversityM 3
 		set-width df.width
-		include : df.markSet.if
+		include : df.markSet.bp
 
 		include : VarPhiRing 1 df 0 XH
 		include : VBar.m df.middle Descender HalfStroke
@@ -72,7 +72,7 @@ glyph-block Letter-Greek-Upper-Phi : begin
 	create-glyph 'cyrl/ef.cursive' : glyph-proc
 		local df : DivFrame para.diversityM 3
 		set-width df.width
-		include : df.markSet.if
+		include : df.markSet.bp
 
 		include : VarPhiRing 1 df 0 XH
 		local hd : FlatHookDepth df
@@ -80,8 +80,8 @@ glyph-block Letter-Greek-Upper-Phi : begin
 		local xCrossLeft  : mix 0         df.leftSB   [mix 1 df.div 2]
 		local xCrossRight : mix df.width  df.rightSB  [mix 1 df.div 2]
 
-		local xBarLeft    : df.middle - HalfStroke * HVContrast
-		local xBarRight   : df.middle + HalfStroke * HVContrast
+		local xBarLeft    : df.middle - [HSwToV HalfStroke]
+		local xBarRight   : df.middle + [HSwToV HalfStroke]
 
 		include : dispiro
 			flat xCrossRight Ascender [widths.lhs]

@@ -1,7 +1,8 @@
 $$include '../../../meta/macros.ptl'
 
-import [mix linreg clamp fallback] from"../../../support/utils.mjs"
+import [mix fallback SuffixCfg] from"../../../support/utils.mjs"
 import [Dotless CvDecompose MathSansSerif] from"../../../support/gr.mjs"
+import [maskBits bitOr] from"../../../support/util/mask-bit.mjs"
 
 glyph-module
 
@@ -12,96 +13,178 @@ glyph-block Letter-Latin-Upper-A : begin
 	glyph-block-import Letter-Shared : SetGrekUpperTonos CreateOgonekComposition
 	glyph-block-import Letter-Shared-Shapes : SerifFrame
 	glyph-block-import Letter-Latin-V : VShapeOutline VShape
-	glyph-block-export LambdaShape AMaskShape DeltaShape
 
 	define SLAB-NONE    0
 	define SLAB-TOP     1
-	define SLAB-BASE    2
-	define SLAB-TRI     3
+	define SLAB-LEFT    2
+	define SLAB-RIGHT   4
 
-	define [AMaskShape df top sw barStraight] : new-glyph : glyph-proc
-		include : VShapeOutline df top sw barStraight
-		include : FlipAround ([DivFrame df.div].width / 2) (top / 2)
+	glyph-block-export AMaskShape
+	define [AMaskShape] : with-params [df fBarStraight top sw] : new-glyph : glyph-proc
+		include : VShapeOutline df fBarStraight top sw
+		include : FlipAround (df.width / 2) (top / 2)
 
-	define [ABarPosition slab top] : mix [if fBaseSlabs Stroke 0] top (XH / 2 / CAP)
+	define [ABarPosition fBaseSlabs top] : mix [if fBaseSlabs Stroke 0] top (XH / 2 / CAP)
 
-	define AConfig : object
-		straightSerifless     { true   SLAB-NONE false }
-		curlySerifless        { false  SLAB-NONE false }
-		straightTopSerifed    { true   SLAB-TOP  false }
-		curlyTopSerifed       { false  SLAB-TOP  false }
-		straightBaseSerifed   { true   SLAB-BASE true  }
-		curlyBaseSerifed      { false  SLAB-BASE true  }
-		straightTriSerifed    { true   SLAB-TRI  true  }
-		curlyTriSerifed       { false  SLAB-TRI  true  }
+	glyph-block-export AConfig
+	define AConfig : SuffixCfg.weave
+		object
+			straight true
+			curly    false
 
-	define [ASerifs df top fBaseSlabs kind] : glyph-proc : begin
-		local sf : SerifFrame top 0 df.leftSB df.rightSB
-		if fBaseSlabs : include : composite-proc sf.lb.full sf.rb.full
-		match kind
-			[Just SLAB-TRI] : begin
-				include : HSerif.lt df.middle top (MidJutSide + Stroke * HVContrast * 0.25)
-			[Just SLAB-TOP] : begin
-				include : HSerif.lt df.middle top [mix MidJutSide LongJut 0.5]
+		object
+			serifless    SLAB-NONE
+			topSerifed   SLAB-TOP
+			baseSerifed  [bitOr SLAB-LEFT SLAB-RIGHT]
+			triSerifed   [bitOr SLAB-TOP SLAB-LEFT SLAB-RIGHT]
 
-	foreach { suffix { fStraightBar slabKind fBaseSlabs } } [Object.entries AConfig] : do
-		define [AShapeImpl mak top fGrek] : glyph-proc
+	define [ASerifs df top sw slabKind] : glyph-proc : begin
+		local sf : SerifFrame.fromDf df top 0
+		if [maskBits slabKind SLAB-LEFT] : include sf.lb.full
+		if [maskBits slabKind SLAB-RIGHT] : include sf.rb.full
+		if [maskBits slabKind SLAB-TOP] : include : intersection [MaskLeft df.middle]
+			if [maskBits slabKind : bitOr SLAB-LEFT SLAB-RIGHT]
+			: then : HSerif.lt df.middle top (MidJutSide + [HSwToV : 0.25 * sw]) sf.swSerif
+			: else : HSerif.lt df.middle top [mix MidJutSide LongJut 0.5]          sf.swSerif
+
+	glyph-block-export ALetterShape
+	define [ALetterShape] : with-params [df fStraightBar slabKind top sw] : new-glyph : glyph-proc
+		include : VShape df fStraightBar top sw
+		include : FlipAround df.middle (top / 2)
+		define yBar : ABarPosition [maskBits slabKind : bitOr SLAB-LEFT SLAB-RIGHT] top
+		include : tagged 'crossBar'
+			intersection [HBar.t 0 df.width yBar] [AMaskShape df fStraightBar top sw]
+		include : ASerifs df top sw slabKind
+
+	glyph-block-export LambdaShape
+	define [LambdaShape] : with-params [df fBarStraight top sw slabKind] : glyph-proc
+		include : VShape df fBarStraight top sw
+		include : FlipAround df.middle (top / 2)
+		include : ASerifs df top sw slabKind
+
+	foreach { suffix { fStraightBar slabKind } } [Object.entries AConfig] : do
+		define [AShapeImpl mak top fGrek fOverlays] : glyph-proc
 			local df : DivFrame 1
 			include : df.markSet.(mak)
 			set-base-anchor 'trailing' df.rightSB 0
 			if fGrek : include : SetGrekUpperTonos
-				[if (slabKind === SLAB-TOP || slabKind === SLAB-TRI) 0 0.2] * (df.rightSB - df.leftSB)
-			include : VShape df top Stroke fStraightBar
-			include : FlipAround Middle (top / 2)
-			define yBar : ABarPosition fBaseSlabs top
-			include : intersection [HBar.t 0 Width yBar] [AMaskShape df top Stroke fStraightBar]
-			include : ASerifs df top fBaseSlabs slabKind
+				(df.rightSB - df.leftSB) * [if [maskBits slabKind SLAB-TOP] 0 0.2]
+
+			include : ALetterShape
+				df  -- df
+				top -- top
+				sw  -- Stroke
+				fStraightBar -- fStraightBar
+				slabKind -- slabKind
+
+			if fOverlays : begin
+				define yBar : ABarPosition [maskBits slabKind : bitOr SLAB-LEFT SLAB-RIGHT] top
+				eject-contour 'crossBar'
+				include : HOverlayBar [mix 0 SB 0.5] [mix Width RightSB 0.5] (yBar - HalfStroke + 0.5 * OverlayStroke)
+				include : HOverlayBar [mix 0 SB 0.5] [mix Width RightSB 0.5] [mix yBar top 0.25]
 
 		create-glyph "A.\(suffix)" : AShapeImpl "capital" CAP
 		create-glyph "grek/Alpha.\(suffix)" : AShapeImpl "capital" CAP true
 		create-glyph "smcpA.\(suffix)" : AShapeImpl "e" XH
 
+		create-glyph "currency/australSign.\(suffix)" : AShapeImpl "capital" CAP false true
+
+		create-glyph "grek/Lambda.\(suffix)" : glyph-proc
+			include : MarkSet.capital
+			include : LambdaShape
+				df           -- [DivFrame 1]
+				fBarStraight -- fStraightBar
+				top          -- CAP
+				sw           -- Stroke
+				slabKind     -- slabKind
+
+		create-glyph "grek/smcpLambda.\(suffix)" : glyph-proc
+			include : MarkSet.e
+			include : LambdaShape
+				df           -- [DivFrame 1]
+				fBarStraight -- fStraightBar
+				top          -- XH
+				sw           -- Stroke
+				slabKind     -- slabKind
+
 	select-variant 'A' 'A'
 	link-reduced-variant 'A/sansSerif' 'A' MathSansSerif
 	select-variant 'smcpA' 0x1D00 (follow -- 'A')
 	select-variant 'grek/Alpha' 0x391 (follow -- 'A')
+	select-variant 'currency/australSign' 0x20B3 (follow -- 'A')
 	link-reduced-variant 'grek/Alpha/sansSerif' 'grek/Alpha' MathSansSerif (follow -- 'A/sansSerif')
 	alias 'cyrl/A' 0x410 'A'
 	turned 'turnA' 0x2C6F 'A' Middle (CAP / 2)
 
-	# Lambda
-	define [LambdaShape] : params [df top sw barStraight [slab SLAB]] : glyph-proc
-		include : VShape df top sw barStraight
-		include : FlipAround df.middle (top / 2)
-		local sf : SerifFrame top 0 df.leftSB df.rightSB
-		include : NeedSlab slab : composite-proc sf.lb.full sf.rb.full
-
-	create-glyph 'grek/Lambda.straight' : composite-proc [MarkSet.capital]
-		LambdaShape [DivFrame 1] CAP Stroke true
-	create-glyph 'grek/Lambda.curly' : composite-proc [MarkSet.capital]
-		LambdaShape [DivFrame 1] CAP Stroke false
-	create-glyph 'grek/smcpLambda.straight' : composite-proc [MarkSet.e]
-		LambdaShape [DivFrame 1] XH Stroke true
-	create-glyph 'grek/smcpLambda.curly' : composite-proc [MarkSet.e]
-		LambdaShape [DivFrame 1] XH Stroke false
-
 	select-variant 'grek/Lambda' 0x39B
+	link-reduced-variant 'grek/Lambda/sansSerif' 'grek/Lambda' MathSansSerif
 	select-variant 'grek/smcpLambda' 0x1D27 (follow -- 'grek/Lambda')
-	alias 'latinLambda' 0x245 'grek/Lambda'
 
 	# Delta
-	define [DeltaShape df top sw barStraight] : union
-		LambdaShape df top sw barStraight (slab -- false)
+	glyph-block-export DeltaShape
+	define [DeltaShape] : with-params [df top sw fBarStraight] : union
+		LambdaShape
+			df -- df
+			fBarStraight -- fBarStraight
+			top -- top
+			sw -- sw
+			slab -- false
 		intersection
-			HBar.b 0 Width 0 sw
-			AMaskShape df top sw barStraight
+			HBar.b 0 df.width 0 sw
+			AMaskShape df fBarStraight top sw
 
-	create-glyph 'grek/Delta.straight' : composite-proc [MarkSet.capital]
-		DeltaShape [DivFrame 1] CAP Stroke true
-	create-glyph 'grek/Delta.curly' : composite-proc [MarkSet.capital]
-		DeltaShape [DivFrame 1] CAP Stroke false
+	define DeltaConfig : object
+		straight true
+		curly    false
+
+	foreach { suffix fBarStraight } [pairs-of DeltaConfig] : do
+		create-glyph "grek/Delta.\(suffix)" : glyph-proc
+			include : MarkSet.capital
+			include : DeltaShape
+				df -- [DivFrame 1]
+				fBarStraight -- fBarStraight
+				top -- CAP
+				sw -- Stroke
+
+		create-glyph "increment.\(suffix)" : glyph-proc
+			include : MarkSet.capital
+			include : DeltaShape
+				df -- [DivFrame 1]
+				fBarStraight -- fBarStraight
+				top -- CAP
+				sw -- OperatorStroke
+
+		create-glyph "increment.aplForm.\(suffix)" : glyph-proc
+			include : MarkSet.oper
+			define shapeHeight : OperTop - OperBot
+			include : DeltaShape
+				df -- [DivFrame 1]
+				fBarStraight -- fBarStraight
+				top -- shapeHeight
+				sw -- OperatorStroke
+			include : ApparentTranslate 0 (SymbolMid - shapeHeight / 2)
+
+		create-glyph "increment.aplThin.\(suffix)" : glyph-proc
+			include : MarkSet.oper
+			define shapeHeight : OperTop - OperBot
+			include : DeltaShape
+				df -- [DivFrame 1]
+				fBarStraight -- fBarStraight
+				top -- shapeHeight
+				sw -- [AdviceStroke 3.75]
+			include : ApparentTranslate 0 (SymbolMid - shapeHeight / 2)
+
+	define [CodeNonApl u] : if (para.variantSelector.__enableAplForm === 'enable') null u
+	define [CodeApl    u] : if (para.variantSelector.__enableAplForm === 'enable') u null
 
 	select-variant 'grek/Delta' 0x394
+	select-variant 'increment'      [CodeNonApl 0x2206] (follow -- 'grek/Delta')
+	select-variant 'increment.aplForm' [CodeApl 0x2206] (follow -- 'grek/Delta')
+	select-variant 'increment.aplThin'                  (follow -- 'grek/Delta')
+
+	turned 'nabla'      [CodeNonApl 0x2207] 'increment'         Middle (CAP / 2)
+	turned 'nabla.aplForm' [CodeApl 0x2207] 'increment.aplForm' Middle SymbolMid
+	turned 'nabla.aplThin' null             'increment.aplThin' Middle SymbolMid
 
 	derive-glyphs 'cyrl/De.BGR' null 'grek/Delta' : function [src gr] : glyph-proc
 		include [refer-glyph src] AS_BASE ALSO_METRICS

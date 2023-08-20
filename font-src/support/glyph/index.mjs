@@ -1,6 +1,6 @@
 import { Anchor } from "../geometry/anchor.mjs";
 import * as Geom from "../geometry/index.mjs";
-import { Point } from "../geometry/point.mjs";
+import { Point, Vec2 } from "../geometry/point.mjs";
 import { Transform } from "../geometry/transform.mjs";
 
 export class Glyph {
@@ -21,6 +21,10 @@ export class Glyph {
 		// Tracking
 		this._m_dependencyManager = null;
 		this.ctxTag = null;
+	}
+
+	toString() {
+		return `<Glyph ${this._m_identifier}>`;
 	}
 
 	get identifier() {
@@ -76,7 +80,7 @@ export class Glyph {
 	includeGlyph(g, copyAnchors, copyWidth) {
 		if (g instanceof Function) throw new Error("Unreachable");
 		// Combine anchors and get offset
-		let shift = { x: 0, y: 0 };
+		let shift = new Vec2(0, 0);
 		this.combineMarks(g, shift);
 		this.includeGlyphImpl(g, shift.x, shift.y);
 		if (g.isMarkSet) throw new Error("Invalid component to be introduced.");
@@ -181,6 +185,15 @@ export class Glyph {
 				throw new Error(`NaN found in anchor coord for ${id}`);
 			this.baseAnchors[id] = new Anchor(mbx, mby).transform(this.gizmo);
 		}
+	}
+	copyBaseAnchorIfAbsent(to, from) {
+		if (this.baseAnchors[from] && !this.baseAnchors[to]) {
+			this.baseAnchors[to] = new Anchor(this.baseAnchors[from].x, this.baseAnchors[from].y);
+		}
+	}
+	clearAnchors() {
+		this.baseAnchors = {};
+		this.markAnchors = {};
 	}
 	deleteBaseAnchor(id) {
 		delete this.baseAnchors[id];

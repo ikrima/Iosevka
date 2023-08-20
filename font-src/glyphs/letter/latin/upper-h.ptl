@@ -8,10 +8,13 @@ glyph-module
 glyph-block Letter-Latin-Upper-H : begin
 	glyph-block-import CommonShapes
 	glyph-block-import Common-Derivatives
+	glyph-block-import Mark-Shared-Metrics : markExtend
+	glyph-block-import Mark-Below : belowMarkMid
 	glyph-block-import Letter-Blackboard : BBS BBD
 	glyph-block-import Letter-Shared : SetGrekUpperTonos
 	glyph-block-import Letter-Shared-Shapes : SerifFrame RightwardTailedBar
-	glyph-block-import Letter-Shared-Shapes : CyrDescender CyrTailDescender VerticalHook
+	glyph-block-import Letter-Shared-Shapes : LeftHook MidHook EngHook UpwardHookShape
+	glyph-block-import Letter-Shared-Shapes : CyrDescender CyrTailDescender PalatalHook
 
 	define SLAB-NONE                   0
 	define SLAB-TOP-LEFT               1
@@ -22,7 +25,7 @@ glyph-block Letter-Latin-Upper-H : begin
 	define SLAB-TAILED-CYRILLIC-BGR    6
 
 	define [HSerifs slabType t b l r sw] : begin
-		local sf : SerifFrame t b l r (sw -- [fallback sw Stroke])
+		local sf : SerifFrame t b l r (swRef -- [fallback sw Stroke])
 		return : match slabType
 			[Just SLAB-NONE]   : glyph-proc
 			[Just SLAB-TOP-LEFT] : begin sf.lt.outer
@@ -63,21 +66,20 @@ glyph-block Letter-Latin-Upper-H : begin
 		include : HSerifs slabType top 0 df.leftSB xRightBar sw
 		if vSlab : include : VSerif.dr xTopRight top VJut (df.mvs / HVContrast)
 
-	define [HwairShape df top slabType] : glyph-proc
-		include : VBar.l df.leftSB 0 CAP df.mvs
-		include : HBar.m SB df.middle (CAP / 2)
-		include : dispiro
-			widths.lhs df.mvs
-			flat (df.middle - df.mvs * 0.5 * HVContrast) CAP [heading Downward]
-			curl (df.middle - df.mvs * 0.5 * HVContrast) (SmallArchDepthB * 0.6 * df.div)
-			arcvh
-			g4 [mix (df.middle - df.mvs * 0.5 * HVContrast) df.rightSB 0.5] O [heading Rightward]
-			archv
-			flat df.rightSB (SmallArchDepthA * 0.6 * df.div)
-			curl df.rightSB XH [heading Upward]
-		include : HSerifs slabType top 0 df.leftSB (df.middle + 0.5 * df.mvs * HVContrast) df.mvs
+	define [HwairShape df top yend slabType] : glyph-proc
+		include : VBar.l df.leftSB 0 top df.mvs
+		include : HBar.m SB df.middle (top / 2)
+		include : UpwardHookShape
+			left -- df.middle - [HSwToV : 0.5 * df.mvs]
+			right -- df.rightSB
+			ybegin -- top
+			yend -- yend
+			ada -- (SmallArchDepthA * 0.6 * df.div)
+			adb -- (SmallArchDepthB * 0.6 * df.div)
+			sw -- df.mvs
+		include : HSerifs slabType top 0 df.leftSB (df.middle + [HSwToV : 0.5 * df.mvs]) df.mvs
 
-		local sf2 : SerifFrame XH 0 (df.middle - df.mvs * 0.5 * HVContrast) df.rightSB df.mvs
+		local sf2 : [SerifFrame.fromDf df yend 0].slice 1 2
 		if (slabType === SLAB-ALL || slabType === SLAB-TAILED-CYRILLIC) : include sf2.rt.full
 
 	define [OverlayStrokeShape top slabType] : begin
@@ -89,7 +91,7 @@ glyph-block Letter-Latin-Upper-H : begin
 
 	define HConfig : object
 		serifless                        { HShape       HTurned SLAB-NONE                  false }
-		tailed                           { TailedHShape HTurned SLAB-NONE                  false }
+		tailedSerifless                  { TailedHShape HTurned SLAB-NONE                  false }
 		topLeftSerifed                   { HShape       HTurned SLAB-TOP-LEFT              false }
 		tailedTopLeftSerifed             { TailedHShape HTurned SLAB-TOP-LEFT              false }
 		topLeftBottomRightSerifed        { HShape       HTurned SLAB-TOP-LEFT-BOTTOM-RIGHT true  }
@@ -168,7 +170,19 @@ glyph-block Letter-Latin-Upper-H : begin
 			local df : DivFrame para.diversityM 3
 			set-width df.width
 			include : df.markSet.capital
-			include : HwairShape df CAP slabType
+			include : HwairShape df CAP XH slabType
+
+		create-glyph "cyrl/NjeKomi.\(suffix)" : glyph-proc
+			local df : DivFrame para.diversityM 3
+			set-width df.width
+			include : df.markSet.capital
+			include : HwairShape df CAP (CAP / 2) slabType
+
+		create-glyph "cyrl/njeKomi.\(suffix)" : glyph-proc
+			local df : DivFrame para.diversityM 3
+			set-width df.width
+			include : df.markSet.e
+			include : HwairShape df XH (XH / 2) slabType
 
 		create-glyph "HHookLeft.\(suffix)" : glyph-proc
 			include [refer-glyph "H.\(suffix)"] AS_BASE ALSO_METRICS
@@ -182,6 +196,25 @@ glyph-block Letter-Latin-Upper-H : begin
 		create-glyph "smcpHStroke.\(suffix)" : glyph-proc
 			include [refer-glyph "smcpH.\(suffix)"] AS_BASE ALSO_METRICS
 			include : OverlayStrokeShape XH slabType
+
+		create-glyph "cyrl/EnMidHook.\(suffix)" : glyph-proc
+			local df : DivFrame para.diversityM 3
+			local xm : df.middle + [HSwToV : 0.5 * df.mvs]
+			include : MarkSet.capDesc
+			set-width df.width
+			include : Body df.leftSB xm CAP df.mvs
+			include : HSerifs slabType CAP 0 df.leftSB xm df.mvs
+			include : MidHook.m df CAP
+
+		create-glyph "cyrl/enMidHook.\(suffix)" : glyph-proc
+			local df : DivFrame para.diversityM 3
+			local xm : df.middle + [HSwToV : 0.5 * df.mvs]
+			include : MarkSet.p
+			set-width df.width
+			include : Body df.leftSB xm XH df.mvs
+			include : HSerifs slabType XH 0 df.leftSB xm df.mvs
+			include : MidHook.m df XH
+
 
 	select-variant 'H' 'H'
 	link-reduced-variant 'H/sansSerif' 'H' MathSansSerif
@@ -201,6 +234,8 @@ glyph-block Letter-Latin-Upper-H : begin
 	select-variant 'cyrl/en.BGR' (shapeFrom -- 'smcpH')
 	alias 'grek/heta' 0x371 'leftHalfSmcpH.serifless'
 
+	derive-composites 'HDescender' 0x2C67 'H' [CyrDescender.rSideJut RightSB 0]
+
 	derive-composites 'cyrl/EnDescender' 0x4A2 'cyrl/En' [CyrDescender.rSideJut RightSB 0]
 	derive-composites 'cyrl/enDescender' 0x4A3 'cyrl/en/descenderBase' [CyrDescender.rSideJut RightSB 0]
 
@@ -216,6 +251,12 @@ glyph-block Letter-Latin-Upper-H : begin
 	select-variant 'HStroke' 0x126 (follow -- 'H')
 	select-variant 'smcpHStroke' null (follow -- 'H')
 
+	select-variant 'cyrl/EnMidHook' 0x0522 (follow -- 'H')
+	select-variant 'cyrl/enMidHook' 0x0523 (follow -- 'cyrl/en')
+
+	select-variant 'cyrl/NjeKomi' 0x050A (follow -- 'Hwair')
+	select-variant 'cyrl/njeKomi' 0x050B
+
 	create-glyph 'mathbb/H' 0x210D : glyph-proc
 		include : MarkSet.capital
 		include : VBar.l  SB 0 CAP BBS
@@ -229,24 +270,36 @@ glyph-block Letter-Latin-Upper-H : begin
 		include : HBar.b (RightSB - BBD) RightSB 0 BBS
 
 	derive-glyphs 'HCedilla' 0x1E28 'H' : lambda [src gr] : glyph-proc
+		local shift : Width + SB - Middle + [HSwToV HalfStroke]
 		include [refer-glyph 'cedillaBelow']
-		include : Translate (Width + SB - Middle + HalfStroke * HVContrast) 0
+		include : Translate shift 0
 		include [refer-glyph src]
 		include : MarkSet.capDesc
+		set-base-anchor 'belowBraceL' ((-Middle) + shift - 0.5 * markExtend) belowMarkMid
+		set-base-anchor 'belowBraceR' ((-Middle) + shift + 0.5 * markExtend) belowMarkMid
 
 	define [DProcCapitalHeng src sel] : glyph-proc
 		include : MarkSet.capDesc
 		include : refer-glyph src
 		eject-contour 'serifRB'
-		include : VerticalHook.r RightSB 0 (-HookX) Hook
+		include : EngHook RightSB 0 Descender
 
 	define [DProcSmallHeng src sel] : glyph-proc
 		include : MarkSet.p
 		include : refer-glyph src
 		eject-contour 'serifRB'
-		include : VerticalHook.r RightSB 0 (-HookX) Hook
+		include : EngHook RightSB 0 Descender
 
 	derive-glyphs 'Heng' 0xA726 'H' DProcCapitalHeng
-	derive-glyphs 'HengSmcp' null 'smcpH' DProcSmallHeng
 	derive-glyphs 'cyrl/EnHook' 0x4C7 'cyrl/En' DProcCapitalHeng
 	derive-glyphs 'cyrl/enHook' 0x4C8 'cyrl/en/descenderBase' DProcSmallHeng
+
+	derive-glyphs 'cyrl/EnLHook' 0x528 'cyrl/En' : lambda [src srl] : glyph-proc
+		include [refer-glyph src] AS_BASE ALSO_METRICS
+		eject-contour 'serifLB'
+		include : PalatalHook.lExt SB 0
+
+	derive-glyphs 'cyrl/enLHook' 0x529 'cyrl/en' : lambda [src srl] : glyph-proc
+		include [refer-glyph src] AS_BASE ALSO_METRICS
+		eject-contour 'serifLB'
+		include : PalatalHook.lExt SB 0

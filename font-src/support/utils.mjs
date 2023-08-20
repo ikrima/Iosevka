@@ -25,3 +25,94 @@ export function bez3(a, b, c, d, t) {
 		t * t * t * d
 	);
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+export function joinCamel(a, b) {
+	if (!a) return b;
+	if (!b) return a;
+	return a + b[0].toUpperCase() + b.slice(1);
+}
+
+function joinSuffixListImpl(sink, k, v, telescope, configs) {
+	if (!configs.length) {
+		sink[k] = v;
+		return;
+	}
+
+	let [item, ...rest] = configs;
+	if (item instanceof Function) item = item(...telescope);
+	if (!item) return;
+
+	for (const [keySuffix, valueSuffix] of Object.entries(item)) {
+		const k1 = joinCamel(k, keySuffix);
+		const v1 = [...v, valueSuffix];
+		const telescope1 = [...telescope, keySuffix];
+		joinSuffixListImpl(sink, k1, v1, telescope1, rest);
+	}
+}
+
+export const SuffixCfg = {
+	weave: function (...configs) {
+		let ans = {};
+		joinSuffixListImpl(ans, "", [], [], configs);
+		return ans;
+	},
+	combine: function (...configs) {
+		let ans = {};
+		for (const item of configs) for (const [k, v] of Object.entries(item)) ans[k] = v;
+		return ans;
+	},
+	collect: function (pairs) {
+		let ans = {};
+		for (const pair of pairs) {
+			if (pair) ans[pair.left] = pair.right;
+		}
+		return ans;
+	}
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+export class $NamedParameterPair$ {
+	constructor(l, r) {
+		this.left = l;
+		this.right = r;
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+export const MatchUtil = {
+	never() {
+		return false;
+	},
+	equal(x) {
+		return y => y === x;
+	},
+	negate(f) {
+		return x => !f(x);
+	},
+	both(a, b) {
+		return x => a(x) && b(x);
+	},
+	either(a, b) {
+		return x => a(x) || b(x);
+	}
+};
+export function constant(x) {
+	return () => x;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+export const ArrayUtil = {
+	mapIndexToItems(a, indexes) {
+		let answer = [];
+		for (const item of indexes) answer.push(a[item]);
+		return answer;
+	},
+	insertSliceAt(a, i, b) {
+		a.splice(i, 0, ...b);
+	}
+};

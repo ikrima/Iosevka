@@ -453,7 +453,7 @@ glyph-block Symbol-Mosaic : begin
 				create-glyph [BdGlyphName unicode] [MangleUnicode unicode] : glyph-proc
 					set-width MosaicWidth
 					include : ForceUpright
-					local stopH : [Math.max u d] - light * 1 - light * 0.5 * HVContrast
+					local stopH : [Math.max u d] - light * 1 - [HSwToV : 0.5 * light]
 					local stopV : [Math.max l r] - light * 1.5
 					local capH  : [Math.max u d] - light * 1
 					local capV  : [Math.max l r] - light * 1
@@ -469,8 +469,8 @@ glyph-block Symbol-Mosaic : begin
 					if u : begin
 						include : VBar.m (midx + (u - light)) (midy + stopV) topy light
 						if (u > light) : include : VBar.m (midx - (u - light)) (midy + stopV) topy light
-					if (stopH > 0 && [not u]) : include : HBar.m (midx - stopH - light * HVContrast) (midx + stopH + light * HVContrast) (midy + capV) light
-					if (stopH > 0 && [not d]) : include : HBar.m (midx - stopH - light * HVContrast) (midx + stopH + light * HVContrast) (midy - capV) light
+					if (stopH > 0 && [not u]) : include : HBar.m (midx - stopH - [HSwToV light]) (midx + stopH + [HSwToV light]) (midy + capV) light
+					if (stopH > 0 && [not d]) : include : HBar.m (midx - stopH - [HSwToV light]) (midx + stopH + [HSwToV light]) (midy - capV) light
 					if (stopV > 0 && [not l]) : include : VBar.m (midx - capH) (midy - stopV - light) (midy + stopV + light) light
 					if (stopV > 0 && [not r]) : include : VBar.m (midx + capH) (midy - stopV - light) (midy + stopV + light) light
 
@@ -873,3 +873,40 @@ glyph-block Symbol-Mosaic-NotDef : begin
 				Rect CAP 0 SB RightSB
 				Rect (CAP - sw) (0 + sw) (SB + sw) (RightSB - sw)
 		set currentGlyph.glyphRank   (9999)
+
+	create-glyph '.notdefCloneE000' 0xF00F : glyph-proc
+		include [refer-glyph '.notdef'] AS_BASE ALSO_METRICS
+
+glyph-block Symbol-Geometric-Mosaic-Inverted : for-width-kinds WideWidth1
+	glyph-block-import CommonShapes
+	glyph-block-import Common-Derivatives
+	glyph-block-import Symbol-Geometric-Shared : GeometricDim UnicodeWeightGrade GeometricSizes
+
+	define MosaicTop    fontMetrics.os2.sTypoAscender
+	define MosaicBottom fontMetrics.os2.sTypoDescender
+
+	create-glyph [MangleName 'uni25D8'] [MangleUnicode 0x25D8] : glyph-proc
+		set-width MosaicWidth
+		include : difference
+			refer-glyph : MangleName 'be2588'
+			refer-glyph : MangleName 'blackCircle'
+		include : difference
+			refer-glyph : MangleName 'be2588'
+			refer-glyph : MangleName 'blackCircle'
+
+	create-glyph [MangleName 'uni25DA'] [MangleUnicode 0x25DA] : glyph-proc
+		set-width MosaicWidth
+		include : difference
+			refer-glyph : MangleName 'be2580'
+			refer-glyph : MangleName 'whiteCircle'
+
+	create-glyph [MangleName 'uni25DB'] [MangleUnicode 0x25DB] : glyph-proc
+		set-width MosaicWidth
+		include : difference
+			refer-glyph : MangleName 'be2584'
+			refer-glyph : MangleName 'whiteCircle'
+
+	create-glyph [MangleName 'uni25D9'] [MangleUnicode 0x25D9] : glyph-proc
+		set-width MosaicWidth
+		include : refer-glyph : MangleName 'uni25DA'
+		include : refer-glyph : MangleName 'uni25DB'

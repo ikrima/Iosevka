@@ -94,7 +94,7 @@ glyph-block Symbol-Punctuation-Small : begin
 	create-glyph 'comma.square' : glyph-proc
 		local df : DivFrame para.diversityF
 		set-width df.width
-		include : WithTransform [Translate df.middle 0] : glyph-proc
+		include : with-transform [Translate df.middle 0] : glyph-proc
 			local r : PeriodRadius * DesignParameters.squareDotScalar + 0
 			local sw : Math.min [AdviceStroke 4] (PeriodSize * DesignParameters.squareDotScalar * 0.4)
 			local swEnd : Math.min Stroke (PeriodSize * DesignParameters.squareDotScalar * 0.5)
@@ -146,7 +146,7 @@ glyph-block Symbol-Punctuation-Small : begin
 	create-glyph 'revComma.square' : glyph-proc
 		local df : DivFrame para.diversityF
 		set-width df.width
-		include : WithTransform [Translate df.middle 0] : glyph-proc
+		include : with-transform [Translate df.middle 0] : glyph-proc
 			local r : PeriodRadius * DesignParameters.squareDotScalar + 0
 			local sw : Math.min [AdviceStroke 4] (PeriodSize * DesignParameters.squareDotScalar * 0.4)
 			local swEnd : Math.min Stroke (PeriodSize * DesignParameters.squareDotScalar * 0.5)
@@ -160,8 +160,20 @@ glyph-block Symbol-Punctuation-Small : begin
 					quadControls (0 - TanSlope / 2) (0.5 - TanSlope * r / Descender) 12
 					g4 (commaOverflow + Descender * TanSlope) Descender [widths.lhs swEnd]
 
+
 	select-variant 'comma' ',' (follow -- 'punctuationDot')
 	select-variant 'revComma' 0x2E41 (follow -- 'punctuationDot')
+
+	turned "turnComma.round"  null "comma.round"  [DivFrame para.diversityF].middle PeriodRadius
+	turned "turnComma.square" null "comma.square" [DivFrame para.diversityF].middle (PeriodRadius * DesignParameters.squareDotScalar)
+	select-variant 'turnComma' 0x2E32 (follow -- 'punctuationDot')
+
+	derive-composites 'raisedPeriod.round'  null 'period.round'  [ApparentTranslate 0 (XH / 2 - PeriodRadius)]
+	derive-composites 'raisedPeriod.square' null 'period.square' [ApparentTranslate 0 (XH / 2 - PeriodRadius * DesignParameters.squareDotScalar)]
+	derive-composites 'raisedComma.round'  null 'comma.round'  [ApparentTranslate 0 (XH / 2 - PeriodRadius)]
+	derive-composites 'raisedComma.square' null 'comma.square' [ApparentTranslate 0 (XH / 2 - PeriodRadius * DesignParameters.squareDotScalar)]
+	select-variant 'raisedPeriod' 0x2E33 (follow -- 'punctuationDot')
+	select-variant 'raisedComma'  0x2E34 (follow -- 'punctuationDot')
 
 	foreach { suffix { DrawAt kDotRadius overshoot } } [Object.entries DotVariants] : do
 		create-glyph "colon.\(suffix)" : glyph-proc
@@ -203,33 +215,33 @@ glyph-block Symbol-Punctuation-Small : begin
 		local multiDotShiftDense : [mix Width RightSB 0.5] - (DotRadius * kDotRadius) - Middle
 
 		create-glyph "threeDotPunct.\(suffix)" : glyph-proc
-			include : WithTransform [ApparentTranslate (+multiDotShift) 0] : composite-proc
+			include : with-transform [ApparentTranslate (+multiDotShift) 0] : composite-proc
 				refer-glyph "smallPeriod.\(suffix)"
 				refer-glyph "xhSmallPeriod.\(suffix)"
-			include : WithTransform [ApparentTranslate (-multiDotShift) 0] : composite-proc
+			include : with-transform [ApparentTranslate (-multiDotShift) 0] : composite-proc
 				refer-glyph "halfXhSmallPeriod.\(suffix)"
 
 		create-glyph "fourDotPunct.\(suffix)" : glyph-proc
 			include [refer-glyph "smallPeriod.\(suffix)"]
 			include [refer-glyph "xhSmallPeriod.\(suffix)"]
-			include : WithTransform [ApparentTranslate (+multiDotShiftDense) 0] : composite-proc
+			include : with-transform [ApparentTranslate (+multiDotShiftDense) 0] : composite-proc
 				refer-glyph "halfXhSmallPeriod.\(suffix)"
-			include : WithTransform [ApparentTranslate (-multiDotShiftDense) 0] : composite-proc
+			include : with-transform [ApparentTranslate (-multiDotShiftDense) 0] : composite-proc
 				refer-glyph "halfXhSmallPeriod.\(suffix)"
 
 		create-glyph "capFourDotPunct.\(suffix)" : glyph-proc
 			include [refer-glyph "smallPeriod.\(suffix)"]
 			include [refer-glyph "capSmallPeriod.\(suffix)"]
-			include : WithTransform [ApparentTranslate (+multiDotShiftDense) 0] : composite-proc
+			include : with-transform [ApparentTranslate (+multiDotShiftDense) 0] : composite-proc
 				refer-glyph "halfCapSmallPeriod.\(suffix)"
-			include : WithTransform [ApparentTranslate (-multiDotShiftDense) 0] : composite-proc
+			include : with-transform [ApparentTranslate (-multiDotShiftDense) 0] : composite-proc
 				refer-glyph "halfCapSmallPeriod.\(suffix)"
 
 		create-glyph "fiveDotPunct.\(suffix)" : glyph-proc
-			include : WithTransform [ApparentTranslate (-multiDotShiftDense) 0] : composite-proc
+			include : with-transform [ApparentTranslate (-multiDotShiftDense) 0] : composite-proc
 				refer-glyph "smallPeriod.\(suffix)"
 				refer-glyph "xhSmallPeriod.\(suffix)"
-			include : WithTransform [ApparentTranslate (+multiDotShiftDense) 0] : composite-proc
+			include : with-transform [ApparentTranslate (+multiDotShiftDense) 0] : composite-proc
 				refer-glyph "smallPeriod.\(suffix)"
 				refer-glyph "xhSmallPeriod.\(suffix)"
 			include : refer-glyph "halfXhSmallPeriod.\(suffix)"
@@ -256,6 +268,8 @@ glyph-block Symbol-Punctuation-Small : begin
 	select-variant 'capFourDotPunct' 0x205B (follow -- 'punctuationDot')
 	select-variant 'dottedCross' 0x205C (follow -- 'punctuationDot')
 	alias 'greekquestion' 0x37E 'semicolon'
+
+	turned 'turnSemiColon' 0x2E35 'semicolon' [DivFrame para.diversityF].middle (XH / 2)
 
 	# Hollow (no CV)
 

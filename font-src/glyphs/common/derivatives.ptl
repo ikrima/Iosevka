@@ -17,16 +17,17 @@ glyph-block Common-Derivatives : begin
 				local dst : glyphStore.queryByName dstName
 				if dst : g.dependsOn dst
 				if (para.enableCvSs && h.tag && h.rank) : begin
-					[Cv h.tag h.rank].set g dstName
+					[Cv h.tag h.rank h.groupRank h.description].set g dstName
 					if h.nonDeriving : [Cv h.tag h.rank].setPreventDeriving g
 
 	glyph-block-export select-variant
-	define [select-variant] : params [name unicode [shapeFrom name] [follow name] [reduction null]] : begin
+	define [select-variant] : with-params [name unicode [shapeFrom name] [follow name] [reduction null]] : begin
 		if [not : glyph-is-needed name] : return nothing
 
 		local variant para.variantSelector.(follow)
 		if reduction : set variant : reduction.(variant) || variant
-		if [not variant] : throw : new Error "Variant for \(name) is not assigned."
+		if [not variant] : begin
+			throw : new Error "Variant for \(name) (selector: \(shapeFrom)) is not assigned."
 
 		create-glyph name unicode : glyph-proc
 			include [refer-glyph (shapeFrom + '.' + variant)] AS_BASE ALSO_METRICS
@@ -47,13 +48,21 @@ glyph-block Common-Derivatives : begin
 		alias name unicode (name + '.upright')
 
 	glyph-block-export query-glyph
-	define [query-glyph id] : return : glyphStore.queryByName id
+	define [query-glyph id] : begin
+		if [not id] : return nothing
+		return : glyphStore.queryByName id
 
 	glyph-block-export refer-glyph
 	define [refer-glyph id] : lambda [copyAnchors copyWidth] : begin
 		local goal : query-glyph id
 		if [not goal] : throw : new Error "Cannot find glyph '\(id)'"
 		this.includeGlyph goal copyAnchors copyWidth
+
+	glyph-block-export add-glyph-dependency
+	define [add-glyph-dependency id] : lambda [copyAnchors copyWidth] : begin
+		local goal : query-glyph id
+		if [not goal] : throw : new Error "Cannot find glyph '\(id)'"
+		this.dependsOn goal
 
 	glyph-block-export DeriveMeshT
 	define [DeriveMeshT gnSources Query Fn FnLink] : begin
@@ -138,8 +147,8 @@ glyph-block Common-Derivatives : begin
 				include this.gizmo
 
 	glyph-block-export link-reduced-variant
-	define [link-reduced-variant] : params [dstGid srcGid gr follow] : begin
-		if [not : query-glyph dstGid] : select-variant dstGid (shapeFrom -- srcGid) (follow -- [fallback follow dstGid])
+	define [link-reduced-variant] : with-params [dstGid srcGid gr follow shapeFrom] : begin
+		if [not : query-glyph dstGid] : select-variant dstGid (shapeFrom -- [fallback shapeFrom srcGid]) (follow -- [fallback follow dstGid])
 		if (gr && [query-glyph srcGid]) : gr.set [query-glyph srcGid] dstGid
 
 	glyph-block-export alias-reduced-variant
@@ -217,7 +226,7 @@ glyph-block Recursive-Build : begin
 		local gs : buildGlyphs ps [$execState$.dependencyManager.traverseDependencies glyphs]
 		return gs.glyphStore
 
-	define [MiniatureParaT] : params [pp crowd scale [sbscale (Width / UPM)] [mono false] [mono2 false] [forceUpright false]] : begin
+	define [MiniatureParaT] : with-params [pp crowd scale [sbscale (Width / UPM)] [mono false] [mono2 false] [forceUpright false]] : begin
 		local forkedPara : Object.assign {.} pp
 		forkedPara.stroke = [AdviceStroke crowd : Math.pow [clamp 0 1 (HalfUPM / Width)] 0.5] / scale
 		forkedPara.dotSize = pp.dotSize * forkedPara.stroke / pp.stroke
@@ -237,8 +246,14 @@ glyph-block Recursive-Build : begin
 	define [Miniature glyphs] : begin
 		return : Fork glyphs : MiniatureParaT.apply null { para :: [{}.slice.call arguments 1] }
 
-	define [Thinner glyphs p fMono] : begin
+	define [Thinner] : with-params [glyphs p fMono crowd crowdAdjScale] : begin
 		local forkedPara : Object.assign {.} para
+
+		if (crowd && crowdAdjScale) : begin
+			forkedPara.stroke = [AdviceStroke crowd] / crowdAdjScale
+			forkedPara.dotSize = para.dotSize * forkedPara.stroke / para.stroke
+			forkedPara.periodSize = para.periodSize * forkedPara.stroke / para.stroke
+
 		forkedPara.unitWidthScalar = para.unitWidthScalar * p
 		forkedPara.width = Width * p
 		forkedPara.accentWidth = AccentWidth * p

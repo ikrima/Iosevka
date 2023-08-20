@@ -19,6 +19,10 @@ export const Dotless = {
 export const LowerYDotAtBelow = LinkedGlyphProp("LowerYDotAtBelow");
 export const DependentSelector = LinkedGlyphProp("DependentSelector");
 export const MathSansSerif = LinkedGlyphProp("MathSansSerif");
+export const VS01 = LinkedGlyphProp("VS01");
+export const TieMark = LinkedGlyphProp("TieMark");
+export const LeaningMark = LinkedGlyphProp("LeaningMark");
+export const LeaningMarkSpacer = LinkedGlyphProp("LeaningMarkSpacer");
 function LinkedGlyphProp(key) {
 	return {
 		get(glyph) {
@@ -29,24 +33,29 @@ function LinkedGlyphProp(key) {
 			if (typeof toGid !== "string") throw new Error("Must supply a GID instead of a glyph");
 			if (!glyph.related) glyph.related = {};
 			glyph.related[key] = toGid;
+		},
+		amendName(name) {
+			return `${key}{${name}}`;
+		},
+		amendOtName(name) {
+			return `${name}.${key}`;
 		}
 	};
 }
 
-export const Nwid = OtlTaggedProp("Nwid", "NWID");
-export const Wwid = OtlTaggedProp("Wwid", "WWID");
-export const Lnum = OtlTaggedProp("Lnum", "lnum");
-export const Onum = OtlTaggedProp("Onum", "onum");
-export const AplForm = OtlTaggedProp("AplForm", "APLF");
+export const Nwid = OtlTaggedProp("Nwid", "NWID", "Wide cell");
+export const Wwid = OtlTaggedProp("Wwid", "WWID", "Narrow cell");
+export const Lnum = OtlTaggedProp("Lnum", "lnum", "Lining number");
+export const Onum = OtlTaggedProp("Onum", "onum", "Old-style number");
+export const AplForm = OtlTaggedProp("AplForm", "APLF", "APL form");
 export const NumeratorForm = OtlTaggedProp("Numerator", "numr");
 export const DenominatorForm = OtlTaggedProp("Denominator", "dnom");
-function OtlTaggedProp(key, otlTag) {
-	return { ...LinkedGlyphProp(key), otlTag };
+function OtlTaggedProp(key, otlTag, description) {
+	return { ...LinkedGlyphProp(key), otlTag, description };
 }
 
 export const CvDecompose = DecompositionProp("CvDecompose");
 export const PseudoCvDecompose = DecompositionProp("PseudoCvDecompose");
-export const CcmpDecompose = DecompositionProp("CcmpDecompose");
 function DecompositionProp(key) {
 	return {
 		get(glyph) {
@@ -60,25 +69,6 @@ function DecompositionProp(key) {
 		}
 	};
 }
-
-export const TieMark = {
-	tag: "TMRK",
-	get(glyph) {
-		if (glyph && glyph.related) return glyph.related.TieMark;
-		else return null;
-	},
-	set(glyph, toGid) {
-		if (typeof toGid !== "string") throw new Error("Must supply a GID instead of a glyph");
-		if (!glyph.related) glyph.related = {};
-		glyph.related.TieMark = toGid;
-	},
-	amendName(name) {
-		return `TieMark{${name}}`;
-	},
-	amendOtName(name) {
-		return name + ".tieMark";
-	}
-};
 
 export const TieGlyph = {
 	get(glyph) {
@@ -105,9 +95,11 @@ function BoolProp(id) {
 	};
 }
 export const Radical = BoolProp("Radical");
-export const RequireCcmpDecompose = BoolProp("RequireCcmpDecompose");
 export const NeqLigationSlashDotted = BoolProp("NeqLigationSlashDotted");
 export const OgonekTrY = BoolProp("OgonekTrY");
+export const IsSuperscript = BoolProp("IsSuperscript");
+export const IsSubscript = BoolProp("IsSubscript");
+export const ScheduleLeaningMark = BoolProp("ScheduleLeaningMark");
 
 export const Joining = {
 	get(glyph) {
@@ -144,12 +136,14 @@ export const Joining = {
 
 const CvTagCache = new Map();
 
-export function Cv(tag, rank) {
+export function Cv(tag, rank, groupRank, description) {
 	const key = tag + "#" + rank;
 	if (CvTagCache.has(key)) return CvTagCache.get(key);
 	const rel = {
 		tag,
 		rank,
+		groupRank,
+		description,
 		get(glyph) {
 			if (glyph && glyph.related && glyph.related.cv) return glyph.related.cv[key];
 			else return null;
@@ -239,6 +233,7 @@ export function getGrTree(gid, grSetList, fnGidToGlyph) {
 	getGrTreeImpl(gid, grSetList, fnGidToGlyph, sink);
 	return sink;
 }
+
 function getGrTreeImpl(gid, grSetList, fnGidToGlyph, sink) {
 	if (!grSetList.length) return;
 	const g = fnGidToGlyph(gid);
@@ -319,39 +314,67 @@ export function createGrDisplaySheet(glyphStore, gid) {
 	if (!glyph) return [];
 	// Query selected typographic features -- mostly NWID and WWID
 	let typographicFeatures = [];
-	displayQueryPairFeatures(glyphStore, gid, Nwid, Wwid, typographicFeatures);
-	displayQueryPairFeatures(glyphStore, gid, Lnum, Onum, typographicFeatures);
-	displayQuerySingleFeature(glyphStore, gid, AplForm, typographicFeatures);
+	displayQueryPairFeatures(glyphStore, gid, "Width", Nwid, Wwid, typographicFeatures);
+	displayQueryPairFeatures(glyphStore, gid, "Number Form", Lnum, Onum, typographicFeatures);
+	displayQuerySingleFeature(glyphStore, gid, "APL Form", AplForm, typographicFeatures);
+
+	// Query selected character variants
 	let charVariantFeatures = [];
 	const decomposition = CvDecompose.get(glyph) || PseudoCvDecompose.get(glyph);
 	if (decomposition) {
-		const variantAssignmentSet = new Set();
+		const tagSet = new Set();
 		for (const componentGn of decomposition) {
 			const component = glyphStore.queryByName(componentGn);
 			if (!component) continue;
-			queryCvFeatureTagsOf(charVariantFeatures, componentGn, component, variantAssignmentSet);
+			queryCvFeatureTagsOf(charVariantFeatures, componentGn, component, tagSet);
 		}
 	} else {
 		queryCvFeatureTagsOf(charVariantFeatures, gid, glyph, null);
 	}
+
+	sortFeatureDisplaySheet(typographicFeatures);
+	sortFeatureDisplaySheet(charVariantFeatures);
 	return [typographicFeatures, charVariantFeatures];
 }
-function displayQueryPairFeatures(gs, gid, grCis, grTrans, sink) {
+
+function sortFeatureDisplaySheet(sheet) {
+	return sheet.sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
+}
+
+function FeatureSeries(name, groups) {
+	return { name, groups };
+}
+
+function displayQueryPairFeatures(gs, gid, name, grCis, grTrans, sink) {
 	const g = gs.queryByName(gid);
 	if (!g) return;
 	const glyphIsHidden = /^\./.test(gid);
 	if (glyphIsHidden) return;
 	if (grCis.get(g) || grTrans.get(g)) {
-		sink.push(`'${grCis.otlTag}' 1`, `'${grTrans.otlTag}' 1`);
+		sink.push(
+			FeatureSeries(name, [
+				[
+					{ css: `'${grCis.otlTag}' 1`, description: grCis.description },
+					{ css: `'${grTrans.otlTag}' 1`, description: grTrans.description }
+				]
+			])
+		);
 	}
 }
-function displayQuerySingleFeature(gs, gid, grCis, sink) {
+function displayQuerySingleFeature(gs, gid, name, grCis, sink) {
 	const g = gs.queryByName(gid);
 	if (!g) return;
 	const glyphIsHidden = /^\./.test(gid);
 	if (glyphIsHidden) return;
 	if (grCis.get(g)) {
-		sink.push(`'${grCis.otlTag}' 0`, `'${grCis.otlTag}' 1`);
+		sink.push(
+			FeatureSeries(name, [
+				[
+					{ css: `'${grCis.otlTag}' 0`, description: grCis.description + " disabled" },
+					{ css: `'${grCis.otlTag}' 1`, description: grCis.description + " enabled" }
+				]
+			])
+		);
 	}
 }
 function byTagPreference(a, b) {
@@ -361,30 +384,34 @@ function byTagPreference(a, b) {
 	if (ua > ub) return 1;
 	return 0;
 }
-function queryCvFeatureTagsOf(sink, gid, glyph, variantAssignmentSet) {
+function queryCvFeatureTagsOf(sink, gid, glyph, tagSet) {
 	const cvs = AnyCv.query(glyph).sort(byTagPreference);
-	let existingGlyphs = new Set();
-	let m = new Map();
+
+	let existingFeatures = new Map();
+	let existingTargets = new Set();
+
 	for (const gr of cvs) {
-		const tag = gr.tag;
 		const target = gr.get(glyph);
 		if (target === gid) continue;
-		if (existingGlyphs.has(target)) continue;
-		existingGlyphs.add(target);
-		let g = m.get(tag);
-		if (!g) {
-			g = [];
-			m.set(tag, g);
+
+		if (existingTargets.has(target)) continue;
+		existingTargets.add(target);
+
+		let series = existingFeatures.get(gr.tag);
+		if (!series) {
+			if (tagSet) {
+				if (tagSet.has(gr.tag)) continue;
+				tagSet.add(gr.tag);
+			}
+			series = FeatureSeries(gr.tag, [[]]);
+			existingFeatures.set(gr.tag, series);
 		}
-		const assignCss = `'${tag}' ${gr.rank}`;
-		if (!variantAssignmentSet) {
-			g.push(assignCss);
-		} else if (!variantAssignmentSet.has(assignCss)) {
-			g.push(assignCss);
-			variantAssignmentSet.add(assignCss);
-		}
+
+		const featureApp = { css: `'${gr.tag}' ${gr.rank}`, description: gr.description };
+		if (!series.groups[gr.groupRank]) series.groups[gr.groupRank] = [];
+		series.groups[gr.groupRank].push(featureApp);
 	}
-	for (const g of m.values()) if (g.length) sink.push(g);
+	for (const g of existingFeatures.values()) sink.push(g);
 }
 
 export function linkSuffixGr(gs, suffix, gr) {
@@ -428,5 +455,6 @@ export const SvInheritableRelations = [
 	DependentSelector,
 	Joining,
 	NeqLigationSlashDotted,
-	OgonekTrY
+	OgonekTrY,
+	ScheduleLeaningMark
 ];
