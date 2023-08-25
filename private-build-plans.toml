@@ -1,3 +1,4 @@
+[buildPlans]
 #========================================================================================================================
 # | Cheatsheat         | Desc                                                | Weights                                                                    | Slopes                   | Widths           |
 # | ------------------ | --------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------ | ---------------- |
@@ -17,8 +18,8 @@ family             = "Iosevka Edev"
 desc               = "Edev Sans-Serif"
 spacing            = "normal"
 serifs             = "sans"
-no-cv-ss           = true
 export-glyph-names = true
+no-cv-ss           = true
 no-ligation        = true
   [buildPlans.iosevka-edev.variants.design]
   capital-i        = "short-serifed"
