@@ -23,7 +23,7 @@ const languages = [
     { lang: 'Kurdish', sample: 'Cem vî Feqoyê pîs zêdetir ji çar gulên xweşik hebûn.' },
     { lang: 'Latvian', sample: 'Muļķa hipiji mēģina brīvi nogaršot celofāna žņaudzējčūsku.' },
     { lang: 'Lithuanian', sample: 'Įlinkdama fechtuotojo špaga sublykčiojusi pragręžė apvalų arbūzą.' },
-    { lang: 'Macedonian', sample: 'Ѕидарски пејзаж: шугав билмез со чудење џвака ќофте и кељ на туѓ цех.' },
+    { lang: 'Macedonian', sample: 'Ѕидарски пејзаж: шугав билмез со чудење џвака ќофте и кељ на туѓ цех.', localeId :'mk' },
     { lang: 'Maltese', sample: 'Kien liebes gozz ħwejjeġ u ċraret vera qodma u m’għażluhx fil-pront.' },
     { lang: 'Norwegian', sample: 'Jeg begynte å fortære en sandwich mens jeg kjørte taxi på vei til quiz' },
     { lang: 'Polish', sample: 'Pchnąć w tę łódź jeża lub ośm skrzyń fig.' },
@@ -34,7 +34,7 @@ const languages = [
     { lang: 'Spanish', sample: 'Benjamín pidió una bebida de kiwi y fresa; Noé, sin vergüenza, la más exquisita champaña del menú.' },
     { lang: 'Turkish', sample: 'Pijamalı hasta yağız şoföre çabucak güvendi.' },
     { lang: 'Ukrainian', sample: 'Чуєш їх, доцю, га? Кумедна ж ти, прощайся без ґольфів!' },
-    { lang: 'Vietnamese', sample: 'Do bạch kim rất quý nên sẽ dùng để lắp vô xương.' },
+    { lang: 'Vietnamese', sample: 'Do bạch kim rất quý nên sẽ dùng để lắp vô xương.', localeId :'vi' },
     { lang: 'Volapük', sample: 'Ꞝrꞛtom jofazaris hodagudik ꞟf binoy ve cꞛl ad xilapel.' },
     { lang: 'Welsh', sample: 'Parciais fy jac codi baw hud llawn dŵr ger tŷ Mabon.' }
 ];

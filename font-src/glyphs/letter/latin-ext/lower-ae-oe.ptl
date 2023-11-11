@@ -31,18 +31,16 @@ glyph-block Letter-Latin-Lower-AE-OE : begin
 			doubleStoreyToothlessRounded { DoubleStorey.ToothlessRounded  }
 
 		create-glyph "ae/a" : glyph-proc
-			define df : DivFrame para.diversityM 3
+			local df : include : DivFrame para.diversityM 3
 			include : df.markSet.e
-			set-width df.width
 			set-base-anchor 'cvDecompose' 0 0
 			include : AAShape 0 df DoubleStorey.ToothlessRounded 0
 
 		foreach { suffix { bodyR } } [Object.entries DoubleStoreyConfig] : do
 
 			create-glyph "aa.\(suffix)" : glyph-proc
-				define df : DivFrame para.diversityM 3
+				local df : include : DivFrame para.diversityM 3
 				include : df.markSet.e
-				set-width df.width
 
 				local [left] : AAShape 0 df DoubleStorey.ToothlessRounded
 				local [right] : AAShape 1 df bodyR
@@ -70,28 +68,24 @@ glyph-block Letter-Latin-Lower-AE-OE : begin
 					subDf.archDepthB ad
 
 		create-glyph 'oe/o' : glyph-proc
-			define df : DivFrame para.diversityM 3
+			local df : include : DivFrame para.diversityM 3
 			include : df.markSet.e
-			set-width df.width
 			set-base-anchor 'cvDecompose' 0 0
 			include : oeOPart 0 df XH SmallArchDepth
 
 		create-glyph 'ao/o' : glyph-proc
-			define df : DivFrame para.diversityM 3
-			set-width df.width
+			local df : include : DivFrame para.diversityM 3
 			set-mark-anchor 'cvDecompose' 0 0
 			include : oeOPart 1 df XH SmallArchDepth
 
 		create-glyph 'OO/left' : glyph-proc
-			define df : DivFrame para.diversityM 3
+			local df : include : DivFrame para.diversityM 3
 			include : df.markSet.capital
-			set-width df.width
 			set-base-anchor 'cvDecompose' 0 0
 			include : oeOPart 0 df CAP ArchDepth
 
 		create-glyph 'OO/right' : glyph-proc
-			define df : DivFrame para.diversityM 3
-			set-width df.width
+			local df : include : DivFrame para.diversityM 3
 			set-mark-anchor 'cvDecompose' 0 0
 			include : oeOPart 1 df CAP ArchDepth
 
@@ -130,7 +124,7 @@ glyph-block Letter-Latin-Lower-AE-OE : begin
 			local ada : subDf.archDepthA SmallArchDepth df.mvs
 			local adb : subDf.archDepthB SmallArchDepth df.mvs
 
-			local abarRight : df.middle + df.mvs / 2 * HVContrast
+			local abarRight : df.middle + [HSwToV : 0.5 * df.mvs]
 			include : nShoulder
 				left -- abarRight
 				right -- (df.rightSB - OX)
@@ -146,9 +140,8 @@ glyph-block Letter-Latin-Lower-AE-OE : begin
 
 		foreach { suffix { fSlab } } [Object.entries Config] : do
 			create-glyph "ue/u.\(suffix)" : glyph-proc
-				local df : DivFrame para.diversityM 3
+				local df : include : DivFrame para.diversityM 3
 				include : df.markSet.e
-				set-width df.width
 				set-base-anchor 'cvDecompose' 0 0
 				include : ueUPart df fSlab
 
@@ -181,16 +174,14 @@ glyph-block Letter-Latin-Lower-AE-OE : begin
 
 		foreach { suffix { sty styBot } } [Object.entries CConfig] : do
 			create-glyph "oeOpenO/left.\(suffix)" : glyph-proc
-				local df : DivFrame para.diversityM 3
+				local df : include : DivFrame para.diversityM 3
 				include : df.markSet.e
-				set-width df.width
 				set-base-anchor 'cvDecompose' 0 0
 				include : openOShape df sty styBot
 
 			create-glyph "cyrl/este/left.\(suffix)" : glyph-proc
-				local df : DivFrame para.diversityM 3
+				local df : include : DivFrame para.diversityM 3
 				include : df.markSet.e
-				set-width df.width
 				set-base-anchor 'cvDecompose' 0 0
 				include : EsTeLeftShape df styBot
 
@@ -209,7 +200,7 @@ glyph-block Letter-Latin-Lower-AE-OE : begin
 				local swVJut : Math.min df.mvs (0.625 * (r - m - [HSwToV : 0.5 * df.mvs]))
 				include : VSerif.dr r XH VJut swVJut
 			if doBottomSerifs : begin
-				local midJutCenter : [Math.max Jut : mix ([HSwToV : 0.5 * df.mvs]) LongJut 0.6] * (subDf.width / df.width)
+				local midJutCenter : [Math.max Jut : mix [HSwToV : 0.5 * df.mvs] LongJut 0.6] * (subDf.width / df.width)
 				include : tagged 'serifMB' : HSerif.rb m 0 midJutCenter df.mvs
 
 		define TConfig : object
@@ -231,7 +222,7 @@ glyph-block Letter-Latin-Lower-AE-OE : begin
 			local fine : 0.375 * OverlayStroke
 			local { subDf shift } : SubDfAndShift 1 [DivFrame para.diversityM 3] OX
 			include : dispiro
-				flat (shift + subDf.leftSB + OX + fine) [mix XH 0 1.05] [widths fine fine]
+				flat (shift + subDf.leftSB + OX + fine) [mix XH 0 1.05] [widths.center : 2 * fine]
 				curl (shift + subDf.rightSB - OX - fine) [mix 0 XH 1.05]
 
 		create-glyph "rightHalfBarOverlay" : glyph-proc

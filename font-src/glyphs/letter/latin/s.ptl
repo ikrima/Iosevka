@@ -1,7 +1,7 @@
 $$include '../../../meta/macros.ptl'
 
 import [mix linreg clamp fallback] from"../../../support/utils.mjs"
-import [DependentSelector CvDecompose MathSansSerif] from"../../../support/gr.mjs"
+import [DependentSelector MathSansSerif] from"../../../support/gr.mjs"
 
 glyph-module
 
@@ -67,7 +67,7 @@ glyph-block Letter-Latin-S : begin
 
 			g4   SB (top - archDepth)
 			alsoThru.g2 0.5 0.5 [widths.center ess]
-			g4   (RightSB - SOBot) (bot + archDepth) [widths 0 stroke]
+			g4   (RightSB - SOBot) (bot + archDepth) [widths.rhs stroke]
 
 			match sb
 				[Just SLAB-CLASSICAL] : SerifedArcEnd.RtlRhs SB Middle bot stroke Hook
@@ -93,7 +93,7 @@ glyph-block Letter-Latin-S : begin
 					hookstart (CAP - O) (sw -- stroke) (swItalicAdj -- Stroke)
 			g4   RightSB (CAP - archDepth)
 			alsoThru.g2 0.5 0.5 [widths.center ess]
-			g4   (SB + SOBot) archDepth [widths stroke 0]
+			g4   (SB + SOBot) archDepth [widths.lhs stroke]
 			match sb
 				[Just SLAB-CLASSICAL] : SerifedArcEnd.LtrLhs RightSB Middle 0 stroke Hook
 				[Just SLAB-INWARD] : list
@@ -121,7 +121,7 @@ glyph-block Letter-Latin-S : begin
 
 			g4   (SB - OX) (XH - archDepth)
 			alsoThru.g2 0.5 0.5 [widths.center ess]
-			g4   (RightSB + OX - SOBot) (archDepth) [widths 0 stroke]
+			g4   (RightSB + OX - SOBot) (archDepth) [widths.rhs stroke]
 
 			match sb
 				[Just CURLY-TAIL] : list
@@ -171,9 +171,9 @@ glyph-block Letter-Latin-S : begin
 					hookstart (top - O) (sw -- stroke) (swItalicAdj -- Stroke)
 			g4   SB (top - archDepth)
 			alsoThru.g2 0.5 0.5 [widths.center ess]
-			g4   (RightSB - SOBot) (archDepth) [widths 0 stroke]
+			g4   (RightSB - SOBot) (archDepth) [widths.rhs stroke]
 			arcvh
-			flat (Middle - CorrectionOMidS) 0 [widths 0 Stroke]
+			flat (Middle - CorrectionOMidS) 0 [widths.rhs Stroke]
 			curl SB 0
 
 	define [RevSmallSStroke st sb stroke ess] : begin
@@ -190,7 +190,7 @@ glyph-block Letter-Latin-S : begin
 					hookstart (XH - O) (sw -- stroke) (swItalicAdj -- Stroke)
 			g4   (RightSB + OX) (XH - archDepth)
 			alsoThru.g2 0.5 0.5 [widths.center ess]
-			g4   (SB - OX + SOBot) (archDepth) [widths stroke 0]
+			g4   (SB - OX + SOBot) (archDepth) [widths.lhs stroke]
 			match sb
 				[Just SLAB-CLASSICAL] : SerifedArcEnd.LtrLhs RightSB Middle 0 stroke SHook
 				[Just SLAB-INWARD] : list
@@ -248,22 +248,24 @@ glyph-block Letter-Latin-S : begin
 			include : SAutoSlabStart doTS XH sw Hook
 			include : SAutoSlabEnd   doBS 0  sw Hook
 
-		create-glyph "DollarKernelStd.\(suffix)" : glyph-proc
+		create-glyph "S/dollarKernelStd.\(suffix)" : glyph-proc
+			set-width 0
+			set-mark-anchor 'cvDecompose' Middle (CAP / 2)
+
 			define top : CAP * 0.95
 			define bot : CAP * 0.05
 			local sw : AdviceStroke2 2 3 (top - bot)
-			include : MarkSet.capital
-			set-base-anchor 'cvDecompose' 0 0
 			include : SStrokeImpl top bot doTS doBS sw EssUpper
 			include : SAutoSlabStart doTS top sw Hook
 			include : SAutoSlabEnd   doBS bot sw Hook
 
-		create-glyph "DollarKernelCap.\(suffix)" : glyph-proc
+		create-glyph "S/dollarKernelCap.\(suffix)" : glyph-proc
+			set-width 0
+			set-mark-anchor 'cvDecompose' Middle (CAP / 2)
+
 			define top : CAP * 0.88
 			define bot : CAP * 0.12
 			local sw : AdviceStroke2 2 3 (top - bot)
-			include : MarkSet.capital
-			set-base-anchor 'cvDecompose' 0 0
 			include : SStrokeImpl top bot doTS doBS sw EssUpper
 			include : SAutoSlabStart doTS top sw Hook
 			include : SAutoSlabEnd   doBS bot sw Hook
@@ -314,7 +316,7 @@ glyph-block Letter-Latin-S : begin
 				widths.lhs [AdviceStroke 4.5]
 				g4 start.x start.y
 				alsoThru 0.15 0.6 important
-				flat (RightSB - 1) Descender [widths sw 0]
+				flat (RightSB - 1) Descender [widths.lhs sw]
 				curl RightSB Descender
 
 		if [not doBS] : create-glyph "sSwash.\(suffix)" : glyph-proc
@@ -326,7 +328,7 @@ glyph-block Letter-Latin-S : begin
 				widths.lhs [AdviceStroke 4.5]
 				g4 start.x start.y
 				alsoThru 0.15 0.6 important
-				flat (RightSB - 1) Descender [widths sw 0]
+				flat (RightSB - 1) Descender [widths.lhs sw]
 				curl RightSB Descender
 
 		create-glyph "sCurlyTail.\(suffix)" : glyph-proc
@@ -350,8 +352,8 @@ glyph-block Letter-Latin-S : begin
 	alias 'cyrl/DzeRev' 0xA644 'revS'
 	alias 'cyrl/dzeRev' 0xA645 'revs'
 
-	select-variant 'DollarKernelStd' (follow -- 'S')
-	select-variant 'DollarKernelCap' (follow -- 'S')
+	select-variant 'S/dollarKernelStd' (follow -- 'S')
+	select-variant 'S/dollarKernelCap' (follow -- 'S')
 
 	select-variant 'SSwash' 0x2C7E
 	select-variant 'sSwash' 0x23F
@@ -469,6 +471,8 @@ glyph-block Letter-Latin-S : begin
 			define w : AdviceStroke 3
 			define fine : AdviceStroke [StrokeWidthBlend 3 5.5]
 
+			set-base-anchor 'cvDecompose' Middle (CAP / 2)
+
 			include : dispiro
 				widths.center w
 				flat Middle (top - HalfStroke)
@@ -500,5 +504,5 @@ glyph-block Letter-Latin-S : begin
 	select-variant 'dollar/bar' (follow -- 'dollar')
 
 	CreateDependentComposite 'dollar' '$' "dollar/bar" : object
-		'std' 'DollarKernelStd'
-		'cap' 'DollarKernelCap'
+		'std' 'S/dollarKernelStd'
+		'cap' 'S/dollarKernelCap'

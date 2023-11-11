@@ -41,17 +41,6 @@ function regulateCompositeGlyph(glyphStore, memo, g) {
 		if (!gn) return memoSet(memo, g, false);
 	}
 
-	// De-doppelganger
-	while (refs.length === 1 && regulateCompositeGlyph(glyphStore, memo, refs[0].glyph)) {
-		const sr = refs[0];
-		const targetRefs = sr.glyph.geometry.asReferences();
-		g.clearGeometry();
-		for (const tr of targetRefs) {
-			g.includeGeometry(new Geom.ReferenceGeometry(tr.glyph, tr.x + sr.x, tr.y + sr.y));
-		}
-		refs = g.geometry.asReferences();
-	}
-
 	return memoSet(memo, g, true);
 }
 
@@ -117,6 +106,9 @@ class SimplifyGeometry extends Geom.GeometryBase {
 	}
 	asReferences() {
 		return null;
+	}
+	getDependencies() {
+		return this.m_geom.getDependencies();
 	}
 	filterTag(fn) {
 		return this.m_geom.filterTag(fn);

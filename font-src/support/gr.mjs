@@ -47,6 +47,7 @@ export const Nwid = OtlTaggedProp("Nwid", "NWID", "Wide cell");
 export const Wwid = OtlTaggedProp("Wwid", "WWID", "Narrow cell");
 export const Lnum = OtlTaggedProp("Lnum", "lnum", "Lining number");
 export const Onum = OtlTaggedProp("Onum", "onum", "Old-style number");
+export const Zero = OtlTaggedProp("Zero", "zero", "Slashed zero");
 export const AplForm = OtlTaggedProp("AplForm", "APLF", "APL form");
 export const NumeratorForm = OtlTaggedProp("Numerator", "numr");
 export const DenominatorForm = OtlTaggedProp("Denominator", "dnom");
@@ -132,50 +133,18 @@ export const Joining = {
 	}
 };
 
+export const HintClass = {
+	get(glyph) {
+		if (glyph && glyph.related) return glyph.related.hintClass;
+		else return null;
+	},
+	set(glyph, script, style) {
+		if (!glyph.related) glyph.related = {};
+		glyph.related.hintClass = [script, style];
+	}
+};
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-const CvTagCache = new Map();
-
-export function Cv(tag, rank, groupRank, description) {
-	const key = tag + "#" + rank;
-	if (CvTagCache.has(key)) return CvTagCache.get(key);
-	const rel = {
-		tag,
-		rank,
-		groupRank,
-		description,
-		get(glyph) {
-			if (glyph && glyph.related && glyph.related.cv) return glyph.related.cv[key];
-			else return null;
-		},
-		set(glyph, toGid) {
-			if (typeof toGid !== "string") throw new Error("Must supply a GID instead of a glyph");
-			if (!glyph.related) glyph.related = {};
-			if (!glyph.related.cv) glyph.related.cv = {};
-			glyph.related.cv[key] = toGid;
-		},
-		getPreventDeriving(glyph) {
-			return (
-				glyph.related &&
-				glyph.related.preventCvDeriving &&
-				!!glyph.related.preventCvDeriving[key]
-			);
-		},
-		setPreventDeriving(glyph) {
-			if (!glyph.related) glyph.related = {};
-			if (!glyph.related.preventCvDeriving) glyph.related.preventCvDeriving = {};
-			glyph.related.preventCvDeriving[key] = true;
-		},
-		amendName(name) {
-			return name + "." + key;
-		},
-		amendOtName(name) {
-			return name + "." + tag + "-" + rank;
-		}
-	};
-	CvTagCache.set(key, rel);
-	return rel;
-}
 
 export const DotlessOrNot = {
 	query(glyph) {
@@ -188,14 +157,18 @@ export const AnyCv = {
 	query(glyph) {
 		let ret = [];
 		if (glyph && glyph.related && glyph.related.cv) {
-			for (const key in glyph.related.cv) {
-				const [tag, rankStr] = key.split("#");
-				const rank = parseInt(rankStr, 10);
-				const rel = Cv(tag, rank);
-				if (rel.get(glyph)) ret.push(rel);
+			for (const [cv, dst] of glyph.related.cv) {
+				ret.push(cv);
 			}
 		}
 		return ret;
+	},
+	compare(a, b) {
+		const ua = a.tag.toUpperCase(),
+			ub = b.tag.toUpperCase();
+		if (ua < ub) return -1;
+		if (ua > ub) return 1;
+		return a.rank - b.rank;
 	}
 };
 
@@ -203,23 +176,17 @@ export const AnyDerivingCv = {
 	query(glyph) {
 		let ret = [];
 		if (glyph && glyph.related && glyph.related.cv) {
-			for (const key in glyph.related.cv) {
-				if (glyph.related.preventCvDeriving && glyph.related.preventCvDeriving[key])
+			for (const [cv, dst] of glyph.related.cv) {
+				if (glyph.related.preventCvDeriving && glyph.related.preventCvDeriving.has(cv))
 					continue;
-				const [tag, rankStr] = key.split("#");
-				const rank = parseInt(rankStr, 10);
-				const rel = Cv(tag, rank);
-				if (rel.get(glyph)) ret.push(rel);
+				ret.push(cv);
 			}
 		}
 		return ret;
 	},
 	hasNonDerivingVariants(glyph) {
-		if (glyph && glyph.related && glyph.related.cv) {
-			for (const key in glyph.related.cv) {
-				if (glyph.related.preventCvDeriving && glyph.related.preventCvDeriving[key])
-					return true;
-			}
+		if (glyph && glyph.related && glyph.related.preventCvDeriving) {
+			return glyph.related.preventCvDeriving.size > 0;
 		}
 		return false;
 	}
@@ -253,11 +220,13 @@ function getGrTreeImpl(gid, grSetList, fnGidToGlyph, sink) {
 export function getGrMesh(gidList, grq, fnGidToGlyph) {
 	if (typeof gidList === "string" || !Array.isArray(gidList))
 		throw new TypeError(`glyphs must be a glyph array!`);
+
 	const allGrSet = new Set();
 	for (const g of gidList) {
 		for (const gr of grq.query(fnGidToGlyph(g))) allGrSet.add(gr);
 	}
-	const allGrList = Array.from(allGrSet);
+	const allGrList = Array.from(allGrSet).sort(AnyCv.compare).reverse();
+
 	let ret = [];
 	for (const gr of allGrList) {
 		const col = [];
@@ -377,15 +346,9 @@ function displayQuerySingleFeature(gs, gid, name, grCis, sink) {
 		);
 	}
 }
-function byTagPreference(a, b) {
-	const ua = a.tag.toUpperCase(),
-		ub = b.tag.toUpperCase();
-	if (ua < ub) return -1;
-	if (ua > ub) return 1;
-	return 0;
-}
+
 function queryCvFeatureTagsOf(sink, gid, glyph, tagSet) {
-	const cvs = AnyCv.query(glyph).sort(byTagPreference);
+	const cvs = AnyCv.query(glyph).sort(AnyCv.compare);
 
 	let existingFeatures = new Map();
 	let existingTargets = new Set();
@@ -407,12 +370,17 @@ function queryCvFeatureTagsOf(sink, gid, glyph, tagSet) {
 			existingFeatures.set(gr.tag, series);
 		}
 
-		const featureApp = { css: `'${gr.tag}' ${gr.rank}`, description: gr.description };
+		const featureApp = {
+			css: `'${gr.tag}' ${String(gr.rank).padStart(2)}`,
+			description: gr.description
+		};
 		if (!series.groups[gr.groupRank]) series.groups[gr.groupRank] = [];
 		series.groups[gr.groupRank].push(featureApp);
 	}
 	for (const g of existingFeatures.values()) sink.push(g);
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 export function linkSuffixGr(gs, suffix, gr) {
 	const reSuffix = new RegExp("\\." + suffix + "$");

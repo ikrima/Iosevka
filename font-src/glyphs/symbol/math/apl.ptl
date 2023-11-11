@@ -70,9 +70,9 @@ glyph-block Symbol-Math-APL : begin
 	create-glyph 'apl/iBar' 0x2336 : glyph-proc
 		local l [mix 0 SB (1 / 3)]
 		local r [mix Width RightSB (1 / 3)]
-		include : HBar.t    l r OperTop aplBoxSW
-		include : HBar.b l r OperBot aplBoxSW
-		include : VBar.m    Middle OperTop OperBot aplBoxSW
+		include : HBar.t l r OperTop OperatorStroke
+		include : HBar.b l r OperBot OperatorStroke
+		include : VBar.m Middle OperTop OperBot OperatorStroke
 
 	create-glyph 'apl/squish' 0x2337 : glyph-proc
 		local l : mix SB RightSB (1 / 8)
@@ -211,11 +211,16 @@ glyph-block Symbol-Math-APL : begin
 	# Overline
 	create-glyph 0x2351 : composite-proc [refer-glyph 'top'] [MarkSet.tack] [refer-glyph 'sbRsbOverlineAbove'] [clear-anchors]
 
-	# Gapped Overlay
+	# Overlay
 	create-glyph 0x2345 : composite-proc : Overlay [refer-glyph 'arrowLeft.NWID'] [refer-glyph 'apl/bar']
 	create-glyph 0x2346 : composite-proc : Overlay [refer-glyph 'arrowRight.NWID'] [refer-glyph 'apl/bar']
-	create-glyph 0x235F : composite-proc [intersection [refer-glyph 'mathOOutline'] [refer-glyph 'opAsterisk.low']] [refer-glyph 'mathO']
 
+	# Circled
+	derive-multi-part-glyphs 'uni235F' 0x235F { 'mathOOutline' 'opAsterisk' 'mathO' } : function [srcs sel] : glyph-proc
+		local { outline asterisk mathO } srcs
+		include : union [refer-glyph mathO] : intersection [refer-glyph outline] [refer-glyph asterisk]
+
+	# Underlined
 	derive-glyphs 'apl/barSemicolon' 0x236E 'semicolon'
 		function [src gr] : Overlay [aplBoxedInner src] [refer-glyph 'underscore.high']
 
@@ -264,3 +269,8 @@ glyph-block Symbol-Math-APL : begin
 	LinkAplFormForNwidWwid 'uni238A'
 	LinkAplFormForNwidWwid 'uni25F6'
 	LinkAplFormForNwidWwid 'uni2687'
+
+	# Uiua symbols
+	LinkAplFormForNwidWwid 'uni238B'
+	LinkAplFormForNwidWwid 'uni2335'
+	LinkAplFormForNwidWwid 'telephoneRecorder'

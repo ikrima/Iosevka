@@ -99,16 +99,16 @@ glyph-block Letter-Latin-U : begin
 	define USerifs : namespace
 		export : define [Toothed df top _sw] : glyph-proc
 			include : UTopLeftSerif df top _sw
-			if [not para.isItalic] : include : UTopRightSerif df top _sw
+			include : UTopRightSerif df top _sw
 			include : UBottomRightSerif df top _sw
 
 		export : define [RTBase df top _sw] : glyph-proc
 			include : UTopLeftSerif df top _sw
-			if [not para.isItalic] : include : UTopRightSerif df top _sw
+			include : UTopRightSerif df top _sw
 
 		export : define [Tailed df top _sw] : glyph-proc
 			include : UTopLeftSerif df top _sw
-			if [not para.isItalic] : include : UTopRightSerif df top _sw
+			include : UTopRightSerif df top _sw
 
 		export : define [BilateralMotion df top _sw] : glyph-proc
 			include : HSerif.lt df.leftSB top SideJut _sw
@@ -250,6 +250,10 @@ glyph-block Letter-Latin-U : begin
 	derive-composites 'cyrl/iShortTail.italic' null  'cyrl/i.italic.reduced'
 		refer-glyph 'breveAbove'
 		CyrTailDescender.rSideJut RightSB 0
+
+	derive-glyphs 'cyrl/pe.SRB' null 'cyrl/i.italic' : lambda [src gr] : glyph-proc
+		include [refer-glyph src] AS_BASE ALSO_METRICS
+		include [refer-glyph 'macronAbove']
 
 	derive-composites 'uRTailBR' 0x1D99 'u/uRTailBase'
 		RetroflexHook.rSideJut RightSB 0 (yOverflow -- Stroke)

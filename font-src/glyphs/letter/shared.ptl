@@ -163,7 +163,7 @@ glyph-block Letter-Shared-Shapes : begin
 	glyph-block-export CurlyTail
 	define [CurlyTail] : with-params [fine rinner xleft bottom right x2 y2 [adj 0.4] [adj2 0.4] [adj3 0]] : begin
 		local ltr : right > xleft
-		set right : right - fine * [if ltr 1 (-1)] * HVContrast
+		set right : right - [HSwToV fine] * [if ltr 1 (-1)]
 		local mid : mix [mix xleft right 0.5] (right - rinner * [if ltr 1 (-1)]) adj
 		local midu : mix [mix xleft right 0.5] (right - rinner * [if ltr 1 (-1)]) adj2
 		return : list
@@ -312,8 +312,8 @@ glyph-block Letter-Shared-Shapes : begin
 				arcvh
 				g4   (mt) (top - O) [widths.heading sw 0 {.y (-1) .x (-skew)}]
 				archv
-				flat (left + (sw - fine) * HVContrast) (top - ada) [widths fine 0]
-				curl (left + (sw - fine) * HVContrast) (top - ada - 0.01) [widths fine 0]
+				flat (left + (sw - fine) * HVContrast) (top - ada) [widths.lhs fine]
+				curl (left + (sw - fine) * HVContrast) (top - ada - 0.01) [widths.lhs fine]
 
 		export : define [rounded] : with-params [
 				[top XH] [left SB] [right RightSB] [yTerminal CAP] [sw Stroke] [fine ShoulderFine]
@@ -333,8 +333,8 @@ glyph-block Letter-Shared-Shapes : begin
 				arcvh
 				g4   (mt) (top - O) [widths.heading sw 0 {.y (-1) .x (-skew)}]
 				archv
-				flat (left + (sw - fine) * HVContrast) (top - ada + 0.01) [widths fine 0]
-				curl (left + (sw - fine) * HVContrast) (top - ada) [widths fine 0]
+				flat (left + (sw - fine) * HVContrast) (top - ada + 0.01) [widths.lhs fine]
+				curl (left + (sw - fine) * HVContrast) (top - ada) [widths.lhs fine]
 
 		export : define [toothlessTop] : with-params [
 				[top XH] [left SB] [right RightSB] [rise SHook] [sw Stroke]
@@ -345,8 +345,8 @@ glyph-block Letter-Shared-Shapes : begin
 			local mt : [mix left right 0.5] - CorrectionOMidX * sw
 			local mb : [mix left right 0.5] + (skew + kSkewShift * TanSlope) * sw
 			return : dispiro
-				flat (left + (sw - fine) * HVContrast) (top - ada - 0.01) [widths fine 0]
-				curl (left + (sw - fine) * HVContrast) (0 + adb) [widths fine 0]
+				flat (left + (sw - fine) * HVContrast) (top - ada - 0.01) [widths.lhs fine]
+				curl (left + (sw - fine) * HVContrast) (0 + adb) [widths.lhs fine]
 				arcvh
 				g4   (mb) O [widths.heading sw 0 {.y (1) .x (-skew)}]
 				archv
@@ -365,8 +365,8 @@ glyph-block Letter-Shared-Shapes : begin
 			local mt : [mix left right 0.5] - CorrectionOMidX * sw
 			local mb : [mix left right 0.5] + (skew + kSkewShift * TanSlope) * sw
 			return : dispiro
-				flat (left + (sw - fine) * HVContrast) (top - ada - 0.01) [widths fine 0]
-				curl (left + (sw - fine) * HVContrast) (0 + adb) [widths fine 0]
+				flat (left + (sw - fine) * HVContrast) (top - ada - 0.01) [widths.lhs fine]
+				curl (left + (sw - fine) * HVContrast) (0 + adb) [widths.lhs fine]
 				arcvh
 				g4   (mb) O [widths.heading sw 0 {.y (1) .x (-skew)}]
 				archv
@@ -467,15 +467,14 @@ glyph-block Letter-Shared-Shapes : begin
 				kFlathook * sHook * Hook
 				sStroke * Stroke * 1.625
 
+	glyph-block-import Mark-Shared-Metrics : markMiddle
 	glyph-block-export ConnectedCedilla
 	define [ConnectedCedilla src sel] : glyph-proc
 		include [refer-glyph src] AS_BASE ALSO_METRICS
-		include : add-glyph-dependency 'cedillaExtShapeBelow'
+		local mk : currentGlyph.baseAnchors.leaningBelow || currentGlyph.baseAnchors.below
+		local tfm : ApparentTranslate (mk.x - markMiddle) (mk.y - 0)
 		include : difference
-			new-glyph : glyph-proc
-				include [refer-glyph src] AS_BASE ALSO_METRICS
-				currentGlyph.clearGeometry
-				include : refer-glyph 'cedillaExtShapeBelow'
+			with-transform tfm [refer-glyph 'cedillaExtShapeBelow']
 			with-transform [ApparentTranslate 0 (Stroke * 0.25)] [refer-glyph src]
 			with-transform [ApparentTranslate 0 (Stroke * 0.50)] [refer-glyph src]
 			with-transform [ApparentTranslate 0 (Stroke * 0.75)] [refer-glyph src]
@@ -493,6 +492,7 @@ glyph-block Letter-Shared-Shapes : begin
 			with-transform [ApparentTranslate 0 (Stroke * 3.75)] [refer-glyph src]
 			with-transform [ApparentTranslate 0 (Stroke * 4.00)] [refer-glyph src]
 		include : refer-glyph 'blankBelow'
+		include : refer-glyph 'blankLeaningBelow'
 
 	glyph-block-export SerifedArcStart
 	define SerifedArcStart : namespace
@@ -691,7 +691,7 @@ glyph-block Letter-Shared-Shapes : begin
 
 
 			local jutFS   MidJutSide
-			local jut     : mix ([HSwToV : 0.5 * swRef]) Jut [Math.min 1 : div * 2.25 / hSplit]
+			local jut     : mix [HSwToV : 0.5 * swRef] Jut [Math.min 1 : div * 2.25 / hSplit]
 			local sideJut : jut - 0.5 * ink
 
 			local jutIn     : if fForceSymmetric jut : JutIn left right jut swRef hSplit
@@ -734,8 +734,11 @@ glyph-block Letter-Shared-Shapes : begin
 
 			set this.mb : object
 				full : tagged 'serifMB' : HSerif.mbAsymmetric [mix lBarCenter rBarCenter 0.5] bot jutIn jutIn swSerif
+				[fullAt x] : tagged 'serifMB' : HSerif.mbAsymmetric x bot jutIn jutIn swSerif
 				left : tagged 'serifMB' : HSerif.mbAsymmetric [mix lBarCenter rBarCenter 0.5] bot jutIn 0 swSerif
+				[leftAt x] : tagged 'serifMB' : HSerif.mbAsymmetric x bot jutIn 0 swSerif
 				right : tagged 'serifMB' : HSerif.mbAsymmetric [mix lBarCenter rBarCenter 0.5] bot 0 jutIn swSerif
+				[rightAt x] : tagged 'serifMB' : HSerif.mbAsymmetric x bot 0 jutIn swSerif
 			set this.mt : object
 				full : tagged 'serifMT' : HSerif.mtAsymmetric [mix lBarCenter rBarCenter 0.5] top jutIn jutIn swSerif
 
@@ -959,7 +962,7 @@ glyph-block Letter-Shared-Shapes : begin
 					ada    -- ArchDepthA
 					adb    -- ArchDepthB
 					sw     -- df.mvs
-					xDepth -- (-[Math.max ([HSwToV df.mvs]) : Math.min HookX (0.5 * (df.rightSB - df.leftSB - [HSwToV : 2 * df.mvs]))])
+					xDepth -- (-[Math.max [HSwToV df.mvs] : Math.min HookX (0.5 * (df.rightSB - df.leftSB - [HSwToV : 2 * df.mvs]))])
 
 		# Hook for Eng shape
 		glyph-block-export EngHook

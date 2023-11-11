@@ -57,6 +57,8 @@ glyph-block Letter-Latin-Lower-P : begin
 			include : MarkSet.bp
 			include : Body Ascender
 			include : Serifs Ascender
+			include : LeaningAnchor.Above.VBar.l SB
+			include : LeaningAnchor.Below.VBar.l SB
 			set-base-anchor 'overlayOnExtension' (SB + [HSwToV : 0.5 * Stroke]) yOverlay
 			set-base-anchor 'strike' Middle (XH / 2)
 
@@ -77,7 +79,7 @@ glyph-block Letter-Latin-Lower-P : begin
 	select-variant 'p' 'p'
 	link-reduced-variant 'p/sansSerif' 'p' MathSansSerif
 	link-reduced-variant 'p/hookTopBase' 'p'
-	select-variant 'cyrl/er' 0x440 (shapeFrom -- 'p') (follow -- 'p')
+	select-variant 'cyrl/er' 0x440 (shapeFrom -- 'p')
 	select-variant "pPalatalHook" 0x1D88 (follow -- 'p')
 
 	select-variant 'thorn' 0xFE

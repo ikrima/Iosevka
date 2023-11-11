@@ -9,7 +9,7 @@ glyph-block Letter-Latin-Lower-T : begin
 	glyph-block-import CommonShapes
 	glyph-block-import Common-Derivatives
 	glyph-block-import Mark-Adjustment : LeaningAnchor
-	glyph-block-import Letter-Shared : CreateAccentedComposition CreateCommaCaronComposition
+	glyph-block-import Letter-Shared : CreateCommaCaronComposition
 	glyph-block-import Letter-Shared-Shapes : CurlyTail FlatHookDepth ConnectedCedilla SerifedArcEnd
 	glyph-block-import Letter-Shared-Shapes : DiagonalTailR DiagonalTailStdDepth DToothlessRise
 	glyph-block-import Letter-Shared-Shapes : TopHook PalatalHook
@@ -41,7 +41,7 @@ glyph-block Letter-Latin-Lower-T : begin
 
 		define [XHookTerminal df sym] : match sym
 			[Just SYM-LEFT]        df.rightSB
-			__                   : [BarLeftPos df sym] + [Math.max ((df.width - df.leftSB * 2) * 0.75 + [HSwToV : 0.25 * Stroke]) ([HSwToV : 2.25 * Stroke])]
+			__                   : [BarLeftPos df sym] + [Math.max ((df.width - df.leftSB * 2) * 0.75 + [HSwToV : 0.25 * Stroke]) [HSwToV : 2.25 * Stroke]]
 
 		export : define [HookShapeT sink df sym offset top bot sw] : begin
 			local xLeft : BarLeftPos df sym
@@ -239,8 +239,7 @@ glyph-block Letter-Latin-Lower-T : begin
 				MaskLeft [mix df.leftSB (df.middle - [HSwToV HalfStroke]) 0.5]
 
 		create-glyph "t/teshLeft.\(suffix)" : glyph-proc
-			define df1 : DivFrame 1
-			set-width df1.width
+			define df1 : include : DivFrame 1
 			include : df1.markSet.b
 			include : Style.Body df1 sym top 0
 			include : HCrossBar.top df1.middle (df1.width + df1.middle) yCrossBar

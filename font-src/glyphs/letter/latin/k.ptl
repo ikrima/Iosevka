@@ -1,7 +1,7 @@
 $$include '../../../meta/macros.ptl'
 
 import [mix clamp fallback linreg SuffixCfg] from"../../../support/utils.mjs"
-import [Dotless CvDecompose MathSansSerif] from"../../../support/gr.mjs"
+import [Dotless CvDecompose MathSansSerif HintClass] from"../../../support/gr.mjs"
 import [maskBit] from"../../../support/util/mask-bit.mjs"
 
 glyph-module
@@ -71,7 +71,7 @@ glyph-block Letter-Latin-K : begin
 					dispiro
 						widths.rhs stroke
 						flat (kshRightTop - Ok) top
-						curl (kshLeft + stroke) attach [widths 0 fine]
+						curl (kshLeft + stroke) attach [widths.rhs fine]
 
 
 			set-base-anchor 'legOverlay' [mix kshLeft kshRightBot : StrokeWidthBlend 0.5 0.65] [mix attach2 0 : StrokeWidthBlend 0.5 0.7]
@@ -235,7 +235,7 @@ glyph-block Letter-Latin-K : begin
 					KAttachment attachment slabLegs top left right stroke false
 				union
 					HalfRectTriangle kshRight top xAttach1 yAttach1
-					HalfRectTriangle (kshRight - O - stroke / 2 * HVContrast) 0 xAttach2 yAttach2
+					HalfRectTriangle (kshRight - O - [HSwToV : 0.5 * stroke]) 0 xAttach2 yAttach2
 
 		define [CursiveDimen left right top stroke slabLT slabLegs] : begin
 			define kshLeft  : left + [KBalance slabLegs true]
@@ -454,7 +454,7 @@ glyph-block Letter-Latin-K : begin
 			if slabLB : include : UpperKLBSerif CAP Stroke slabLT straightBar
 
 		define [BashkirKaShape df top] : glyph-proc
-			local left : if slabLT ([mix SB RightSB 0.35] - df.mvs / 2 * HVContrast) [mix SB RightSB 0.2]
+			local left : if slabLT ([mix SB RightSB 0.35] - [HSwToV : 0.5 * df.mvs]) [mix SB RightSB 0.2]
 			local leftNB : left - [KBalance slabLT straightBar]
 			local xTopBarLeftEnd : mix 0 SB [if slabLT 0.25 0.375]
 			local sw : AdviceStroke 3
@@ -468,14 +468,12 @@ glyph-block Letter-Latin-K : begin
 				include : HSerif.mb (left + [HSwToV : 0.5 * sw]) 0 Jut
 
 		create-glyph "cyrl/BashkirUpperKa.\(suffix)" : glyph-proc
-			define df : DivFrame 1
-			set-width df.width
+			define df : include : DivFrame 1
 			include : df.markSet.capital
 			include : BashkirKaShape df CAP
 
 		create-glyph "cyrl/BashkirKa.\(suffix)" : glyph-proc
-			define df : DivFrame 1
-			set-width df.width
+			define df : include : DivFrame 1
 			include : df.markSet.e
 			include : BashkirKaShape df XH
 
@@ -582,6 +580,14 @@ glyph-block Letter-Latin-K : begin
 	select-variant 'cyrl/BashkirKa'      0x4A1 (follow -- 'cyrl/ka')
 
 	select-variant 'grek/KaiSymbol' 0x3CF
+
+	derive-multi-part-glyphs 'kDot' null {'k' 'dotAbove'} : lambda [srcs gr] : glyph-proc
+		local { base mark } srcs
+		include : refer-glyph mark
+		include : Translate (Width + [HSwToV HalfStroke]) 0
+		include [refer-glyph base] AS_BASE
+		include : LeaningAnchor.Above.VBar.l Middle
+		HintClass.set currentGlyph 'latn' 'dflt'
 
 	glyph-block-import Letter-Blackboard : BBS BBD BBBarLeft
 	define [BBKLegShape top left right] : begin
