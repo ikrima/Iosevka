@@ -86,6 +86,9 @@ export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
 
+  [buildPlans.iosevka-edev-term.variants]
+  inherits         = "buildPlans.iosevka-edev"
+
   [buildPlans.iosevka-edev-term.widths.normal]
   shape = 500
   menu  = 5
@@ -99,49 +102,6 @@ no-ligation        = true
   menu  = 7
   css   = "expanded"
 
-  [buildPlans.iosevka-edev-term.variants.design]
-  capital-i        = "short-serifed"
-  i                = "serifed"
-  l                = "zshaped"
-  # zero           = "slashed"
-  zero             = "diamond-reverse-slashed-split"
-  four             = "closed"
-  six              = "closed-contour"
-  seven            = "curly-serifless"
-  nine             = "closed-contour"
-  asterisk         = "penta-low"
-  underscore       = "high"
-  brace            = "straight"
-  number-sign      = "slanted"
-  at               = "threefold"
-  percent          = "dots"
-  # paren          = "large-contour"
-  paren            = "flat-arc"
-  long-s           = "bent-hook-middle-serifed"
-  eszet            = "longs-s-lig-serifless"
-  capital-delta    = "curly"
-  lower-delta      = "flat-top"
-  capital-lambda   = "curly-serifless"
-  lower-lambda     = "curly"
-  lower-mu         = "toothed-serifless"
-  lower-chi        = "curly-serifless"
-  cyrl-capital-zhe = "curly"
-  cyrl-zhe         = "curly"
-  cyrl-capital-ka  = "curly-serifless"
-  cyrl-capital-u   = "curly-serifless"
-  cyrl-ka          = "curly-serifless"
-  cyrl-capital-ya  = "curly-serifless"
-  cyrl-ya          = "curly-serifless"
-  guillemet        = "straight"
-  lig-ltgteq       = "slanted"
-  lig-neq          = "slightly-slanted-dotted"
-  lig-equal-chain  = "with-notch"
-  lig-hyphen-chain = "with-notch"
-
-  [buildPlans.iosevka-edev-term.variants.italic]
-  g                = "single-storey-serifless"
-
-
 [buildPlans.iosevka-edev-fixed]
 family             = "Iosevka Edev Fixed"
 spacing            = "fixed"
@@ -149,6 +109,9 @@ serifs             = "sans"
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
+
+  [buildPlans.iosevka-edev-fixed.variants]
+  inherits         = "buildPlans.iosevka-edev"
 
   [buildPlans.iosevka-edev-fixed.widths.normal]
   shape = 500
@@ -162,48 +125,6 @@ no-ligation        = true
   shape = 600
   menu  = 7
   css   = "expanded"
-
-  [buildPlans.iosevka-edev-fixed.variants.design]
-  capital-i        = "short-serifed"
-  i                = "serifed"
-  l                = "zshaped"
-  # zero           = "slashed"
-  zero             = "diamond-reverse-slashed-split"
-  four             = "closed"
-  six              = "closed-contour"
-  seven            = "curly-serifless"
-  nine             = "closed-contour"
-  asterisk         = "penta-low"
-  underscore       = "high"
-  brace            = "straight"
-  number-sign      = "slanted"
-  at               = "threefold"
-  percent          = "dots"
-  # paren          = "large-contour"
-  paren            = "flat-arc"
-  long-s           = "bent-hook-middle-serifed"
-  eszet            = "longs-s-lig-serifless"
-  capital-delta    = "curly"
-  lower-delta      = "flat-top"
-  capital-lambda   = "curly-serifless"
-  lower-lambda     = "curly"
-  lower-mu         = "toothed-serifless"
-  lower-chi        = "curly-serifless"
-  cyrl-capital-zhe = "curly"
-  cyrl-zhe         = "curly"
-  cyrl-capital-ka  = "curly-serifless"
-  cyrl-capital-u   = "curly-serifless"
-  cyrl-ka          = "curly-serifless"
-  cyrl-capital-ya  = "curly-serifless"
-  cyrl-ya          = "curly-serifless"
-  guillemet        = "straight"
-  lig-ltgteq       = "slanted"
-  lig-neq          = "slightly-slanted-dotted"
-  lig-equal-chain  = "with-notch"
-  lig-hyphen-chain = "with-notch"
-
-  [buildPlans.iosevka-edev-fixed.variants.italic]
-  g                = "single-storey-serifless"
 
 
 #========================================================================================================================
@@ -296,6 +217,9 @@ serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
 
+  [buildPlans.iosevka-edev-term-slab.variants]
+  inherits         = "buildPlans.iosevka-edev-slab"
+
   [buildPlans.iosevka-edev-term-slab.widths.normal]
   shape = 500
   menu  = 5
@@ -309,71 +233,15 @@ no-cv-ss           = true
   menu  = 7
   css   = "expanded"
 
-  [buildPlans.iosevka-edev-term-slab.variants.design]
-  capital-i        = "short-serifed"
-  i                = "serifed"
-  l                = "zshaped"
-  # zero           = "slashed"
-  zero             = "diamond-reverse-slashed-split"
-  four             = "closed"
-  six              = "closed-contour"
-  seven            = "curly-serifless"
-  nine             = "closed-contour"
-  asterisk         = "penta-low"
-  underscore       = "high"
-  brace            = "straight"
-  number-sign      = "slanted"
-  at               = "threefold"
-  percent          = "dots"
-  # paren          = "large-contour"
-  paren            = "flat-arc"
-  long-s           = "bent-hook-middle-serifed"
-  eszet            = "longs-s-lig-serifless"
-  capital-delta    = "curly"
-  lower-delta      = "flat-top"
-  capital-lambda   = "curly-serifless"
-  lower-lambda     = "curly"
-  lower-mu         = "toothed-serifless"
-  lower-chi        = "curly-serifless"
-  cyrl-capital-zhe = "curly"
-  cyrl-zhe         = "curly"
-  cyrl-capital-ka  = "curly-serifless"
-  cyrl-capital-u   = "curly-serifless"
-  cyrl-ka          = "curly-serifless"
-  cyrl-capital-ya  = "curly-serifless"
-  cyrl-ya          = "curly-serifless"
-  guillemet        = "straight"
-  lig-ltgteq       = "slanted"
-  lig-neq          = "slightly-slanted-dotted"
-  lig-equal-chain  = "with-notch"
-  lig-hyphen-chain = "with-notch"
-
-  [buildPlans.iosevka-edev-term-slab.variants.italic]
-  g                = "single-storey-serifless"
-
-  [buildPlans.iosevka-edev-term-slab.variants.slab-override.design]
-  seven            = "bend-serifed"
-  long-s           = "bent-hook-double-serifed"
-  eszet            = "longs-s-lig-bottom-serifed"
-  capital-lambda   = "curly-base-serifed"
-  lower-mu         = "toothed-serifed"
-  lower-chi        = "curly-serifed"
-  cyrl-capital-ka  = "curly-serifed"
-  cyrl-capital-u   = "curly-serifed"
-  cyrl-ka          = "curly-serifed"
-  cyrl-capital-ya  = "curly-serifed"
-  cyrl-ya          = "curly-serifed"
-
-  [buildPlans.iosevka-edev-term-slab.variants.slab-override.italic]
-  g                = "single-storey-serifed"
-  cyrl-ka          = "curly-top-left-serifed"
-
 [buildPlans.iosevka-edev-fixed-slab]
 family             = "Iosevka Edev Fixed Slab"
 spacing            = "fixed"
 serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
+
+  [buildPlans.iosevka-edev-fixed-slab.variants]
+  inherits         = "buildPlans.iosevka-edev-slab"
 
   [buildPlans.iosevka-edev-fixed-slab.widths.normal]
   shape = 500
@@ -387,65 +255,6 @@ no-cv-ss           = true
   shape = 600
   menu  = 7
   css   = "expanded"
-
-  [buildPlans.iosevka-edev-fixed-slab.variants.design]
-  capital-i        = "short-serifed"
-  i                = "serifed"
-  l                = "zshaped"
-  # zero           = "slashed"
-  zero             = "diamond-reverse-slashed-split"
-  four             = "closed"
-  six              = "closed-contour"
-  seven            = "curly-serifless"
-  nine             = "closed-contour"
-  asterisk         = "penta-low"
-  underscore       = "high"
-  brace            = "straight"
-  number-sign      = "slanted"
-  at               = "threefold"
-  percent          = "dots"
-  # paren          = "large-contour"
-  paren            = "flat-arc"
-  long-s           = "bent-hook-middle-serifed"
-  eszet            = "longs-s-lig-serifless"
-  capital-delta    = "curly"
-  lower-delta      = "flat-top"
-  capital-lambda   = "curly-serifless"
-  lower-lambda     = "curly"
-  lower-mu         = "toothed-serifless"
-  lower-chi        = "curly-serifless"
-  cyrl-capital-zhe = "curly"
-  cyrl-zhe         = "curly"
-  cyrl-capital-ka  = "curly-serifless"
-  cyrl-capital-u   = "curly-serifless"
-  cyrl-ka          = "curly-serifless"
-  cyrl-capital-ya  = "curly-serifless"
-  cyrl-ya          = "curly-serifless"
-  guillemet        = "straight"
-  lig-ltgteq       = "slanted"
-  lig-neq          = "slightly-slanted-dotted"
-  lig-equal-chain  = "with-notch"
-  lig-hyphen-chain = "with-notch"
-
-  [buildPlans.iosevka-edev-fixed-slab.variants.italic]
-  g                = "single-storey-serifless"
-
-  [buildPlans.iosevka-edev-fixed-slab.variants.slab-override.design]
-  seven            = "bend-serifed"
-  long-s           = "bent-hook-double-serifed"
-  eszet            = "longs-s-lig-bottom-serifed"
-  capital-lambda   = "curly-base-serifed"
-  lower-mu         = "toothed-serifed"
-  lower-chi        = "curly-serifed"
-  cyrl-capital-ka  = "curly-serifed"
-  cyrl-capital-u   = "curly-serifed"
-  cyrl-ka          = "curly-serifed"
-  cyrl-capital-ya  = "curly-serifed"
-  cyrl-ya          = "curly-serifed"
-
-  [buildPlans.iosevka-edev-fixed-slab.variants.slab-override.italic]
-  g                = "single-storey-serifed"
-  cyrl-ka          = "curly-top-left-serifed"
 
 #========================================================================================================================
 # BuildPlan: pragpro, monospace, sans-serif
@@ -591,6 +400,9 @@ serifs             = "sans"
 export-glyph-names = true
 no-cv-ss           = true
 
+  [buildPlans.iosevka-pragpro-term.variants]
+  inherits = "buildPlans.iosevka-pragpro"
+
   [buildPlans.iosevka-pragpro-term.widths.normal]
   shape = 500
   menu  = 5
@@ -604,15 +416,15 @@ no-cv-ss           = true
   menu  = 7
   css   = "expanded"
 
-  [buildPlans.iosevka-pragpro-term.variants]
-  inherits = "buildPlans.iosevka-pragpro"
-
 [buildPlans.iosevka-pragpro-fixed]
 family             = "Iosevka Pragpro Fixed"
 spacing            = "fixed"
 serifs             = "sans"
 export-glyph-names = true
 no-cv-ss           = true
+
+  [buildPlans.iosevka-pragpro-fixed.variants]
+  inherits = "buildPlans.iosevka-pragpro"
 
   [buildPlans.iosevka-pragpro-fixed.widths.normal]
   shape = 500
@@ -627,9 +439,6 @@ no-cv-ss           = true
   menu  = 7
   css   = "expanded"
 
-  [buildPlans.iosevka-pragpro-fixed.variants]
-  inherits = "buildPlans.iosevka-pragpro"
-
 #========================================================================================================================
 # BuildPlan: pragpro, monospace, slab-serif
 [buildPlans.iosevka-pragpro-slab]
@@ -639,6 +448,9 @@ spacing            = "normal"
 serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
+
+  [buildPlans.iosevka-pragpro-slab.variants]
+  inherits = "buildPlans.iosevka-pragpro"
 
   [buildPlans.iosevka-pragpro-slab.widths.normal]
   shape = 500
@@ -653,15 +465,15 @@ no-cv-ss           = true
   menu  = 7
   css   = "expanded"
 
-  [buildPlans.iosevka-pragpro-slab.variants]
-  inherits = "buildPlans.iosevka-pragpro"
-
 [buildPlans.iosevka-pragpro-term-slab]
 family             = "Iosevka Pragpro Term Slab"
 spacing            = "term"
 serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
+
+  [buildPlans.iosevka-pragpro-term-slab.variants]
+  inherits = "buildPlans.iosevka-pragpro"
 
   [buildPlans.iosevka-pragpro-term-slab.widths.normal]
   shape = 500
@@ -676,15 +488,15 @@ no-cv-ss           = true
   menu  = 7
   css   = "expanded"
 
-  [buildPlans.iosevka-pragpro-term-slab.variants]
-  inherits = "buildPlans.iosevka-pragpro"
-
 [buildPlans.iosevka-pragpro-fixed-slab]
 family             = "Iosevka Pragpro Fixed Slab"
 spacing            = "fixed"
 serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
+
+  [buildPlans.iosevka-pragpro-fixed-slab.variants]
+  inherits = "buildPlans.iosevka-pragpro"
 
   [buildPlans.iosevka-pragpro-fixed-slab.widths.normal]
   shape = 500
@@ -698,9 +510,6 @@ no-cv-ss           = true
   shape = 600
   menu  = 7
   css   = "expanded"
-
-  [buildPlans.iosevka-pragpro-fixed-slab.variants]
-  inherits = "buildPlans.iosevka-pragpro"
 
 #========================================================================================================================
 # Collect plans
