@@ -2,12 +2,12 @@
 #========================================================================================================================
 # | Cheatsheat         | Desc                                                | Weights                                                                    | Slopes                   | Widths           |
 # | ------------------ | --------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------ | ---------------- |
-# | Iosevka            | Monospace, Sans-Serif                               | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
-# | Iosevka Term       | Monospace, Sans-Serif, Narrow Symbols               | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
-# | Iosevka Fixed      | Monospace, Sans-Serif, Narrow Symbols, Ligation Off | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
-# | Iosevka Slab       | Monospace, Slab-Serif                               | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
-# | Iosevka Term Slab  | Monospace, Slab-Serif, Narrow Symbols               | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
-# | Iosevka Fixed Slab | Monospace, Slab-Serif, Narrow Symbols, Ligation Off | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
+# | Iosevka            | Monospace, Sans-Serif, Ligation Off                 | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
+# | Iosevka Term       | Monospace, Sans-Serif, Ligation Off, Narrow Symbols | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
+# | Iosevka Fixed      | Monospace, Sans-Serif, Ligation Off, Narrow Symbols | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
+# | Iosevka Slab       | Monospace, Slab-Serif, Ligation On                  | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
+# | Iosevka Term Slab  | Monospace, Slab-Serif, Ligation On,  Narrow Symbols | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
+# | Iosevka Fixed Slab | Monospace, Slab-Serif, Ligation Off, Narrow Symbols | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
 # | Iosevka Aile       | Quasi-Proportional, for Documents                   | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | -                |
 # | Iosevka Etoile     | Quasi-Proportional, for Writing                     | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | -                |
 
@@ -21,6 +21,20 @@ serifs             = "sans"
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
+
+  [buildPlans.iosevka-edev.widths.normal]
+  shape = 500
+  menu  = 5
+  css   = "normal"
+  [buildPlans.iosevka-edev.widths.semiextended]
+  shape = 548
+  menu  = 6
+  css   = "semi-expanded"
+  [buildPlans.iosevka-edev.widths.extended]
+  shape = 600
+  menu  = 7
+  css   = "expanded"
+
   [buildPlans.iosevka-edev.variants.design]
   capital-i        = "short-serifed"
   i                = "serifed"
@@ -71,6 +85,20 @@ serifs             = "sans"
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
+
+  [buildPlans.iosevka-edev-term.widths.normal]
+  shape = 500
+  menu  = 5
+  css   = "normal"
+  [buildPlans.iosevka-edev-term.widths.semiextended]
+  shape = 548
+  menu  = 6
+  css   = "semi-expanded"
+  [buildPlans.iosevka-edev-term.widths.extended]
+  shape = 600
+  menu  = 7
+  css   = "expanded"
+
   [buildPlans.iosevka-edev-term.variants.design]
   capital-i        = "short-serifed"
   i                = "serifed"
@@ -121,6 +149,20 @@ serifs             = "sans"
 export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
+
+  [buildPlans.iosevka-edev-fixed.widths.normal]
+  shape = 500
+  menu  = 5
+  css   = "normal"
+  [buildPlans.iosevka-edev-fixed.widths.semiextended]
+  shape = 548
+  menu  = 6
+  css   = "semi-expanded"
+  [buildPlans.iosevka-edev-fixed.widths.extended]
+  shape = 600
+  menu  = 7
+  css   = "expanded"
+
   [buildPlans.iosevka-edev-fixed.variants.design]
   capital-i        = "short-serifed"
   i                = "serifed"
@@ -173,6 +215,20 @@ spacing            = "normal"
 serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
+
+  [buildPlans.iosevka-edev-slab.widths.normal]
+  shape = 500
+  menu  = 5
+  css   = "normal"
+  [buildPlans.iosevka-edev-slab.widths.semiextended]
+  shape = 548
+  menu  = 6
+  css   = "semi-expanded"
+  [buildPlans.iosevka-edev-slab.widths.extended]
+  shape = 600
+  menu  = 7
+  css   = "expanded"
+
   [buildPlans.iosevka-edev-slab.variants.design]
   capital-i        = "short-serifed"
   i                = "serifed"
@@ -239,6 +295,20 @@ spacing            = "term"
 serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
+
+  [buildPlans.iosevka-edev-term-slab.widths.normal]
+  shape = 500
+  menu  = 5
+  css   = "normal"
+  [buildPlans.iosevka-edev-term-slab.widths.semiextended]
+  shape = 548
+  menu  = 6
+  css   = "semi-expanded"
+  [buildPlans.iosevka-edev-term-slab.widths.extended]
+  shape = 600
+  menu  = 7
+  css   = "expanded"
+
   [buildPlans.iosevka-edev-term-slab.variants.design]
   capital-i        = "short-serifed"
   i                = "serifed"
@@ -304,6 +374,20 @@ spacing            = "fixed"
 serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
+
+  [buildPlans.iosevka-edev-fixed-slab.widths.normal]
+  shape = 500
+  menu  = 5
+  css   = "normal"
+  [buildPlans.iosevka-edev-fixed-slab.widths.semiextended]
+  shape = 548
+  menu  = 6
+  css   = "semi-expanded"
+  [buildPlans.iosevka-edev-fixed-slab.widths.extended]
+  shape = 600
+  menu  = 7
+  css   = "expanded"
+
   [buildPlans.iosevka-edev-fixed-slab.variants.design]
   capital-i        = "short-serifed"
   i                = "serifed"
@@ -487,12 +571,38 @@ no-cv-ss           = true
     y                = "curly-motion-serifed"
     cyrl-ka          = "curly-top-left-serifed"
 
+  [buildPlans.iosevka-pragpro.widths.normal]
+  shape = 500
+  menu  = 5
+  css   = "normal"
+  [buildPlans.iosevka-pragpro.widths.semiextended]
+  shape = 548
+  menu  = 6
+  css   = "semi-expanded"
+  [buildPlans.iosevka-pragpro.widths.extended]
+  shape = 600
+  menu  = 7
+  css   = "expanded"
+
 [buildPlans.iosevka-pragpro-term]
 family             = "Iosevka Pragpro Term"
 spacing            = "term"
 serifs             = "sans"
 export-glyph-names = true
 no-cv-ss           = true
+
+  [buildPlans.iosevka-pragpro-term.widths.normal]
+  shape = 500
+  menu  = 5
+  css   = "normal"
+  [buildPlans.iosevka-pragpro-term.widths.semiextended]
+  shape = 548
+  menu  = 6
+  css   = "semi-expanded"
+  [buildPlans.iosevka-pragpro-term.widths.extended]
+  shape = 600
+  menu  = 7
+  css   = "expanded"
 
   [buildPlans.iosevka-pragpro-term.variants]
   inherits = "buildPlans.iosevka-pragpro"
@@ -503,6 +613,19 @@ spacing            = "fixed"
 serifs             = "sans"
 export-glyph-names = true
 no-cv-ss           = true
+
+  [buildPlans.iosevka-pragpro-fixed.widths.normal]
+  shape = 500
+  menu  = 5
+  css   = "normal"
+  [buildPlans.iosevka-pragpro-fixed.widths.semiextended]
+  shape = 548
+  menu  = 6
+  css   = "semi-expanded"
+  [buildPlans.iosevka-pragpro-fixed.widths.extended]
+  shape = 600
+  menu  = 7
+  css   = "expanded"
 
   [buildPlans.iosevka-pragpro-fixed.variants]
   inherits = "buildPlans.iosevka-pragpro"
@@ -517,6 +640,19 @@ serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
 
+  [buildPlans.iosevka-pragpro-slab.widths.normal]
+  shape = 500
+  menu  = 5
+  css   = "normal"
+  [buildPlans.iosevka-pragpro-slab.widths.semiextended]
+  shape = 548
+  menu  = 6
+  css   = "semi-expanded"
+  [buildPlans.iosevka-pragpro-slab.widths.extended]
+  shape = 600
+  menu  = 7
+  css   = "expanded"
+
   [buildPlans.iosevka-pragpro-slab.variants]
   inherits = "buildPlans.iosevka-pragpro"
 
@@ -527,6 +663,19 @@ serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
 
+  [buildPlans.iosevka-pragpro-term-slab.widths.normal]
+  shape = 500
+  menu  = 5
+  css   = "normal"
+  [buildPlans.iosevka-pragpro-term-slab.widths.semiextended]
+  shape = 548
+  menu  = 6
+  css   = "semi-expanded"
+  [buildPlans.iosevka-pragpro-term-slab.widths.extended]
+  shape = 600
+  menu  = 7
+  css   = "expanded"
+
   [buildPlans.iosevka-pragpro-term-slab.variants]
   inherits = "buildPlans.iosevka-pragpro"
 
@@ -536,6 +685,19 @@ spacing            = "fixed"
 serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
+
+  [buildPlans.iosevka-pragpro-fixed-slab.widths.normal]
+  shape = 500
+  menu  = 5
+  css   = "normal"
+  [buildPlans.iosevka-pragpro-fixed-slab.widths.semiextended]
+  shape = 548
+  menu  = 6
+  css   = "semi-expanded"
+  [buildPlans.iosevka-pragpro-fixed-slab.widths.extended]
+  shape = 600
+  menu  = 7
+  css   = "expanded"
 
   [buildPlans.iosevka-pragpro-fixed-slab.variants]
   inherits = "buildPlans.iosevka-pragpro"
