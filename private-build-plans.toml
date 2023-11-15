@@ -22,6 +22,7 @@ export-glyph-names = true
 no-cv-ss           = true
 no-ligation        = true
 
+  [buildPlans.iosevka-edev.widths]
   [buildPlans.iosevka-edev.widths.normal]
   shape = 500
   menu  = 5
@@ -89,6 +90,7 @@ no-ligation        = true
   [buildPlans.iosevka-edev-term.variants]
   inherits         = "buildPlans.iosevka-edev"
 
+  [buildPlans.iosevka-edev-term.widths]
   [buildPlans.iosevka-edev-term.widths.normal]
   shape = 500
   menu  = 5
@@ -113,6 +115,7 @@ no-ligation        = true
   [buildPlans.iosevka-edev-fixed.variants]
   inherits         = "buildPlans.iosevka-edev"
 
+  [buildPlans.iosevka-edev-fixed.widths]
   [buildPlans.iosevka-edev-fixed.widths.normal]
   shape = 500
   menu  = 5
@@ -137,6 +140,7 @@ serifs             = "slab"
 export-glyph-names = true
 no-cv-ss           = true
 
+  [buildPlans.iosevka-edev-slab.widths]
   [buildPlans.iosevka-edev-slab.widths.normal]
   shape = 500
   menu  = 5
@@ -220,6 +224,7 @@ no-cv-ss           = true
   [buildPlans.iosevka-edev-term-slab.variants]
   inherits         = "buildPlans.iosevka-edev-slab"
 
+  [buildPlans.iosevka-edev-term-slab.widths]
   [buildPlans.iosevka-edev-term-slab.widths.normal]
   shape = 500
   menu  = 5
@@ -243,6 +248,7 @@ no-cv-ss           = true
   [buildPlans.iosevka-edev-fixed-slab.variants]
   inherits         = "buildPlans.iosevka-edev-slab"
 
+  [buildPlans.iosevka-edev-fixed-slab.widths]
   [buildPlans.iosevka-edev-fixed-slab.widths.normal]
   shape = 500
   menu  = 5
@@ -380,6 +386,7 @@ no-cv-ss           = true
     y                = "curly-motion-serifed"
     cyrl-ka          = "curly-top-left-serifed"
 
+  [buildPlans.iosevka-pragpro.widths]
   [buildPlans.iosevka-pragpro.widths.normal]
   shape = 500
   menu  = 5
@@ -403,6 +410,7 @@ no-cv-ss           = true
   [buildPlans.iosevka-pragpro-term.variants]
   inherits = "buildPlans.iosevka-pragpro"
 
+  [buildPlans.iosevka-pragpro-term.widths]
   [buildPlans.iosevka-pragpro-term.widths.normal]
   shape = 500
   menu  = 5
@@ -426,6 +434,7 @@ no-cv-ss           = true
   [buildPlans.iosevka-pragpro-fixed.variants]
   inherits = "buildPlans.iosevka-pragpro"
 
+  [buildPlans.iosevka-pragpro-fixed.widths]
   [buildPlans.iosevka-pragpro-fixed.widths.normal]
   shape = 500
   menu  = 5
@@ -452,6 +461,7 @@ no-cv-ss           = true
   [buildPlans.iosevka-pragpro-slab.variants]
   inherits = "buildPlans.iosevka-pragpro"
 
+  [buildPlans.iosevka-pragpro-slab.widths]
   [buildPlans.iosevka-pragpro-slab.widths.normal]
   shape = 500
   menu  = 5
@@ -475,6 +485,7 @@ no-cv-ss           = true
   [buildPlans.iosevka-pragpro-term-slab.variants]
   inherits = "buildPlans.iosevka-pragpro"
 
+  [buildPlans.iosevka-pragpro-term-slab.widths]
   [buildPlans.iosevka-pragpro-term-slab.widths.normal]
   shape = 500
   menu  = 5
@@ -498,6 +509,7 @@ no-cv-ss           = true
   [buildPlans.iosevka-pragpro-fixed-slab.variants]
   inherits = "buildPlans.iosevka-pragpro"
 
+  [buildPlans.iosevka-pragpro-fixed-slab.widths]
   [buildPlans.iosevka-pragpro-fixed-slab.widths.normal]
   shape = 500
   menu  = 5
