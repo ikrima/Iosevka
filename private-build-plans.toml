@@ -1,15 +1,15 @@
 [buildPlans]
 #========================================================================================================================
-# | Cheatsheat         | Desc                                                | Weights                                                                    | Slopes                   | Widths           |
-# | ------------------ | --------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------ | ---------------- |
-# | Iosevka            | Monospace, Sans-Serif, Ligation Off                 | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
-# | Iosevka Term       | Monospace, Sans-Serif, Ligation Off, Narrow Symbols | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
-# | Iosevka Fixed      | Monospace, Sans-Serif, Ligation Off, Narrow Symbols | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
-# | Iosevka Slab       | Monospace, Slab-Serif, Ligation On                  | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
-# | Iosevka Term Slab  | Monospace, Slab-Serif, Ligation On,  Narrow Symbols | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
-# | Iosevka Fixed Slab | Monospace, Slab-Serif, Ligation Off, Narrow Symbols | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Extended |
-# | Iosevka Aile       | Quasi-Proportional, for Documents                   | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | -                |
-# | Iosevka Etoile     | Quasi-Proportional, for Writing                     | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | -                |
+# | Cheatsheat         | Desc                                                | Weights                                                                    | Slopes                   | Widths                          |
+# | ------------------ | --------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------ | ------------------------------- |
+# | Iosevka            | Monospace, Sans-Serif, Ligation Off                 | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Semi-Extended, Extended |
+# | Iosevka Term       | Monospace, Sans-Serif, Ligation Off, Narrow Symbols | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Semi-Extended, Extended |
+# | Iosevka Fixed      | Monospace, Sans-Serif, Ligation Off, Narrow Symbols | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Semi-Extended, Extended |
+# | Iosevka Slab       | Monospace, Slab-Serif, Ligation On                  | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Semi-Extended, Extended |
+# | Iosevka Term Slab  | Monospace, Slab-Serif, Ligation On,  Narrow Symbols | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Semi-Extended, Extended |
+# | Iosevka Fixed Slab | Monospace, Slab-Serif, Ligation Off, Narrow Symbols | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal, Semi-Extended, Extended |
+# | Iosevka Aile       | Quasi-Proportional, Sans-Serif (for Documents)      | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal                          |
+# | Iosevka Etoile     | Quasi-Proportional, Slab-Serif (for Writing)        | Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy | Upright, Oblique, Italic | Normal                          |
 
 #========================================================================================================================
 # BuildPlan: edev, monospace, sans-serif
