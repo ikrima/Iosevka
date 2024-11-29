@@ -1,4 +1,8 @@
 [buildPlans]
+# Iosevka contains many ligatures especially suited for fp like haskell
+# - Iosevka Term variant: designed to better support terminals
+# - Iosevka Fixed variant: omits the ligatures
+# - Iosevka Extended Width: a variant expands all glyphs to more readable proportions
 #========================================================================================================================
 # | Cheatsheat         | Desc                                                | Weights                                                                    | Slopes                   | Widths                          |
 # | ------------------ | --------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------ | ------------------------------- |
